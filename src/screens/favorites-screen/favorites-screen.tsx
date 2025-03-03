@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 
 
-export default function FavoritesScreen() {
+export default function FavoritesScreen(): JSX.Element {
   return (
     <div className='page'>
       <Header/>

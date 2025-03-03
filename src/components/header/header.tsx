@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Header(): JSX.Element {
   return (
     <header className='header'>
       <div className='container'>
