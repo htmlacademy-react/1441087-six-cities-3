@@ -1,10 +1,8 @@
 import { PLACES_COUNT } from '../../mock/places-mock';
-import MainScreen from '../../screens/main-screen/main-screen';
+import MainPage from '../../pages/main-page/main-page';
 
-function App(): JSX.Element {
+export default function App(): JSX.Element {
   return (
-    <MainScreen placesCount={PLACES_COUNT}/>
+    <MainPage placesCount={PLACES_COUNT}/>
   );
 }
-
-export default App;

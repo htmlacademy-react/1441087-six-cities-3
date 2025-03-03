@@ -8,7 +8,7 @@ type MainScreenProps = {
 }
 
 
-function MainScreen({placesCount}: MainScreenProps): JSX.Element {
+export default function MainPage({placesCount}: MainScreenProps): JSX.Element {
   return (
     <div className='page page--gray page--main'>
       <Header/>
@@ -53,5 +53,3 @@ function MainScreen({placesCount}: MainScreenProps): JSX.Element {
     </div>
   );
 }
-
-export default MainScreen;
