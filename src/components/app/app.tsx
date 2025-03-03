@@ -1,8 +1,9 @@
-import MainScreen from '../../screens/main-screen/main-screen.tsx';
+import { PLACES_COUNT } from '../../mock/places-mock';
+import MainScreen from '../../screens/main-screen/main-screen';
 
 function App(): JSX.Element {
   return (
-    <MainScreen />
+    <MainScreen placesCount={PLACES_COUNT}/>
   );
 }
 
