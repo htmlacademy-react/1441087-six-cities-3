@@ -1,4 +1,4 @@
-function Main(): JSX.Element {
+function MainScreen(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -266,4 +266,4 @@ function Main(): JSX.Element {
   );
 }
 
-export default Main;
+export default MainScreen;
