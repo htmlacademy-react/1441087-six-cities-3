@@ -2,7 +2,7 @@ import { getMockOfferPreviews } from '../../mock/offers-mock';
 import { CURRENT_OFFERS_COUNT } from '../../const';
 import Header from '../../components/header/header';
 import Navigation from '../../components/navigation/navigation';
-import Sorting from '../../components/sorting/sorting';
+import Sort from '../../components/sort/sort';
 import PlaceCard from '../../components/place-card/place-card';
 
 type MainPageProps = {
@@ -24,7 +24,7 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
               <b className="places__found">
                 {offersCount} places to stay in Amsterdam
               </b>
-              <Sorting />
+              <Sort />
               <div className="cities__places-list places__list tabs__content">
                 {offerPreviews.map((offerPreview) => (
                   <PlaceCard

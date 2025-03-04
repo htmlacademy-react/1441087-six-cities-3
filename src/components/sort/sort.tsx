@@ -1,14 +1,7 @@
-import { SORTING_TYPES } from '../../const';
+import { SORT_TYPES } from '../../const';
+import SortItem from '../sort-item/sort-item';
 
-function getSortingItem(sortingType: string): JSX.Element {
-  return (
-    <li className="places__option" tabIndex={0}>
-      {sortingType}
-    </li>
-  );
-}
-
-export default function Sorting(): JSX.Element {
+export default function Sort(): JSX.Element {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -19,7 +12,9 @@ export default function Sorting(): JSX.Element {
         </svg>
       </span>
       <ul className="places__options places__options--custom places__options--opened">
-        {SORTING_TYPES.map((sortingType) => getSortingItem(sortingType))}
+        {SORT_TYPES.map((sortType) => (
+          <SortItem key={sortType} title={sortType} />
+        ))}
       </ul>
     </form>
   );

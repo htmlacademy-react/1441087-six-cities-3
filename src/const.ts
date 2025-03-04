@@ -10,11 +10,11 @@ const CITIES = [
   'Dusseldorf',
 ];
 
-const SORTING_TYPES: string[] = [
+const SORT_TYPES: string[] = [
   'Popular',
   'Price: low to high',
   'Price: high to low',
   'Top rated first',
 ];
 
-export { TOTAL_OFFERS_COUNT, CURRENT_OFFERS_COUNT, CITIES, SORTING_TYPES };
+export { TOTAL_OFFERS_COUNT, CURRENT_OFFERS_COUNT, CITIES, SORT_TYPES };
