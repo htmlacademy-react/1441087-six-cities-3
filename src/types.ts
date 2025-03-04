@@ -15,20 +15,23 @@ type City = {
   location: Location;
 };
 
-type OfferPreview = {
+type OfferBase = {
   id: string;
   title: string;
   type: string;
   price: number;
-  previewImage: string;
   city: City;
   location: Location;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
+}
+
+type OfferPreview = OfferBase & {
+  previewImage: string;
 };
 
-type Offer = OfferPreview & {
+type Offer = OfferBase & {
   description: string;
   bedrooms: number;
   goods: string[];

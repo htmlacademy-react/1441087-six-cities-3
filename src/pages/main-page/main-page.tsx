@@ -1,4 +1,4 @@
-import { getMockOfferPreviews } from '../../mock/offers-mock';
+import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
 import { CURRENT_OFFERS_COUNT } from '../../const';
 import Header from '../../components/header/header';
 import Navigation from '../../components/navigation/navigation';
