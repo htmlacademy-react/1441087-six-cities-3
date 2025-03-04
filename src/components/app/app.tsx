@@ -1,8 +1,6 @@
-import { OFFERS_COUNT } from '../../const';
+import { TOTAL_OFFERS_COUNT } from '../../const';
 import MainPage from '../../pages/main-page/main-page';
 
 export default function App(): JSX.Element {
-  return (
-    <MainPage placesCount={OFFERS_COUNT}/>
-  );
+  return <MainPage offersCount={TOTAL_OFFERS_COUNT} />;
 }
