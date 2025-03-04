@@ -1,7 +1,7 @@
 import { getMockOfferPreviews } from '../../mock/offers-mock';
 import { CURRENT_OFFERS_COUNT } from '../../const';
 import Header from '../../components/header/header';
-import TabsCities from '../../components/tabs-cities/tabs-cities';
+import Navigation from '../../components/navigation/navigation';
 import Sorting from '../../components/sorting/sorting';
 import PlaceCard from '../../components/place-card/place-card';
 
@@ -16,7 +16,7 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
     <div className="page page--gray page--main">
       <Header />
       <main className="page__main page__main--index">
-        <TabsCities />
+        <Navigation />
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
