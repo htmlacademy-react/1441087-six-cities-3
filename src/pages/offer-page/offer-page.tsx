@@ -1,7 +1,7 @@
 import { Offer } from '../../types';
 import { getRatingWidth } from '../../utils';
 import Header from '../../components/header/header';
-import GalleryImage from '../../components/gallery-image/gallery-image';
+import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferFeatures from '../../components/offer-features/offer-features';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferHost from '../../components/offer-host/offer-host';
@@ -30,13 +30,7 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
       <Header />
       <main className="page__main page__main--offer">
         <section className="offer">
-          <div className="offer__gallery-container container">
-            <div className="offer__gallery">
-              {images.map((image) => (
-                <GalleryImage key={image} src={image} />
-              ))}
-            </div>
-          </div>
+          <OfferGallery images={images}/>
           <div className="offer__container container">
             <div className="offer__wrapper">
               {isPremium && (
