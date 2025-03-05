@@ -2,8 +2,8 @@ import { Offer } from '../../types';
 import { getRatingWidth } from '../../utils';
 import Header from '../../components/header/header';
 import GalleryImage from '../../components/gallery-image/gallery-image';
-import InsideItem from '../../components/inside-item/inside-item';
 import OfferFeatures from '../../components/offer-features/offer-features';
+import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferHost from '../../components/offer-host/offer-host';
 
 type OfferPageProps = {
@@ -28,7 +28,6 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
   return (
     <div className="page">
       <Header />
-
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
@@ -68,14 +67,7 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
                 <b className="offer__price-value">€{price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
-              <div className="offer__inside">
-                <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <ul className="offer__inside-list">
-                  {goods.map((good) => (
-                    <InsideItem key={good} title={good} />
-                  ))}
-                </ul>
-              </div>
+              <OfferInside goods={goods}/>
               <OfferHost host={host}/>
               <div className="offer__description">
                 <p className="offer__text">
