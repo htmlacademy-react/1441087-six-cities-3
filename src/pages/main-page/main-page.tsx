@@ -3,7 +3,7 @@ import { CURRENT_OFFERS_COUNT } from '../../const';
 import Header from '../../components/header/header';
 import Navigation from '../../components/navigation/navigation';
 import Sort from '../../components/sort/sort';
-import PlaceCard from '../../components/place-card/place-card';
+import PlaceCardMedium from '../../components/place-card-medium/place-card-medium';
 
 type MainPageProps = {
   offersCount: number;
@@ -27,7 +27,7 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
               <Sort />
               <div className="cities__places-list places__list tabs__content">
                 {offerPreviews.map((offerPreview) => (
-                  <PlaceCard
+                  <PlaceCardMedium
                     key={offerPreview.id}
                     offerPreview={offerPreview}
                   />

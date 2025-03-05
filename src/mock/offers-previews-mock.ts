@@ -113,7 +113,7 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 2.375499,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.1,
   },
@@ -136,7 +136,7 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 2.353499,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 5,
   },
@@ -596,7 +596,7 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 6.956974,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2,
   },
@@ -619,7 +619,7 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 6.944974,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.5,
   },
@@ -964,7 +964,7 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 4.371696999999999,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.7,
   },
@@ -987,7 +987,7 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 4.336697,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 1.9,
   },
@@ -1470,7 +1470,7 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 4.881976,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 3.1,
   },
@@ -1953,7 +1953,7 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 9.980654000000001,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.4,
   },
@@ -1976,7 +1976,7 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 10.022654000000001,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.8,
   },
@@ -1999,7 +1999,7 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 9.978654,
       zoom: 16,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.6,
   },
@@ -2764,8 +2764,11 @@ const mockOfferPreviews: OfferPreview[] = [
   },
 ];
 
-function getMockOfferPreviews(offersCount: number): OfferPreview[] {
-  return mockOfferPreviews.slice(0, offersCount);
+function getMockOfferPreviews(offersCount?: number): OfferPreview[] {
+  if (offersCount && offersCount < mockOfferPreviews.length) {
+    return mockOfferPreviews.slice(0, offersCount);
+  }
+  return mockOfferPreviews;
 }
 
 export { getMockOfferPreviews };
