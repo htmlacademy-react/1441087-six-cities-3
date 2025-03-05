@@ -1,6 +1,4 @@
-import { getCapitalizedString } from '../../utils';
-import Premium from '../premium/premium';
-import Rating from '../rating/rating';
+import { getCapitalizedString, getRatingWidth } from '../../utils';
 
 type PlaceCardProps = {
   title: string;
@@ -21,7 +19,11 @@ export default function PlaceCard({
 }: PlaceCardProps): JSX.Element {
   return (
     <article className="cities__card place-card">
-      {isPremium && <Premium />}
+      {isPremium && (
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      )}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img
@@ -47,7 +49,10 @@ export default function PlaceCard({
           </button>
         </div>
         <div className="place-card__rating rating">
-          <Rating value={rating} />
+          <div className="place-card__stars rating__stars">
+            <span style={{ width: getRatingWidth(rating) }}></span>
+            <span className="visually-hidden">Rating</span>
+          </div>
         </div>
         <h2 className="place-card__name">
           <a href="#">{title}</a>

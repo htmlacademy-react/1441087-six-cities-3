@@ -1,15 +1,29 @@
 import { Offer } from '../../types';
+import { getRatingWidth } from '../../utils';
 import Header from '../../components/header/header';
 import GalleryImage from '../../components/gallery-image/gallery-image';
 import InsideItem from '../../components/inside-item/inside-item';
-import Features from '../../components/features/features';
+import OfferFeatures from '../../components/offer-features/offer-features';
+import OfferHost from '../../components/offer-host/offer-host';
 
 type OfferPageProps = {
   offer: Offer;
 };
 
 export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
-  const { bedrooms, goods, images, isPremium, maxAdults, price, title, type } = offer;
+  const {
+    bedrooms,
+    description,
+    goods,
+    host,
+    images,
+    isPremium,
+    maxAdults,
+    price,
+    rating,
+    title,
+    type,
+  } = offer;
 
   return (
     <div className="page">
@@ -42,12 +56,14 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: '80%' }} />
+                  <span style={{ width: getRatingWidth(rating) }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">4.8</span>
+                <span className="offer__rating-value rating__value">
+                  {rating}
+                </span>
               </div>
-              <Features type={type} bedrooms={bedrooms} maxAdults={maxAdults} />
+              <OfferFeatures type={type} bedrooms={bedrooms} maxAdults={maxAdults} />
               <div className="offer__price">
                 <b className="offer__price-value">€{price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
@@ -60,33 +76,11 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
                   ))}
                 </ul>
               </div>
-              <div className="offer__host">
-                <h2 className="offer__host-title">Meet the host</h2>
-                <div className="offer__host-user user">
-                  <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
-                    <img
-                      className="offer__avatar user__avatar"
-                      src="img/avatar-angelina.jpg"
-                      width={74}
-                      height={74}
-                      alt="Host avatar"
-                    />
-                  </div>
-                  <span className="offer__user-name">Angelina</span>
-                  <span className="offer__user-status">Pro</span>
-                </div>
-                <div className="offer__description">
-                  <p className="offer__text">
-                    A quiet cozy and picturesque that hides behind a a river by
-                    the unique lightness of Amsterdam. The building is green and
-                    from 18th century.
-                  </p>
-                  <p className="offer__text">
-                    An independent House, strategically located between Rembrand
-                    Square and National Opera, but where the bustle of the city
-                    comes to rest in this alley flowery and colorful.
-                  </p>
-                </div>
+              <OfferHost host={host}/>
+              <div className="offer__description">
+                <p className="offer__text">
+                  {description}
+                </p>
               </div>
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">
