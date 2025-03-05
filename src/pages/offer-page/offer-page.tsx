@@ -8,6 +8,7 @@ import OfferFeatures from '../../components/offer-features/offer-features';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferHost from '../../components/offer-host/offer-host';
 import OfferReviews from '../../components/offer-reviews/offer-reviews';
+import OfferMap from '../../components/offer-map/offer-map';
 import PlaceCardMedium from '../../components/place-card-medium/place-card-medium';
 
 const NEAR_OFFERS_COUNT = 3;
@@ -81,7 +82,7 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
               <OfferReviews reviews={mockReviews} />
             </div>
           </div>
-          <section className="offer__map map" />
+          <OfferMap />
         </section>
         <div className="container">
           <section className="near-places places">
@@ -90,7 +91,10 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
             </h2>
             <div className="near-places__list places__list">
               {mockOfferPreviews.map((offerPreview) => (
-                <PlaceCardMedium key={offerPreview.id} offerPreview={offerPreview} />
+                <PlaceCardMedium
+                  key={offerPreview.id}
+                  offerPreview={offerPreview}
+                />
               ))}
             </div>
           </section>
