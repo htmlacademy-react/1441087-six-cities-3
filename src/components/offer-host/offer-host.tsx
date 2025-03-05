@@ -1,7 +1,7 @@
-import { Host } from '../../types';
+import { User } from '../../types';
 
 type OfferHostProps = {
-  host: Host;
+  host: User;
 };
 
 export default function OfferHost({ host }: OfferHostProps): JSX.Element {

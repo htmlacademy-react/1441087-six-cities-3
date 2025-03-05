@@ -10,7 +10,7 @@ const CITIES = [
   'Dusseldorf',
 ];
 
-const SORT_TYPES: string[] = [
+const SORT_TYPES = [
   'Popular',
   'Price: low to high',
   'Price: high to low',

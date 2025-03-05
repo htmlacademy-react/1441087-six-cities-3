@@ -1,4 +1,4 @@
-type Host = {
+type User = {
   name: string;
   avatarUrl: string;
   isPro: boolean;
@@ -35,7 +35,7 @@ type Offer = OfferBase & {
   description: string;
   bedrooms: number;
   goods: string[];
-  host: Host;
+  host: User;
   images: string[];
   maxAdults: number;
 };
@@ -43,13 +43,9 @@ type Offer = OfferBase & {
 type Review = {
   id: string;
   date: Date;
-  user: {
-    name: string;
-    avatarUrl: string;
-    isPro: boolean;
-  };
+  user: User;
   comment: string;
   rating: number;
 };
 
-export type { Host, Location, City, OfferPreview, Offer, Review };
+export type { User, Location, City, OfferPreview, Offer, Review };
