@@ -1,22 +1,20 @@
 import { getCapitalizedString, getRatingWidth } from '../../utils';
+import { OfferPreview } from '../../types';
 
 type PlaceCardProps = {
-  title: string;
-  type: string;
-  price: number;
-  isPremium: boolean;
-  previewImage: string;
-  rating: number;
+  offerPreview: OfferPreview;
 };
 
-export default function PlaceCard({
-  title,
-  type,
-  price,
-  isPremium,
-  previewImage,
-  rating,
-}: PlaceCardProps): JSX.Element {
+export default function PlaceCard({offerPreview}: PlaceCardProps): JSX.Element {
+  const {
+    title,
+    type,
+    price,
+    isPremium,
+    previewImage,
+    rating,
+  } = offerPreview;
+
   return (
     <article className="cities__card place-card">
       {isPremium && (

@@ -29,12 +29,7 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
                 {offerPreviews.map((offerPreview) => (
                   <PlaceCard
                     key={offerPreview.id}
-                    title={offerPreview.title}
-                    type={offerPreview.type}
-                    price={offerPreview.price}
-                    isPremium={offerPreview.isPremium}
-                    previewImage={offerPreview.previewImage}
-                    rating={offerPreview.rating}
+                    offerPreview={offerPreview}
                   />
                 ))}
               </div>

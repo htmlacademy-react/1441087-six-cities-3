@@ -1,7 +1,7 @@
 import { OfferPreview } from '../types';
 
 
-const OfferPreviews: OfferPreview[] = [
+const mockOfferPreviews: OfferPreview[] = [
   {
     id: '89b6ae84-2724-4369-ab85-6877dbdd2795',
     title: 'Perfectly located Castro',
@@ -45,7 +45,7 @@ const OfferPreviews: OfferPreview[] = [
       zoom: 16,
     },
     isFavorite: false,
-    isPremium: false,
+    isPremium: true,
     rating: 2.3,
   },
   {
@@ -2765,7 +2765,7 @@ const OfferPreviews: OfferPreview[] = [
 ];
 
 function getMockOfferPreviews(offersCount: number): OfferPreview[] {
-  return OfferPreviews.slice(0, offersCount);
+  return mockOfferPreviews.slice(0, offersCount);
 }
 
 export { getMockOfferPreviews };

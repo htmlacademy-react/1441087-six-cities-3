@@ -25,7 +25,7 @@ type OfferBase = {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
-}
+};
 
 type OfferPreview = OfferBase & {
   previewImage: string;
@@ -40,4 +40,16 @@ type Offer = OfferBase & {
   maxAdults: number;
 };
 
-export type { Host, Location, City, OfferPreview, Offer };
+type Review = {
+  id: string;
+  date: Date;
+  user: {
+    name: string;
+    avatarUrl: string;
+    isPro: boolean;
+  };
+  comment: string;
+  rating: number;
+};
+
+export type { Host, Location, City, OfferPreview, Offer, Review };
