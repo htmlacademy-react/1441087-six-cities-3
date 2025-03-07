@@ -20,7 +20,7 @@ const SORT_TYPES = [
 enum AppRoute {
   Root = '/',
   Login = '/login',
-  Offer = '/offer',
+  Offer = '/offer/:id',
   Favorites = '/favorites',
 }
 
