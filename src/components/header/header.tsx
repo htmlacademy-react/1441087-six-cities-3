@@ -1,5 +1,5 @@
-import { getAuthStatus } from '../../mock/auth-status';
-import { getIsLoggedIn } from '../../utils';
+import { getMockAuthStatus } from '../../mock/auth-status';
+import { isUserLoggedIn, isRequiredPage } from '../../utils';
 import { useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import Logo from '../logo/logo';
@@ -7,11 +7,11 @@ import HeaderUser from './header-user';
 import HeaderSignIn from './header-sign-in';
 import HeaderSignOut from './header-sign-out';
 
-const isLoggedIn = getIsLoggedIn(getAuthStatus());
+const isLoggedIn = isUserLoggedIn(getMockAuthStatus());
 
 export default function Header(): JSX.Element {
   const { pathname } = useLocation();
-  const isLoginPage = (pathname as AppRoute) === AppRoute.Login;
+  const isLoginPage = isRequiredPage(pathname, AppRoute.Login);
 
   return (
     <header className="header">

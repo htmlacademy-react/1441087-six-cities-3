@@ -1,5 +1,6 @@
 import { OfferPreview } from './types';
 import { AuthorizationStatus } from './const';
+import { AppRoute } from './const';
 
 function getCapitalizedString(str: string): string {
   return str[0].toUpperCase() + str.slice(1);
@@ -28,8 +29,12 @@ function getCityFavorites(
   );
 }
 
-function getIsLoggedIn(currentAuthStatus: AuthorizationStatus): boolean {
+function isUserLoggedIn(currentAuthStatus: AuthorizationStatus): boolean {
   return currentAuthStatus === AuthorizationStatus.Auth;
+}
+
+function isRequiredPage(pathname: string, appRoute: AppRoute): boolean {
+  return (pathname as AppRoute) === appRoute;
 }
 
 export {
@@ -37,5 +42,6 @@ export {
   getRatingWidth,
   getCitiesWithFavorites,
   getCityFavorites,
-  getIsLoggedIn,
+  isUserLoggedIn,
+  isRequiredPage,
 };
