@@ -8,7 +8,7 @@ const favoriteOfferPreviews = getMockOfferPreviews().filter(
   (offerPreview) => offerPreview.isFavorite
 );
 
-export default function FavoritesPage(): JSX.Element {
+function FavoritesPage(): JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -27,3 +27,5 @@ export default function FavoritesPage(): JSX.Element {
     </div>
   );
 }
+
+export default FavoritesPage;

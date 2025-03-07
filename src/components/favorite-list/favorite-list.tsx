@@ -7,9 +7,7 @@ type FavoriteListProps = {
   offerPreviews: OfferPreview[];
 };
 
-export default function FavoriteList({
-  offerPreviews,
-}: FavoriteListProps): JSX.Element {
+function FavoriteList({ offerPreviews }: FavoriteListProps): JSX.Element {
   const citiesWithFavorites = getCitiesWithFavorites(CITIES, offerPreviews);
 
   return (
@@ -24,3 +22,5 @@ export default function FavoriteList({
     </ul>
   );
 }
+
+export default FavoriteList;

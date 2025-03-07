@@ -13,7 +13,7 @@ import PrivateRoute from '../private-route';
 
 const isLoggedIn = isUserLoggedIn(getMockAuthStatus());
 
-export default function App(): JSX.Element {
+function App(): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -35,7 +35,13 @@ export default function App(): JSX.Element {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={isLoggedIn ? AuthorizationStatus.Auth : AuthorizationStatus.NoAuth}>
+              <PrivateRoute
+                authorizationStatus={
+                  isLoggedIn
+                    ? AuthorizationStatus.Auth
+                    : AuthorizationStatus.NoAuth
+                }
+              >
                 <FavoritesPage />
               </PrivateRoute>
             }
@@ -46,3 +52,5 @@ export default function App(): JSX.Element {
     </HelmetProvider>
   );
 }
+
+export default App;

@@ -4,7 +4,7 @@ type OfferHostProps = {
   host: User;
 };
 
-export default function OfferHost({ host }: OfferHostProps): JSX.Element {
+function OfferHost({ host }: OfferHostProps): JSX.Element {
   const { avatarUrl, name, isPro } = host;
 
   return (
@@ -30,3 +30,5 @@ export default function OfferHost({ host }: OfferHostProps): JSX.Element {
     </div>
   );
 }
+
+export default OfferHost;

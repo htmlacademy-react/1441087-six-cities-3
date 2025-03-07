@@ -9,7 +9,7 @@ import HeaderSignOut from './header-sign-out';
 
 const isLoggedIn = isUserLoggedIn(getMockAuthStatus());
 
-export default function Header(): JSX.Element {
+function Header(): JSX.Element {
   const { pathname } = useLocation();
   const isLoginPage = isRequiredPage(pathname, AppRoute.Login);
 
@@ -34,3 +34,5 @@ export default function Header(): JSX.Element {
     </header>
   );
 }
+
+export default Header;

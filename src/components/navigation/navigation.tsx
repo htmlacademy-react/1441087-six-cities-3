@@ -1,7 +1,7 @@
 import { CITIES } from '../../const';
 import NavigationItem from './navigation-item';
 
-export default function Navigation(): JSX.Element {
+function Navigation(): JSX.Element {
   return (
     <>
       <h1 className="visually-hidden">Cities</h1>
@@ -17,3 +17,5 @@ export default function Navigation(): JSX.Element {
     </>
   );
 }
+
+export default Navigation;

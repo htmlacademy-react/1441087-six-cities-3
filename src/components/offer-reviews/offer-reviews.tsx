@@ -10,9 +10,7 @@ type OfferReviewsProps = {
 
 const isLoggedIn = isUserLoggedIn(getMockAuthStatus());
 
-export default function OfferReviews({
-  reviews,
-}: OfferReviewsProps): JSX.Element {
+function OfferReviews({ reviews }: OfferReviewsProps): JSX.Element {
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">
@@ -27,3 +25,5 @@ export default function OfferReviews({
     </section>
   );
 }
+
+export default OfferReviews;

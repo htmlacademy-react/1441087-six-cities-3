@@ -13,7 +13,7 @@ type MainPageProps = {
 
 const offerPreviews = getMockOfferPreviews(CURRENT_OFFERS_COUNT);
 
-export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
+function MainPage({ offersCount }: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -48,3 +48,5 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
     </div>
   );
 }
+
+export default MainPage;

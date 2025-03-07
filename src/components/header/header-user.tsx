@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-export default function HeaderUser(): JSX.Element {
+function HeaderUser(): JSX.Element {
   return (
     <li className="header__nav-item user">
       <Link
@@ -17,3 +17,5 @@ export default function HeaderUser(): JSX.Element {
     </li>
   );
 }
+
+export default HeaderUser;

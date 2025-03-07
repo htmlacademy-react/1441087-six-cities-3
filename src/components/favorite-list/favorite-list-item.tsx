@@ -6,7 +6,7 @@ type FavoriteListItemProps = {
   offerPreviews: OfferPreview[];
 };
 
-export default function FavoriteListItem({
+function FavoriteListItem({
   city,
   offerPreviews,
 }: FavoriteListItemProps): JSX.Element {
@@ -27,3 +27,5 @@ export default function FavoriteListItem({
     </li>
   );
 }
+
+export default FavoriteListItem;

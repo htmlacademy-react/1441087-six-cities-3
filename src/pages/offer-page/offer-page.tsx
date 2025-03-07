@@ -20,7 +20,7 @@ type OfferPageProps = {
   offer: Offer;
 };
 
-export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
+function OfferPage({ offer }: OfferPageProps): JSX.Element {
   const {
     bedrooms,
     description,
@@ -107,3 +107,5 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
     </div>
   );
 }
+
+export default OfferPage;

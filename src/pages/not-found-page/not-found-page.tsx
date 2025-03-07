@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header';
 
-export default function NotFoundPage(): JSX.Element {
+function NotFoundPage(): JSX.Element {
   return (
     <div className="page page--gray page--login">
       <Helmet>
@@ -34,3 +34,5 @@ export default function NotFoundPage(): JSX.Element {
     </div>
   );
 }
+
+export default NotFoundPage;

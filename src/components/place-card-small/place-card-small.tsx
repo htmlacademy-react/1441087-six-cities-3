@@ -7,10 +7,9 @@ type PlaceCardProps = {
   offerPreview: OfferPreview;
 };
 
-export default function PlaceCardSmall({
-  offerPreview,
-}: PlaceCardProps): JSX.Element {
-  const { id, title, type, price, isPremium, previewImage, rating } = offerPreview;
+function PlaceCardSmall({ offerPreview }: PlaceCardProps): JSX.Element {
+  const { id, title, type, price, isPremium, previewImage, rating } =
+    offerPreview;
   const offerLink = AppRoute.Offer.replace(':id', id);
 
   return (
@@ -61,3 +60,5 @@ export default function PlaceCardSmall({
     </article>
   );
 }
+
+export default PlaceCardSmall;

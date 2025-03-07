@@ -2,7 +2,7 @@ type NavigationItemProps = {
   title: string;
 };
 
-export default function NavigationItem({ title }: NavigationItemProps): JSX.Element {
+function NavigationItem({ title }: NavigationItemProps): JSX.Element {
   return (
     <li className="locations__item">
       <a className="locations__item-link tabs__item" href="#">
@@ -11,3 +11,5 @@ export default function NavigationItem({ title }: NavigationItemProps): JSX.Elem
     </li>
   );
 }
+
+export default NavigationItem;

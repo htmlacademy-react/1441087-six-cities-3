@@ -7,9 +7,7 @@ type PlaceCardProps = {
   offerPreview: OfferPreview;
 };
 
-export default function PlaceCardMedium({
-  offerPreview,
-}: PlaceCardProps): JSX.Element {
+function PlaceCardMedium({ offerPreview }: PlaceCardProps): JSX.Element {
   const { id, title, type, price, isPremium, previewImage, rating } =
     offerPreview;
   const offerLink = AppRoute.Offer.replace(':id', id);
@@ -59,3 +57,5 @@ export default function PlaceCardMedium({
     </article>
   );
 }
+
+export default PlaceCardMedium;

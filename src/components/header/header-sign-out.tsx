@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-export default function HeaderSignOut(): JSX.Element {
+function HeaderSignOut(): JSX.Element {
   return (
     <li className="header__nav-item">
       <Link className="header__nav-link" to={AppRoute.Root}>
@@ -10,3 +10,5 @@ export default function HeaderSignOut(): JSX.Element {
     </li>
   );
 }
+
+export default HeaderSignOut;
