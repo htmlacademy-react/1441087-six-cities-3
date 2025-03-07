@@ -1,5 +1,5 @@
 import { AuthorizationStatus } from '../const';
 
-const getMockAuthStatus = () => AuthorizationStatus.NoAuth;
+const getMockAuthStatus = () => AuthorizationStatus.Auth;
 
 export { getMockAuthStatus };
