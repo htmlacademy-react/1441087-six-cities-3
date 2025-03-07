@@ -1,4 +1,5 @@
 import { OfferPreview } from './types';
+import { AuthorizationStatus } from './const';
 
 function getCapitalizedString(str: string): string {
   return str[0].toUpperCase() + str.slice(1);
@@ -27,9 +28,14 @@ function getCityFavorites(
   );
 }
 
+function getIsLoggedIn(currentAuthStatus: AuthorizationStatus) {
+  return currentAuthStatus === AuthorizationStatus.Auth;
+}
+
 export {
   getCapitalizedString,
   getRatingWidth,
   getCitiesWithFavorites,
   getCityFavorites,
+  getIsLoggedIn,
 };
