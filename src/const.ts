@@ -17,4 +17,11 @@ const SORT_TYPES = [
   'Top rated first',
 ];
 
-export { TOTAL_OFFERS_COUNT, CURRENT_OFFERS_COUNT, CITIES, SORT_TYPES };
+enum AppRoute {
+  Root = '/',
+  Login = '/login',
+  Offer = '/offer',
+  Favorites = '/favorites'
+}
+
+export { TOTAL_OFFERS_COUNT, CURRENT_OFFERS_COUNT, CITIES, SORT_TYPES, AppRoute };

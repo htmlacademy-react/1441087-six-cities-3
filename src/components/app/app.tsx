@@ -1,6 +1,28 @@
-import { TOTAL_OFFERS_COUNT } from '../../const';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { AppRoute, TOTAL_OFFERS_COUNT } from '../../const';
+import { offerMock } from '../../mock/offer-mock';
 import MainPage from '../../pages/main-page/main-page';
+import LoginPage from '../../pages/login-page/login-page';
+import OfferPage from '../../pages/offer-page/offer-page';
+import FavoritesPage from '../../pages/favorites-page/favorites-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
 
 export default function App(): JSX.Element {
-  return <MainPage offersCount={TOTAL_OFFERS_COUNT} />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path={AppRoute.Root}
+          element={<MainPage offersCount={TOTAL_OFFERS_COUNT} />}
+        />
+        <Route path={AppRoute.Login} element={<LoginPage />} />
+        <Route
+          path={AppRoute.Offer}
+          element={<OfferPage offer={offerMock} />}
+        />
+        <Route path={AppRoute.Favorites} element={<FavoritesPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
