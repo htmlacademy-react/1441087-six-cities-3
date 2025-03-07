@@ -21,7 +21,20 @@ enum AppRoute {
   Root = '/',
   Login = '/login',
   Offer = '/offer',
-  Favorites = '/favorites'
+  Favorites = '/favorites',
 }
 
-export { TOTAL_OFFERS_COUNT, CURRENT_OFFERS_COUNT, CITIES, SORT_TYPES, AppRoute };
+enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
+export {
+  TOTAL_OFFERS_COUNT,
+  CURRENT_OFFERS_COUNT,
+  CITIES,
+  SORT_TYPES,
+  AppRoute,
+  AuthorizationStatus,
+};
