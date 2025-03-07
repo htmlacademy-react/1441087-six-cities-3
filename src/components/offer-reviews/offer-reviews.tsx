@@ -1,10 +1,14 @@
 import { Review } from '../../types';
+import { getMockAuthStatus } from '../../mock/auth-status';
+import { isUserLoggedIn } from '../../utils';
 import OfferReviewItem from './offer-review-item';
 import ReviewForm from '../review-form';
 
 type OfferReviewsProps = {
   reviews: Review[];
 };
+
+const isLoggedIn = isUserLoggedIn(getMockAuthStatus());
 
 export default function OfferReviews({
   reviews,
@@ -19,7 +23,7 @@ export default function OfferReviews({
           <OfferReviewItem key={review.id} review={review} />
         ))}
       </ul>
-      <ReviewForm />
+      {isLoggedIn ? <ReviewForm /> : null}
     </section>
   );
 }
