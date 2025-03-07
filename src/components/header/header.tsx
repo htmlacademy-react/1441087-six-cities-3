@@ -24,8 +24,7 @@ function Header(): JSX.Element {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 {isLoggedIn ? <HeaderUser /> : null}
-                {isLoggedIn ? <HeaderSignOut /> : null}
-                {!isLoggedIn ? <HeaderSignIn /> : null}
+                {isLoggedIn ? <HeaderSignOut /> : <HeaderSignIn />}
               </ul>
             </nav>
           ) : null}
