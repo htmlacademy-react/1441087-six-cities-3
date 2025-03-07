@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 
@@ -13,13 +14,12 @@ export default function NotFoundPage(): JSX.Element {
           <section className="login">
             <h1 className="login__title">404</h1>
             <p className="offer__price-text">Page not Found</p>
-            <form className="login__form form" action="#" method="post">
-              <button
-                className="login__submit form__submit button"
-                type="submit"
-              >
-                Go to Home
-              </button>
+            <form className="login__form form">
+              <Link to={'/'}>
+                <button className="login__submit form__submit button">
+                  Go to Home
+                </button>
+              </Link>
             </form>
           </section>
           <section className="locations locations--login locations--current">
