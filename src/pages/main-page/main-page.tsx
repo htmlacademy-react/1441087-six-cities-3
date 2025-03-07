@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
 import { CURRENT_OFFERS_COUNT } from '../../const';
 import Header from '../../components/header/header';
@@ -15,6 +16,9 @@ const offerPreviews = getMockOfferPreviews(CURRENT_OFFERS_COUNT);
 export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
+      <Helmet>
+        <title>6 Cities</title>
+      </Helmet>
       <Header />
       <main className="page__main page__main--index">
         <Navigation />

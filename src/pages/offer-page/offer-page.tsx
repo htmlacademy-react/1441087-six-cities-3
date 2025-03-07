@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types';
 import { getRatingWidth } from '../../utils';
 import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
@@ -36,6 +37,9 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
 
   return (
     <div className="page">
+      <Helmet>
+        <title>6 Cities. Offer</title>
+      </Helmet>
       <Header />
       <main className="page__main page__main--offer">
         <section className="offer">
