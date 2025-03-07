@@ -5,7 +5,7 @@ type ReviewItemProps = {
   review: Review;
 };
 
-export default function ReviewItem({ review }: ReviewItemProps): JSX.Element {
+export default function OfferReviewItem({ review }: ReviewItemProps): JSX.Element {
   const { comment, date, rating, user } = review;
 
   return (

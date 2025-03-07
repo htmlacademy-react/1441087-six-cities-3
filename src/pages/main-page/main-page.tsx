@@ -2,10 +2,10 @@ import { Helmet } from 'react-helmet-async';
 import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
 import { CURRENT_OFFERS_COUNT } from '../../const';
 import Header from '../../components/header';
-import Navigation from '../../components/navigation/navigation';
-import Sort from '../../components/sort/sort';
-import MainMap from '../../components/main-map/main-map';
-import PlaceCardMedium from '../../components/place-card-medium/place-card-medium';
+import Navigation from '../../components/navigation';
+import Sort from '../../components/sort';
+import MainMap from '../../components/main-map';
+import PlaceCardMedium from '../../components/place-card-medium';
 
 type MainPageProps = {
   offersCount: number;

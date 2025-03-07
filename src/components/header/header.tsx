@@ -2,7 +2,7 @@ import { getMockAuthStatus } from '../../mock/auth-status';
 import { isUserLoggedIn, isRequiredPage } from '../../utils';
 import { useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import Logo from '../logo/logo';
+import Logo from '../logo';
 import HeaderUser from './header-user';
 import HeaderSignIn from './header-sign-in';
 import HeaderSignOut from './header-sign-out';

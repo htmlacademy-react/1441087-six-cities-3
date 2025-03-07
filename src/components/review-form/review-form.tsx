@@ -1,4 +1,4 @@
-export default function OfferReviewCreate(): JSX.Element {
+export default function ReviewForm(): JSX.Element {
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">

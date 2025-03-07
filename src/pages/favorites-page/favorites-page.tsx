@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
 import Header from '../../components/header';
 import FavoriteList from '../../components/favorite-list/favorite-list';
-import Footer from '../../components/footer/footer';
+import Footer from '../../components/footer';
 
 const favoriteOfferPreviews = getMockOfferPreviews().filter(
   (offerPreview) => offerPreview.isFavorite

@@ -1,4 +1,4 @@
-import GalleryImage from '../gallery-image/gallery-image';
+import OfferGalleryImage from './offer-gallery-image';
 
 type OfferGalleryProps = {
   images: string[];
@@ -9,7 +9,7 @@ export default function OfferGallery({ images }: OfferGalleryProps): JSX.Element
     <div className="offer__gallery-container container">
       <div className="offer__gallery">
         {images.map((image) => (
-          <GalleryImage key={image} src={image} />
+          <OfferGalleryImage key={image} src={image} />
         ))}
       </div>
     </div>

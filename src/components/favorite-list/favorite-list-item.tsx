@@ -1,5 +1,5 @@
 import { OfferPreview } from '../../types';
-import PlaceCardSmall from '../place-card-small/place-card-small';
+import PlaceCardSmall from '../place-card-small';
 
 type FavoriteListItemProps = {
   city: string;

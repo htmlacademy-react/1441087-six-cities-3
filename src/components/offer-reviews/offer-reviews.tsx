@@ -1,6 +1,6 @@
 import { Review } from '../../types';
-import ReviewItem from '../review-item/review-item';
-import OfferReviewCreate from '../offer-review-create/offer-review-create';
+import OfferReviewItem from './offer-review-item';
+import ReviewForm from '../review-form';
 
 type OfferReviewsProps = {
   reviews: Review[];
@@ -16,10 +16,10 @@ export default function OfferReviews({
       </h2>
       <ul className="reviews__list">
         {reviews.map((review) => (
-          <ReviewItem key={review.id} review={review} />
+          <OfferReviewItem key={review.id} review={review} />
         ))}
       </ul>
-      <OfferReviewCreate />
+      <ReviewForm />
     </section>
   );
 }

@@ -1,5 +1,5 @@
 import { SORT_TYPES } from '../../const';
-import SortItem from '../sort-item/sort-item';
+import SortItem from './sort-item';
 
 export default function Sort(): JSX.Element {
   return (
