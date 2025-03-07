@@ -4,7 +4,9 @@ type OfferInsideProps = {
   goods: string[];
 };
 
-function OfferInside({ goods }: OfferInsideProps): JSX.Element {
+function OfferInside(props: OfferInsideProps): JSX.Element {
+  const { goods } = props;
+
   return (
     <div className="offer__inside">
       <h2 className="offer__inside-title">What&apos;s inside</h2>

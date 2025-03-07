@@ -6,10 +6,9 @@ type FavoriteListItemProps = {
   offerPreviews: OfferPreview[];
 };
 
-function FavoriteListItem({
-  city,
-  offerPreviews,
-}: FavoriteListItemProps): JSX.Element {
+function FavoriteListItem(props: FavoriteListItemProps): JSX.Element {
+  const { city, offerPreviews } = props;
+
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">

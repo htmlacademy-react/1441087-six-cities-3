@@ -5,8 +5,8 @@ type ReviewItemProps = {
   review: Review;
 };
 
-function OfferReviewItem({ review }: ReviewItemProps): JSX.Element {
-  const { comment, date, rating, user } = review;
+function OfferReviewItem(props: ReviewItemProps): JSX.Element {
+  const { comment, date, rating, user } = props.review;
 
   return (
     <li className="reviews__item">

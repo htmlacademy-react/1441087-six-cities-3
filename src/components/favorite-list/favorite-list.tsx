@@ -7,7 +7,8 @@ type FavoriteListProps = {
   offerPreviews: OfferPreview[];
 };
 
-function FavoriteList({ offerPreviews }: FavoriteListProps): JSX.Element {
+function FavoriteList(props: FavoriteListProps): JSX.Element {
+  const { offerPreviews } = props;
   const citiesWithFavorites = getCitiesWithFavorites(CITIES, offerPreviews);
 
   return (

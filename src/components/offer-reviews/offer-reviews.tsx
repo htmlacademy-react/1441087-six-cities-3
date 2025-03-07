@@ -10,7 +10,9 @@ type OfferReviewsProps = {
 
 const isLoggedIn = isUserLoggedIn(getMockAuthStatus());
 
-function OfferReviews({ reviews }: OfferReviewsProps): JSX.Element {
+function OfferReviews(props: OfferReviewsProps): JSX.Element {
+  const { reviews } = props;
+
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">

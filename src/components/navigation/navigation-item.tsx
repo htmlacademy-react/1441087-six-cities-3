@@ -2,7 +2,9 @@ type NavigationItemProps = {
   title: string;
 };
 
-function NavigationItem({ title }: NavigationItemProps): JSX.Element {
+function NavigationItem(props: NavigationItemProps): JSX.Element {
+  const { title } = props;
+
   return (
     <li className="locations__item">
       <a className="locations__item-link tabs__item" href="#">

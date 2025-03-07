@@ -20,7 +20,7 @@ type OfferPageProps = {
   offer: Offer;
 };
 
-function OfferPage({ offer }: OfferPageProps): JSX.Element {
+function OfferPage(props: OfferPageProps): JSX.Element {
   const {
     bedrooms,
     description,
@@ -33,7 +33,7 @@ function OfferPage({ offer }: OfferPageProps): JSX.Element {
     rating,
     title,
     type,
-  } = offer;
+  } = props.offer;
 
   return (
     <div className="page">

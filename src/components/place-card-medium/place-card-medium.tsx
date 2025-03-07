@@ -7,9 +7,9 @@ type PlaceCardProps = {
   offerPreview: OfferPreview;
 };
 
-function PlaceCardMedium({ offerPreview }: PlaceCardProps): JSX.Element {
+function PlaceCardMedium(props: PlaceCardProps): JSX.Element {
   const { id, title, type, price, isPremium, previewImage, rating } =
-    offerPreview;
+    props.offerPreview;
   const offerLink = AppRoute.Offer.replace(':id', id);
 
   return (

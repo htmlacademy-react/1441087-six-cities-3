@@ -6,11 +6,9 @@ type OfferFeaturesProps = {
   maxAdults: number;
 };
 
-function OfferFeatures({
-  type,
-  bedrooms,
-  maxAdults,
-}: OfferFeaturesProps): JSX.Element {
+function OfferFeatures(props: OfferFeaturesProps): JSX.Element {
+  const { type, bedrooms, maxAdults } = props;
+
   return (
     <ul className="offer__features">
       <li className="offer__feature offer__feature--entire">

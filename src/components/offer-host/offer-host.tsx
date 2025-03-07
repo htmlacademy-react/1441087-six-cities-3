@@ -4,8 +4,8 @@ type OfferHostProps = {
   host: User;
 };
 
-function OfferHost({ host }: OfferHostProps): JSX.Element {
-  const { avatarUrl, name, isPro } = host;
+function OfferHost(props: OfferHostProps): JSX.Element {
+  const { avatarUrl, name, isPro } = props.host;
 
   return (
     <div className="offer__host">

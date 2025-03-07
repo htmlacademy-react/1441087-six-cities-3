@@ -4,7 +4,9 @@ type OfferGalleryProps = {
   images: string[];
 };
 
-function OfferGallery({ images }: OfferGalleryProps): JSX.Element {
+function OfferGallery(props: OfferGalleryProps): JSX.Element {
+  const { images } = props;
+
   return (
     <div className="offer__gallery-container container">
       <div className="offer__gallery">

@@ -13,7 +13,9 @@ type MainPageProps = {
 
 const offerPreviews = getMockOfferPreviews(CURRENT_OFFERS_COUNT);
 
-function MainPage({ offersCount }: MainPageProps): JSX.Element {
+function MainPage(props: MainPageProps): JSX.Element {
+  const { offersCount } = props;
+
   return (
     <div className="page page--gray page--main">
       <Helmet>

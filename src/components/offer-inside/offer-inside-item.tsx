@@ -2,7 +2,9 @@ type OfferInsideItemProps = {
   title: string;
 };
 
-function OfferInsideItem({ title }: OfferInsideItemProps): JSX.Element {
+function OfferInsideItem(props: OfferInsideItemProps): JSX.Element {
+  const { title } = props;
+
   return <li className="offer__inside-item">{title}</li>;
 }
 
