@@ -3,7 +3,7 @@ import { Offer } from '../../types';
 import { getRatingWidth } from '../../utils';
 import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
 import { getMockReviews } from '../../mock/reviews-mock';
-import Header from '../../components/header/header';
+import Header from '../../components/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferFeatures from '../../components/offer-features/offer-features';
 import OfferInside from '../../components/offer-inside/offer-inside';

@@ -1,6 +1,18 @@
+import { getAuthStatus } from '../../mock/auth-status';
+import { getIsLoggedIn } from '../../utils';
+import { useLocation } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import Logo from '../logo/logo';
+import HeaderUser from './header-user';
+import HeaderSignIn from './header-sign-in';
+import HeaderSignOut from './header-sign-out';
+
+const isLoggedIn = getIsLoggedIn(getAuthStatus());
 
 export default function Header(): JSX.Element {
+  const { pathname } = useLocation();
+  const isLoginPage = (pathname as AppRoute) === AppRoute.Login;
+
   return (
     <header className="header">
       <div className="container">
@@ -8,27 +20,15 @@ export default function Header(): JSX.Element {
           <div className="header__left">
             <Logo />
           </div>
-          <nav className="header__nav">
-            <ul className="header__nav-list">
-              <li className="header__nav-item user">
-                <a
-                  className="header__nav-link header__nav-link--profile"
-                  href="#"
-                >
-                  <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                  <span className="header__user-name user__name">
-                    Oliver.conner@gmail.com
-                  </span>
-                  <span className="header__favorite-count">3</span>
-                </a>
-              </li>
-              <li className="header__nav-item">
-                <a className="header__nav-link" href="#">
-                  <span className="header__signout">Sign out</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+          {!isLoginPage ? (
+            <nav className="header__nav">
+              <ul className="header__nav-list">
+                {isLoggedIn ? <HeaderUser /> : null}
+                {isLoggedIn ? <HeaderSignOut /> : null}
+                {!isLoggedIn ? <HeaderSignIn /> : null}
+              </ul>
+            </nav>
+          ) : null}
         </div>
       </div>
     </header>

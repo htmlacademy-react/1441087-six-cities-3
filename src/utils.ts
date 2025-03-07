@@ -28,7 +28,7 @@ function getCityFavorites(
   );
 }
 
-function getIsLoggedIn(currentAuthStatus: AuthorizationStatus) {
+function getIsLoggedIn(currentAuthStatus: AuthorizationStatus): boolean {
   return currentAuthStatus === AuthorizationStatus.Auth;
 }
 

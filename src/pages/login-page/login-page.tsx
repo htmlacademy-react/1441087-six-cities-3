@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import Header from '../../components/header/header';
+import Header from '../../components/header';
 
 export default function LoginPage(): JSX.Element {
   return (
