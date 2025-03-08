@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { AppRoute } from '../../const';
 import Header from '../../components/header';
 
 function NotFoundPage(): JSX.Element {
@@ -15,7 +16,7 @@ function NotFoundPage(): JSX.Element {
             <h1 className="login__title">404</h1>
             <p className="offer__price-text">Page not Found</p>
             <form className="login__form form">
-              <Link to={'/'}>
+              <Link to={AppRoute.Root}>
                 <button className="login__submit form__submit button">
                   Go to Home
                 </button>
