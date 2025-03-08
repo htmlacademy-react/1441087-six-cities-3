@@ -20,14 +20,14 @@ function Header(): JSX.Element {
           <div className="header__left">
             <Logo />
           </div>
-          {!isLoginPage ? (
+          {!isLoginPage && (
             <nav className="header__nav">
               <ul className="header__nav-list">
-                {isLoggedIn ? <HeaderUser /> : null}
+                {isLoggedIn && <HeaderUser />}
                 {isLoggedIn ? <HeaderSignOut /> : <HeaderSignIn />}
               </ul>
             </nav>
-          ) : null}
+          )}
         </div>
       </div>
     </header>
