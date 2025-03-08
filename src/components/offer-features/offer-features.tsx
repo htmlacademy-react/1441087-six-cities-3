@@ -1,4 +1,4 @@
-import { getCapitalizedString } from '../../utils';
+import { getCapitalizedString, pluralize } from '../../utils';
 
 type OfferFeaturesProps = {
   type: string;
@@ -6,18 +6,22 @@ type OfferFeaturesProps = {
   maxAdults: number;
 };
 
-export default function OfferFeatures({ type, bedrooms, maxAdults }: OfferFeaturesProps): JSX.Element {
+function OfferFeatures(props: OfferFeaturesProps): JSX.Element {
+  const { type, bedrooms, maxAdults } = props;
+
   return (
     <ul className="offer__features">
       <li className="offer__feature offer__feature--entire">
         {getCapitalizedString(type)}
       </li>
       <li className="offer__feature offer__feature--bedrooms">
-        {bedrooms} Bedrooms
+        {bedrooms} {pluralize('Bedroom', bedrooms)}
       </li>
       <li className="offer__feature offer__feature--adults">
-        Max {maxAdults} adults
+        Max {maxAdults} {pluralize('adult', maxAdults)}
       </li>
     </ul>
   );
 }
+
+export default OfferFeatures;

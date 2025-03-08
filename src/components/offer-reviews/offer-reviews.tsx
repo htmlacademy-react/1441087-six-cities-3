@@ -1,14 +1,18 @@
 import { Review } from '../../types';
-import ReviewItem from '../review-item/review-item';
-import OfferReviewCreate from '../offer-review-create/offer-review-create';
+import { getMockAuthStatus } from '../../mock/auth-status';
+import { isUserLoggedIn } from '../../utils';
+import OfferReviewItem from './offer-review-item';
+import ReviewForm from '../review-form';
 
 type OfferReviewsProps = {
   reviews: Review[];
 };
 
-export default function OfferReviews({
-  reviews,
-}: OfferReviewsProps): JSX.Element {
+const isLoggedIn = isUserLoggedIn(getMockAuthStatus());
+
+function OfferReviews(props: OfferReviewsProps): JSX.Element {
+  const { reviews } = props;
+
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">
@@ -16,10 +20,12 @@ export default function OfferReviews({
       </h2>
       <ul className="reviews__list">
         {reviews.map((review) => (
-          <ReviewItem key={review.id} review={review} />
+          <OfferReviewItem key={review.id} review={review} />
         ))}
       </ul>
-      <OfferReviewCreate />
+      {isLoggedIn ? <ReviewForm /> : null}
     </section>
   );
 }
+
+export default OfferReviews;

@@ -1,21 +1,20 @@
 import { CITIES } from '../../const';
 import { OfferPreview } from '../../types';
 import { getCitiesWithFavorites, getCityFavorites } from '../../utils';
-import FavoriteLocationItem from '../../components/favorite-location-item/favorite-location-item';
+import FavoriteListItem from './favorite-list-item';
 
 type FavoriteListProps = {
   offerPreviews: OfferPreview[];
 };
 
-export default function FavoriteList({
-  offerPreviews,
-}: FavoriteListProps): JSX.Element {
+function FavoriteList(props: FavoriteListProps): JSX.Element {
+  const { offerPreviews } = props;
   const citiesWithFavorites = getCitiesWithFavorites(CITIES, offerPreviews);
 
   return (
     <ul className="favorites__list">
       {citiesWithFavorites.map((city) => (
-        <FavoriteLocationItem
+        <FavoriteListItem
           key={city}
           city={city}
           offerPreviews={getCityFavorites(city, offerPreviews)}
@@ -24,3 +23,5 @@ export default function FavoriteList({
     </ul>
   );
 }
+
+export default FavoriteList;

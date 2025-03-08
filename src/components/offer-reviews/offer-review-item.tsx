@@ -5,8 +5,8 @@ type ReviewItemProps = {
   review: Review;
 };
 
-export default function ReviewItem({ review }: ReviewItemProps): JSX.Element {
-  const { comment, date, rating, user } = review;
+function OfferReviewItem(props: ReviewItemProps): JSX.Element {
+  const { comment, date, rating, user } = props.review;
 
   return (
     <li className="reviews__item">
@@ -37,3 +37,5 @@ export default function ReviewItem({ review }: ReviewItemProps): JSX.Element {
     </li>
   );
 }
+
+export default OfferReviewItem;

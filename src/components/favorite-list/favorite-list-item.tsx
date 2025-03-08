@@ -1,15 +1,14 @@
 import { OfferPreview } from '../../types';
-import PlaceCardSmall from '../../components/place-card-small/place-card-small';
+import PlaceCardSmall from '../place-card-small';
 
-type FavoriteLocationItemProps = {
+type FavoriteListItemProps = {
   city: string;
   offerPreviews: OfferPreview[];
 };
 
-export default function FavoriteLocationItem({
-  city,
-  offerPreviews,
-}: FavoriteLocationItemProps): JSX.Element {
+function FavoriteListItem(props: FavoriteListItemProps): JSX.Element {
+  const { city, offerPreviews } = props;
+
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -27,3 +26,5 @@ export default function FavoriteLocationItem({
     </li>
   );
 }
+
+export default FavoriteListItem;

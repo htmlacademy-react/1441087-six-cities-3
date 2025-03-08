@@ -1,15 +1,16 @@
+import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types';
 import { getRatingWidth } from '../../utils';
 import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
 import { getMockReviews } from '../../mock/reviews-mock';
-import Header from '../../components/header/header';
-import OfferGallery from '../../components/offer-gallery/offer-gallery';
-import OfferFeatures from '../../components/offer-features/offer-features';
-import OfferInside from '../../components/offer-inside/offer-inside';
-import OfferHost from '../../components/offer-host/offer-host';
-import OfferReviews from '../../components/offer-reviews/offer-reviews';
-import OfferMap from '../../components/offer-map/offer-map';
-import PlaceCardMedium from '../../components/place-card-medium/place-card-medium';
+import Header from '../../components/header';
+import OfferGallery from '../../components/offer-gallery';
+import OfferFeatures from '../../components/offer-features';
+import OfferInside from '../../components/offer-inside';
+import OfferHost from '../../components/offer-host';
+import OfferReviews from '../../components/offer-reviews';
+import OfferMap from '../../components/offer-map';
+import PlaceCardMedium from '../../components/place-card-medium';
 
 const NEAR_OFFERS_COUNT = 3;
 const mockOfferPreviews = getMockOfferPreviews(NEAR_OFFERS_COUNT);
@@ -19,7 +20,7 @@ type OfferPageProps = {
   offer: Offer;
 };
 
-export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
+function OfferPage(props: OfferPageProps): JSX.Element {
   const {
     bedrooms,
     description,
@@ -32,10 +33,13 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
     rating,
     title,
     type,
-  } = offer;
+  } = props.offer;
 
   return (
     <div className="page">
+      <Helmet>
+        <title>6 Cities. Offer</title>
+      </Helmet>
       <Header />
       <main className="page__main page__main--offer">
         <section className="offer">
@@ -103,3 +107,5 @@ export default function OfferPage({ offer }: OfferPageProps): JSX.Element {
     </div>
   );
 }
+
+export default OfferPage;

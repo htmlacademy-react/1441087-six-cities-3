@@ -1,7 +1,7 @@
 import { SORT_TYPES } from '../../const';
-import SortItem from '../sort-item/sort-item';
+import SortItem from './sort-item';
 
-export default function Sort(): JSX.Element {
+function Sort(): JSX.Element {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -19,3 +19,5 @@ export default function Sort(): JSX.Element {
     </form>
   );
 }
+
+export default Sort;

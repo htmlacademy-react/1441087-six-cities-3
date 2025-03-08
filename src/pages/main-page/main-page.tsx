@@ -1,10 +1,11 @@
+import { Helmet } from 'react-helmet-async';
 import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
 import { CURRENT_OFFERS_COUNT } from '../../const';
-import Header from '../../components/header/header';
-import Navigation from '../../components/navigation/navigation';
-import Sort from '../../components/sort/sort';
-import MainMap from '../../components/main-map/main-map';
-import PlaceCardMedium from '../../components/place-card-medium/place-card-medium';
+import Header from '../../components/header';
+import Navigation from '../../components/navigation';
+import Sort from '../../components/sort';
+import MainMap from '../../components/main-map';
+import PlaceCardMedium from '../../components/place-card-medium';
 
 type MainPageProps = {
   offersCount: number;
@@ -12,9 +13,14 @@ type MainPageProps = {
 
 const offerPreviews = getMockOfferPreviews(CURRENT_OFFERS_COUNT);
 
-export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
+function MainPage(props: MainPageProps): JSX.Element {
+  const { offersCount } = props;
+
   return (
     <div className="page page--gray page--main">
+      <Helmet>
+        <title>6 Cities</title>
+      </Helmet>
       <Header />
       <main className="page__main page__main--index">
         <Navigation />
@@ -44,3 +50,5 @@ export default function MainPage({ offersCount }: MainPageProps): JSX.Element {
     </div>
   );
 }
+
+export default MainPage;

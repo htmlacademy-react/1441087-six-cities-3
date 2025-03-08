@@ -4,8 +4,8 @@ type OfferHostProps = {
   host: User;
 };
 
-export default function OfferHost({ host }: OfferHostProps): JSX.Element {
-  const { avatarUrl, name, isPro } = host;
+function OfferHost(props: OfferHostProps): JSX.Element {
+  const { avatarUrl, name, isPro } = props.host;
 
   return (
     <div className="offer__host">
@@ -30,3 +30,5 @@ export default function OfferHost({ host }: OfferHostProps): JSX.Element {
     </div>
   );
 }
+
+export default OfferHost;

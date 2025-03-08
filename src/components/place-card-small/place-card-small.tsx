@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { getCapitalizedString, getRatingWidth } from '../../utils';
 import { OfferPreview } from '../../types';
 
@@ -5,10 +7,10 @@ type PlaceCardProps = {
   offerPreview: OfferPreview;
 };
 
-export default function PlaceCardSmall({
-  offerPreview,
-}: PlaceCardProps): JSX.Element {
-  const { title, type, price, isPremium, previewImage, rating } = offerPreview;
+function PlaceCardSmall(props: PlaceCardProps): JSX.Element {
+  const { id, title, type, price, isPremium, previewImage, rating } =
+    props.offerPreview;
+  const offerLink = AppRoute.Offer.replace(':id', id);
 
   return (
     <article className="favorites__card place-card">
@@ -18,7 +20,7 @@ export default function PlaceCardSmall({
         </div>
       )}
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={offerLink}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -26,7 +28,7 @@ export default function PlaceCardSmall({
             height={110}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
@@ -51,10 +53,12 @@ export default function PlaceCardSmall({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={offerLink}>{title}</Link>
         </h2>
         <p className="place-card__type">{getCapitalizedString(type)}</p>
       </div>
     </article>
   );
 }
+
+export default PlaceCardSmall;

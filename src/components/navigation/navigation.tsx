@@ -1,7 +1,7 @@
 import { CITIES } from '../../const';
-import NavItem from '../nav-item/nav-item';
+import NavigationItem from './navigation-item';
 
-export default function Navigation(): JSX.Element {
+function Navigation(): JSX.Element {
   return (
     <>
       <h1 className="visually-hidden">Cities</h1>
@@ -9,7 +9,7 @@ export default function Navigation(): JSX.Element {
         <section className="locations container">
           <ul className="locations__list tabs__list">
             {CITIES.map((city) => (
-              <NavItem key={city} title={city} />
+              <NavigationItem key={city} title={city} />
             ))}
           </ul>
         </section>
@@ -17,3 +17,5 @@ export default function Navigation(): JSX.Element {
     </>
   );
 }
+
+export default Navigation;

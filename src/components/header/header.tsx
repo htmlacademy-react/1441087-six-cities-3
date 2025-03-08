@@ -1,32 +1,37 @@
-export default function Header(): JSX.Element {
+import { getMockAuthStatus } from '../../mock/auth-status';
+import { isUserLoggedIn, isRequiredPage } from '../../utils';
+import { useLocation } from 'react-router-dom';
+import { AppRoute } from '../../const';
+import Logo from '../logo';
+import HeaderUser from './header-user';
+import HeaderSignIn from './header-sign-in';
+import HeaderSignOut from './header-sign-out';
+
+const isLoggedIn = isUserLoggedIn(getMockAuthStatus());
+
+function Header(): JSX.Element {
+  const { pathname } = useLocation();
+  const isLoginPage = isRequiredPage(pathname, AppRoute.Login);
+
   return (
-    <header className='header'>
-      <div className='container'>
-        <div className='header__wrapper'>
-          <div className='header__left'>
-            <a className='header__logo-link header__logo-link--active'>
-              <img className='header__logo' src='img/logo.svg' alt='6 cities logo' width='81' height='41'/>
-            </a>
+    <header className="header">
+      <div className="container">
+        <div className="header__wrapper">
+          <div className="header__left">
+            <Logo />
           </div>
-          <nav className='header__nav'>
-            <ul className='header__nav-list'>
-              <li className='header__nav-item user'>
-                <a className='header__nav-link header__nav-link--profile' href='#'>
-                  <div className='header__avatar-wrapper user__avatar-wrapper'>
-                  </div>
-                  <span className='header__user-name user__name'>Oliver.conner@gmail.com</span>
-                  <span className='header__favorite-count'>3</span>
-                </a>
-              </li>
-              <li className='header__nav-item'>
-                <a className='header__nav-link' href='#'>
-                  <span className='header__signout'>Sign out</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+          {!isLoginPage && (
+            <nav className="header__nav">
+              <ul className="header__nav-list">
+                {isLoggedIn && <HeaderUser />}
+                {isLoggedIn ? <HeaderSignOut /> : <HeaderSignIn />}
+              </ul>
+            </nav>
+          )}
         </div>
       </div>
     </header>
   );
 }
+
+export default Header;

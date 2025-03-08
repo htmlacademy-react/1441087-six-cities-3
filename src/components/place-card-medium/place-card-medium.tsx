@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { getCapitalizedString, getRatingWidth } from '../../utils';
 import { OfferPreview } from '../../types';
 
@@ -5,15 +7,10 @@ type PlaceCardProps = {
   offerPreview: OfferPreview;
 };
 
-export default function PlaceCardMedium({offerPreview}: PlaceCardProps): JSX.Element {
-  const {
-    title,
-    type,
-    price,
-    isPremium,
-    previewImage,
-    rating,
-  } = offerPreview;
+function PlaceCardMedium(props: PlaceCardProps): JSX.Element {
+  const { id, title, type, price, isPremium, previewImage, rating } =
+    props.offerPreview;
+  const offerLink = AppRoute.Offer.replace(':id', id);
 
   return (
     <article className="cities__card place-card">
@@ -23,7 +20,7 @@ export default function PlaceCardMedium({offerPreview}: PlaceCardProps): JSX.Ele
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={offerLink}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -31,7 +28,7 @@ export default function PlaceCardMedium({offerPreview}: PlaceCardProps): JSX.Ele
             height="200"
             alt={title}
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -53,10 +50,12 @@ export default function PlaceCardMedium({offerPreview}: PlaceCardProps): JSX.Ele
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={offerLink}>{title}</Link>
         </h2>
         <p className="place-card__type">{getCapitalizedString(type)}</p>
       </div>
     </article>
   );
 }
+
+export default PlaceCardMedium;
