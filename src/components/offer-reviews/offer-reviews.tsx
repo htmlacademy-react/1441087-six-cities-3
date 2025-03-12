@@ -1,4 +1,4 @@
-import { Review } from '../../types/offer';
+import { Review } from '../../types/review';
 import { getMockAuthStatus } from '../../mock/auth-status-mock';
 import { isUserLoggedIn } from '../../utils';
 import OfferReviewItem from './offer-review-item';

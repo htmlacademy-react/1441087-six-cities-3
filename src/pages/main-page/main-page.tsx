@@ -4,7 +4,7 @@ import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';
 import MainMap from '../../components/main-map';
-import OfferCardMedium from '../../components/offer-card-medium';
+import OfferPreviewList from '../../components/offer-preview-list';
 
 type MainPageProps = {
   offerPreviews: OfferPreview[];
@@ -29,14 +29,7 @@ function MainPage(props: MainPageProps): JSX.Element {
                 {offerPreviews.length} places to stay in Amsterdam
               </b>
               <Sort />
-              <div className="cities__places-list places__list tabs__content">
-                {offerPreviews.map((offerPreview) => (
-                  <OfferCardMedium
-                    key={offerPreview.id}
-                    offerPreview={offerPreview}
-                  />
-                ))}
-              </div>
+              <OfferPreviewList offerPreviews={offerPreviews}/>
             </section>
             <div className="cities__right-section">
               <MainMap />
