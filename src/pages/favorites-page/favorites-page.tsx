@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
+import { getMockOfferPreviews } from '../../mock/offer-previews-mock';
 import Header from '../../components/header';
 import FavoriteList from '../../components/favorite-list';
 import Footer from '../../components/footer';

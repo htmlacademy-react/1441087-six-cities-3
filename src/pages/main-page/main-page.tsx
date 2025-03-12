@@ -1,20 +1,17 @@
 import { Helmet } from 'react-helmet-async';
-import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
-import { CURRENT_OFFERS_COUNT } from '../../const';
+import { OfferPreview } from '../../types/offer';
 import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';
 import MainMap from '../../components/main-map';
-import PlaceCardMedium from '../../components/place-card-medium';
+import OfferCardMedium from '../../components/offer-card-medium';
 
 type MainPageProps = {
-  offersCount: number;
+  offerPreviews: OfferPreview[];
 };
 
-const offerPreviews = getMockOfferPreviews(CURRENT_OFFERS_COUNT);
-
 function MainPage(props: MainPageProps): JSX.Element {
-  const { offersCount } = props;
+  const { offerPreviews } = props;
 
   return (
     <div className="page page--gray page--main">
@@ -29,12 +26,12 @@ function MainPage(props: MainPageProps): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {offersCount} places to stay in Amsterdam
+                {offerPreviews.length} places to stay in Amsterdam
               </b>
               <Sort />
               <div className="cities__places-list places__list tabs__content">
                 {offerPreviews.map((offerPreview) => (
-                  <PlaceCardMedium
+                  <OfferCardMedium
                     key={offerPreview.id}
                     offerPreview={offerPreview}
                   />

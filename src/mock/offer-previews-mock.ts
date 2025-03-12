@@ -43,8 +43,8 @@ const mockOfferPreviews: OfferPreview[] = [
       longitude: 2.330499,
       zoom: 16,
     },
-    isFavorite: false,
-    isPremium: true,
+    isFavorite: true,
+    isPremium: false,
     rating: 2.3,
   },
   {
@@ -67,7 +67,7 @@ const mockOfferPreviews: OfferPreview[] = [
       zoom: 16,
     },
     isFavorite: false,
-    isPremium: false,
+    isPremium: true,
     rating: 3.9,
   },
   {

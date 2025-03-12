@@ -3,13 +3,21 @@ import { AppRoute } from '../../const';
 import { getCapitalizedString, getRatingWidth } from '../../utils';
 import { OfferPreview } from '../../types/offer';
 
-type PlaceCardProps = {
+type OfferCardMediumProps = {
   offerPreview: OfferPreview;
 };
 
-function PlaceCardMedium(props: PlaceCardProps): JSX.Element {
-  const { id, title, type, price, isPremium, previewImage, rating } =
-    props.offerPreview;
+function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
+  const {
+    id,
+    title,
+    type,
+    price,
+    isPremium,
+    isFavorite,
+    previewImage,
+    rating,
+  } = props.offerPreview;
   const offerLink = AppRoute.Offer.replace(':id', id);
 
   return (
@@ -36,11 +44,18 @@ function PlaceCardMedium(props: PlaceCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button
+            className={`place-card__bookmark-button button ${
+              isFavorite ? 'place-card__bookmark-button--active' : ''
+            }`}
+            type="button"
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">
+              {isFavorite ? 'In bookmarks' : 'To bookmarks'}
+            </span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -58,4 +73,4 @@ function PlaceCardMedium(props: PlaceCardProps): JSX.Element {
   );
 }
 
-export default PlaceCardMedium;
+export default OfferCardMedium;

@@ -1,5 +1,5 @@
 import { OfferPreview } from '../../types/offer';
-import PlaceCardSmall from '../place-card-small';
+import OfferCardSmall from '../offer-card-small';
 
 type FavoriteListItemProps = {
   city: string;
@@ -20,7 +20,7 @@ function FavoriteListItem(props: FavoriteListItemProps): JSX.Element {
       </div>
       <div className="favorites__places">
         {offerPreviews.map((offerPreview) => (
-          <PlaceCardSmall key={offerPreview.id} offerPreview={offerPreview} />
+          <OfferCardSmall key={offerPreview.id} offerPreview={offerPreview} />
         ))}
       </div>
     </li>

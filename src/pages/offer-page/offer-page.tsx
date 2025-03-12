@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Offer } from '../../types/offer';
 import { getRatingWidth } from '../../utils';
-import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
+import { getMockOfferPreviews } from '../../mock/offer-previews-mock';
 import { getMockReviews } from '../../mock/reviews-mock';
 import Header from '../../components/header';
 import OfferGallery from '../../components/offer-gallery';
@@ -10,7 +10,7 @@ import OfferInside from '../../components/offer-inside';
 import OfferHost from '../../components/offer-host';
 import OfferReviews from '../../components/offer-reviews';
 import OfferMap from '../../components/offer-map';
-import PlaceCardMedium from '../../components/place-card-medium';
+import OfferCardMedium from '../../components/offer-card-medium';
 
 const NEAR_OFFERS_COUNT = 3;
 const mockOfferPreviews = getMockOfferPreviews(NEAR_OFFERS_COUNT);
@@ -95,7 +95,7 @@ function OfferPage(props: OfferPageProps): JSX.Element {
             </h2>
             <div className="near-places__list places__list">
               {mockOfferPreviews.map((offerPreview) => (
-                <PlaceCardMedium
+                <OfferCardMedium
                   key={offerPreview.id}
                   offerPreview={offerPreview}
                 />
