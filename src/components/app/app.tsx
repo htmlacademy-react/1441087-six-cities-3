@@ -2,7 +2,7 @@ import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus, TOTAL_OFFERS_COUNT } from '../../const';
 import { offerMock } from '../../mock/offer-mock';
-import { getMockAuthStatus } from '../../mock/auth-status';
+import { getMockAuthStatus } from '../../mock/auth-status-mock';
 import { isUserLoggedIn } from '../../utils';
 import MainPage from '../../pages/main-page';
 import LoginPage from '../../pages/login-page';

@@ -1,4 +1,4 @@
-import { getMockAuthStatus } from '../../mock/auth-status';
+import { getMockAuthStatus } from '../../mock/auth-status-mock';
 import { isUserLoggedIn, isRequiredPage } from '../../utils';
 import { useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';

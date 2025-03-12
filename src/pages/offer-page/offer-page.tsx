@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Offer } from '../../types';
+import { Offer } from '../../types/offer';
 import { getRatingWidth } from '../../utils';
 import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
 import { getMockReviews } from '../../mock/reviews-mock';

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { getCapitalizedString, getRatingWidth } from '../../utils';
-import { OfferPreview } from '../../types';
+import { OfferPreview } from '../../types/offer';
 
 type PlaceCardProps = {
   offerPreview: OfferPreview;

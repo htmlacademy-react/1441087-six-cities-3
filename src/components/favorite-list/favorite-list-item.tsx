@@ -1,4 +1,4 @@
-import { OfferPreview } from '../../types';
+import { OfferPreview } from '../../types/offer';
 import PlaceCardSmall from '../place-card-small';
 
 type FavoriteListItemProps = {
