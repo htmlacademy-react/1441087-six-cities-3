@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { OfferPreview } from '../../types/offer';
 import Header from '../../components/header';
@@ -12,6 +13,7 @@ type MainPageProps = {
 
 function MainPage(props: MainPageProps): JSX.Element {
   const { offerPreviews } = props;
+  const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
 
   return (
     <div className="page page--gray page--main">
@@ -29,10 +31,10 @@ function MainPage(props: MainPageProps): JSX.Element {
                 {offerPreviews.length} places to stay in Amsterdam
               </b>
               <Sort />
-              <OfferPreviewList offerPreviews={offerPreviews}/>
+              <OfferPreviewList offerPreviews={offerPreviews} onOfferCardHover={setHoveredOffer}/>
             </section>
             <div className="cities__right-section">
-              <MainMap />
+              <MainMap hoveredOffer={hoveredOffer ? hoveredOffer : null}/>
             </div>
           </div>
         </div>

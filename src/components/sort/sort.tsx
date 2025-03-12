@@ -11,7 +11,7 @@ function Sort(): JSX.Element {
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className="places__options places__options--custom places__options--opened">
+      <ul className="places__options places__options--custom">
         {SORT_TYPES.map((sortType) => (
           <SortItem key={sortType} title={sortType} />
         ))}

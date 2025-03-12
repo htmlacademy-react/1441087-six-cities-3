@@ -5,6 +5,7 @@ import { OfferPreview } from '../../types/offer';
 
 type OfferCardMediumProps = {
   offerPreview: OfferPreview;
+  onHover: (hoveredOffer: OfferPreview | null) => void;
 };
 
 function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
@@ -18,10 +19,16 @@ function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
     previewImage,
     rating,
   } = props.offerPreview;
+  const onHover = props.onHover;
+
   const offerLink = AppRoute.Offer.replace(':id', id);
 
   return (
-    <article className="cities__card place-card">
+    <article
+      className="cities__card place-card"
+      onMouseEnter={() => onHover(props.offerPreview)}
+      onMouseLeave={() => onHover(null)}
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
