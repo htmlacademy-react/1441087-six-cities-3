@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ReviewRatingStar from './review-rating-star';
 
 function ReviewForm(): JSX.Element {
-  const [review, setReviewDraft] = useState({
+  const [reviewDraft, setReviewDraft] = useState({
     comment: '',
     rating: 0,
   });
@@ -11,7 +11,7 @@ function ReviewForm(): JSX.Element {
 
   const handleUpdateReviewRating = (rating: number): void => {
     setReviewDraft({
-      comment: review.comment,
+      comment: reviewDraft.comment,
       rating: rating,
     });
   };
@@ -19,7 +19,7 @@ function ReviewForm(): JSX.Element {
   const handleUpdateReviewComment = (comment: string): void => {
     setReviewDraft({
       comment: comment,
-      rating: review.rating,
+      rating: reviewDraft.rating,
     });
   };
 
@@ -42,8 +42,8 @@ function ReviewForm(): JSX.Element {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        defaultValue={review.comment}
-        onChange={(evt)=> handleUpdateReviewComment(evt.target.value)}
+        defaultValue={reviewDraft.comment}
+        onChange={(evt) => handleUpdateReviewComment(evt.target.value)}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
