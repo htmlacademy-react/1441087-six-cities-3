@@ -1,5 +1,4 @@
-const TOTAL_OFFERS_COUNT = 258;
-const CURRENT_OFFERS_COUNT = 5;
+const NEAR_OFFERS_COUNT = 3;
 
 const CITIES = [
   'Paris',
@@ -31,8 +30,7 @@ enum AuthorizationStatus {
 }
 
 export {
-  TOTAL_OFFERS_COUNT,
-  CURRENT_OFFERS_COUNT,
+  NEAR_OFFERS_COUNT,
   CITIES,
   SORT_TYPES,
   AppRoute,

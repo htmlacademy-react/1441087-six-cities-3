@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Offer } from '../../types/offer';
+import { Offer, OfferPreview } from '../../types/offer';
 import { getRatingWidth } from '../../utils';
-import { getMockOfferPreviews } from '../../mock/offer-previews-mock';
 import { getMockReviews } from '../../mock/reviews-mock';
 import Header from '../../components/header';
 import OfferGallery from '../../components/offer-gallery';
@@ -10,14 +10,13 @@ import OfferInside from '../../components/offer-inside';
 import OfferHost from '../../components/offer-host';
 import OfferReviews from '../../components/offer-reviews';
 import OfferMap from '../../components/offer-map';
-import OfferCardMedium from '../../components/offer-card-medium';
+import OfferNearPlacesList from '../../components/offer-near-places-list';
 
-const NEAR_OFFERS_COUNT = 3;
-const mockOfferPreviews = getMockOfferPreviews(NEAR_OFFERS_COUNT);
 const mockReviews = getMockReviews();
 
 type OfferPageProps = {
   offer: Offer;
+  offerPreviews: OfferPreview[];
 };
 
 function OfferPage(props: OfferPageProps): JSX.Element {
@@ -34,6 +33,8 @@ function OfferPage(props: OfferPageProps): JSX.Element {
     title,
     type,
   } = props.offer;
+  const offerPreviews = props.offerPreviews;
+  const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
 
   return (
     <div className="page">
@@ -86,21 +87,17 @@ function OfferPage(props: OfferPageProps): JSX.Element {
               <OfferReviews reviews={mockReviews} />
             </div>
           </div>
-          <OfferMap />
+          <OfferMap hoveredOffer={hoveredOffer} />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <div className="near-places__list places__list">
-              {mockOfferPreviews.map((offerPreview) => (
-                <OfferCardMedium
-                  key={offerPreview.id}
-                  offerPreview={offerPreview}
-                />
-              ))}
-            </div>
+            <OfferNearPlacesList
+              offerPreviews={offerPreviews}
+              onOfferCardHover={setHoveredOffer}
+            />
           </section>
         </div>
       </main>

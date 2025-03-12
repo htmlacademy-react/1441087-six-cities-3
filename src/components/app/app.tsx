@@ -1,6 +1,6 @@
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { NEAR_OFFERS_COUNT, AppRoute, AuthorizationStatus } from '../../const';
 import { OfferPreview } from '../../types/offer';
 import { offerMock } from '../../mock/offer-mock';
 import { getMockAuthStatus } from '../../mock/auth-status-mock';
@@ -37,7 +37,9 @@ function App(props: AppProps): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage offer={offerMock} />}
+            element={
+              <OfferPage offer={offerMock} offerPreviews={offerPreviews.slice(0, NEAR_OFFERS_COUNT)} />
+            }
           />
           <Route
             path={AppRoute.Favorites}
