@@ -1,19 +1,7 @@
-type User = {
-  name: string;
-  avatarUrl: string;
-  isPro: boolean;
-};
+import { User } from './user';
+import { City } from './city';
+import { Location } from './location';
 
-type Location = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
-
-type City = {
-  name: string;
-  location: Location;
-};
 
 type OfferBase = {
   id: string;
@@ -40,12 +28,4 @@ type Offer = OfferBase & {
   maxAdults: number;
 };
 
-type Review = {
-  id: string;
-  date: Date;
-  user: User;
-  comment: string;
-  rating: number;
-};
-
-export type { User, Location, City, OfferPreview, Offer, Review };
+export type { OfferPreview, Offer };

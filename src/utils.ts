@@ -1,4 +1,4 @@
-import { OfferPreview } from './types';
+import { OfferPreview } from './types/offer';
 import { AuthorizationStatus } from './const';
 import { AppRoute } from './const';
 

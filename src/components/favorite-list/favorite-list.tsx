@@ -1,5 +1,5 @@
 import { CITIES } from '../../const';
-import { OfferPreview } from '../../types';
+import { OfferPreview } from '../../types/offer';
 import { getCitiesWithFavorites, getCityFavorites } from '../../utils';
 import FavoriteListItem from './favorite-list-item';
 

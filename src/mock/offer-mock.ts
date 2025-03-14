@@ -1,4 +1,4 @@
-import { Offer } from '../types';
+import { Offer } from '../types/offer';
 
 const offerMock: Offer = {
   id: '89b6ae84-2724-4369-ab85-6877dbdd2795',

@@ -1,15 +1,23 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { getCapitalizedString, getRatingWidth } from '../../utils';
-import { OfferPreview } from '../../types';
+import { OfferPreview } from '../../types/offer';
 
-type PlaceCardProps = {
+type OfferCardProps = {
   offerPreview: OfferPreview;
 };
 
-function PlaceCardSmall(props: PlaceCardProps): JSX.Element {
-  const { id, title, type, price, isPremium, previewImage, rating } =
-    props.offerPreview;
+function OfferCardSmall(props: OfferCardProps): JSX.Element {
+  const {
+    id,
+    title,
+    type,
+    price,
+    isPremium,
+    isFavorite,
+    previewImage,
+    rating,
+  } = props.offerPreview;
   const offerLink = AppRoute.Offer.replace(':id', id);
 
   return (
@@ -37,13 +45,17 @@ function PlaceCardSmall(props: PlaceCardProps): JSX.Element {
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button
-            className="place-card__bookmark-button place-card__bookmark-button--active button"
+            className={`place-card__bookmark-button button ${
+              isFavorite ? 'place-card__bookmark-button--active' : ''
+            }`}
             type="button"
           >
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>
-            <span className="visually-hidden">In bookmarks</span>
+            <span className="visually-hidden">
+              {isFavorite ? 'In bookmarks' : 'To bookmarks'}
+            </span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -61,4 +73,4 @@ function PlaceCardSmall(props: PlaceCardProps): JSX.Element {
   );
 }
 
-export default PlaceCardSmall;
+export default OfferCardSmall;

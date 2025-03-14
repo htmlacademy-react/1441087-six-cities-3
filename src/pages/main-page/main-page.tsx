@@ -1,20 +1,19 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { getMockOfferPreviews } from '../../mock/offers-previews-mock';
-import { CURRENT_OFFERS_COUNT } from '../../const';
+import { OfferPreview } from '../../types/offer';
 import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';
 import MainMap from '../../components/main-map';
-import PlaceCardMedium from '../../components/place-card-medium';
+import OfferPreviewList from '../../components/offer-preview-list';
 
 type MainPageProps = {
-  offersCount: number;
+  offerPreviews: OfferPreview[];
 };
 
-const offerPreviews = getMockOfferPreviews(CURRENT_OFFERS_COUNT);
-
 function MainPage(props: MainPageProps): JSX.Element {
-  const { offersCount } = props;
+  const { offerPreviews } = props;
+  const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
 
   return (
     <div className="page page--gray page--main">
@@ -29,20 +28,13 @@ function MainPage(props: MainPageProps): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {offersCount} places to stay in Amsterdam
+                {offerPreviews.length} places to stay in Amsterdam
               </b>
               <Sort />
-              <div className="cities__places-list places__list tabs__content">
-                {offerPreviews.map((offerPreview) => (
-                  <PlaceCardMedium
-                    key={offerPreview.id}
-                    offerPreview={offerPreview}
-                  />
-                ))}
-              </div>
+              <OfferPreviewList offerPreviews={offerPreviews} onOfferCardHover={setHoveredOffer}/>
             </section>
             <div className="cities__right-section">
-              <MainMap />
+              <MainMap hoveredOffer={hoveredOffer ? hoveredOffer : null}/>
             </div>
           </div>
         </div>
