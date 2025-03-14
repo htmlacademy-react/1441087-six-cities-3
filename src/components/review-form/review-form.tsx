@@ -1,61 +1,54 @@
 import { useState } from 'react';
-import { MIN_REVIEW_LENGTH } from '../../const';
+import { ReviewChangeHandler } from '../../types/review';
+import { MIN_REVIEW_LENGTH, RATING_TYPES } from '../../const';
 import ReviewRatingStar from './review-rating-star';
 
 function ReviewForm(): JSX.Element {
-  const [reviewDraft, setReviewDraft] = useState({
+  const [review, setReview] = useState({
     comment: '',
     rating: 0,
   });
 
-  const ratingStars = [5, 4, 3, 2, 1];
-
-  const handleUpdateReviewRating = (rating: number): void => {
-    setReviewDraft({
-      comment: reviewDraft.comment,
-      rating: rating,
-    });
-  };
-
-  const handleUpdateReviewComment = (comment: string): void => {
-    setReviewDraft({
-      comment: comment,
-      rating: reviewDraft.rating,
-    });
+  const handleChange: ReviewChangeHandler = (evt): void => {
+    const { name, value } = evt.currentTarget;
+    setReview({ ...review, [name]: value });
   };
 
   return (
     <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">
+      <label className="reviews__label form__label" htmlFor="comment">
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        {ratingStars.map((item) => (
+        {RATING_TYPES.map(({ value, title }) => (
           <ReviewRatingStar
-            key={item}
-            order={item}
-            onChange={handleUpdateReviewRating}
+            key={value}
+            value={value}
+            title={title}
+            onChange={handleChange}
           />
         ))}
       </div>
       <textarea
         className="reviews__textarea form__textarea"
-        id="review"
-        name="review"
+        id="comment"
+        name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        defaultValue={reviewDraft.comment}
-        onChange={(evt) => handleUpdateReviewComment(evt.target.value)}
+        defaultValue={review.comment}
+        onChange={handleChange}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe your stay
-          with at least <b className="reviews__text-amount">{MIN_REVIEW_LENGTH} characters</b>.
+          with at least{' '}
+          <b className="reviews__text-amount">{MIN_REVIEW_LENGTH} characters</b>
+          .
         </p>
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={reviewDraft.comment.length < MIN_REVIEW_LENGTH || !reviewDraft.rating}
+          disabled={review.comment.length < MIN_REVIEW_LENGTH || !review.rating}
         >
           Submit
         </button>

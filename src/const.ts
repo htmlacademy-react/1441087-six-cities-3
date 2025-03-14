@@ -17,6 +17,14 @@ const SORT_TYPES = [
   'Top rated first',
 ];
 
+const RATING_TYPES = [
+  { value: 5, title: 'perfect' },
+  { value: 4, title: 'good' },
+  { value: 3, title: 'not bad' },
+  { value: 2, title: 'badly' },
+  { value: 1, title: 'terribly' },
+] as const;
+
 enum AppRoute {
   Root = '/',
   Login = '/login',
@@ -35,6 +43,7 @@ export {
   MIN_REVIEW_LENGTH,
   CITIES,
   SORT_TYPES,
+  RATING_TYPES,
   AppRoute,
   AuthorizationStatus,
 };

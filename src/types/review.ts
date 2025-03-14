@@ -1,3 +1,4 @@
+import { ReactEventHandler } from 'react';
 import { User } from './user';
 
 type Review = {
@@ -8,4 +9,8 @@ type Review = {
   rating: number;
 };
 
-export type { Review };
+type ReviewChangeHandler = ReactEventHandler<
+  HTMLInputElement | HTMLTextAreaElement
+>;
+
+export type { Review, ReviewChangeHandler };

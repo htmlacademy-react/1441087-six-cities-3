@@ -1,10 +1,13 @@
+import { ReviewChangeHandler } from '../../types/review';
+
 type ReviewRatingStarProps = {
-  order: number;
-  onChange: (rating: number) => void;
+  value: number;
+  title: string;
+  onChange: ReviewChangeHandler;
 };
 
 function ReviewRatingStar(props: ReviewRatingStarProps): JSX.Element {
-  const order = props.order;
+  const { value, title } = props;
   const handleUpdateReviewRating = props.onChange;
 
   return (
@@ -12,15 +15,15 @@ function ReviewRatingStar(props: ReviewRatingStarProps): JSX.Element {
       <input
         className="form__rating-input visually-hidden"
         name="rating"
-        defaultValue={order}
-        id={`${order}-stars`}
+        defaultValue={value}
+        id={`${value}-stars`}
         type="radio"
-        onChange={() => handleUpdateReviewRating(order)}
+        onChange={handleUpdateReviewRating}
       />
       <label
-        htmlFor={`${order}-stars`}
+        htmlFor={`${value}-stars`}
         className="reviews__rating-label form__rating-label"
-        title="perfect"
+        title={title}
       >
         <svg className="form__star-image" width={37} height={33}>
           <use xlinkHref="#icon-star" />
