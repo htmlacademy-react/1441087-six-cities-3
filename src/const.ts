@@ -1,4 +1,5 @@
 const NEAR_OFFERS_COUNT = 3;
+const MIN_REVIEW_LENGTH = 50;
 
 const CITIES = [
   'Paris',
@@ -31,6 +32,7 @@ enum AuthorizationStatus {
 
 export {
   NEAR_OFFERS_COUNT,
+  MIN_REVIEW_LENGTH,
   CITIES,
   SORT_TYPES,
   AppRoute,
