@@ -1,6 +1,5 @@
-import { CITIES } from '../../const';
 import { OfferPreview } from '../../types/offer';
-import { getCitiesWithFavorites, getCityFavorites } from '../../utils';
+import { getCitiesNames, getCitiesWithFavorites, getCityFavorites } from '../../utils';
 import FavoriteListItem from './favorite-list-item';
 
 type FavoriteListProps = {
@@ -9,7 +8,8 @@ type FavoriteListProps = {
 
 function FavoriteList(props: FavoriteListProps): JSX.Element {
   const { offerPreviews } = props;
-  const citiesWithFavorites = getCitiesWithFavorites(CITIES, offerPreviews);
+  const citiesNames = getCitiesNames();
+  const citiesWithFavorites = getCitiesWithFavorites(citiesNames, offerPreviews);
 
   return (
     <ul className="favorites__list">

@@ -1,6 +1,5 @@
 import { OfferPreview } from './types/offer';
-import { AuthorizationStatus } from './const';
-import { AppRoute } from './const';
+import { CITIES, AppRoute, AuthorizationStatus } from './const';
 
 function getCapitalizedString(str: string): string {
   return str[0].toUpperCase() + str.slice(1);
@@ -9,6 +8,10 @@ function getCapitalizedString(str: string): string {
 function getRatingWidth(value: number): string {
   const widthPercent = (Number.parseInt(value.toFixed(), 10) * 100) / 5;
   return `${widthPercent}%`;
+}
+
+function getCitiesNames(): string[] {
+  return Object.values(CITIES).map((city) => city.name);
 }
 
 function getCitiesWithFavorites(
@@ -59,6 +62,7 @@ function pluralize(noun: string, count: number): string {
 export {
   getCapitalizedString,
   getRatingWidth,
+  getCitiesNames,
   getCitiesWithFavorites,
   getCityFavorites,
   isUserLoggedIn,
