@@ -26,7 +26,7 @@ function MainPage(props: MainPageProps): JSX.Element {
       </Helmet>
       <Header />
       <main className="page__main page__main--index">
-        <Navigation />
+        <Navigation currentCity={currentCity}/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
