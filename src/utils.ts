@@ -1,5 +1,6 @@
 import { OfferPreview } from './types/offer';
-import { CITIES, AppRoute, AuthorizationStatus } from './const';
+import { City } from './types/city';
+import { CityName, CITIES, AppRoute, AuthorizationStatus } from './const';
 
 function getCapitalizedString(str: string): string {
   return str[0].toUpperCase() + str.slice(1);
@@ -11,24 +12,27 @@ function getRatingWidth(value: number): string {
 }
 
 function getCitiesNames(): string[] {
-  return Object.values(CITIES).map((city) => city.name);
+  return Object.values(CityName);
 }
 
-function getCitiesWithFavorites(
-  cities: string[],
-  offerPreviews: OfferPreview[]
-): string[] {
-  return cities.filter((city) =>
-    offerPreviews.some((offerPreview) => offerPreview.city.name === city)
+function getCitiesWithFavorites(offerPreviews: OfferPreview[]): City[] | null {
+  const citiesNamesWithFavorites = new Set(
+    offerPreviews.map((offerPreview) => offerPreview.city.name)
   );
+
+  const citiesWithFavorites = Object.values(CITIES).filter((city) =>
+    citiesNamesWithFavorites.has(city.name)
+  );
+
+  return citiesWithFavorites;
 }
 
-function getCityFavorites(
-  city: string,
+function getCityOffers(
+  city: City,
   offerPreviews: OfferPreview[]
 ): OfferPreview[] {
   return offerPreviews.filter(
-    (offerPreview) => offerPreview.city.name === city
+    (offerPreview) => offerPreview.city.name === city.name
   );
 }
 
@@ -64,7 +68,7 @@ export {
   getRatingWidth,
   getCitiesNames,
   getCitiesWithFavorites,
-  getCityFavorites,
+  getCityOffers,
   isUserLoggedIn,
   isRequiredPage,
   pluralize,

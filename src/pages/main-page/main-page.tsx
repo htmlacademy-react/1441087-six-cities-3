@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { OfferPreview } from '../../types/offer';
 import { CITIES } from '../../const';
+import { getCityOffers } from '../../utils';
 import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';
@@ -16,6 +17,7 @@ function MainPage(props: MainPageProps): JSX.Element {
   const { offerPreviews } = props;
   const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
   const currentCity = CITIES.Paris;
+  const currentCityOffers = getCityOffers(currentCity, offerPreviews);
 
   return (
     <div className="page page--gray page--main">
@@ -30,18 +32,18 @@ function MainPage(props: MainPageProps): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {offerPreviews.length} places to stay in {currentCity.name}
+                {currentCityOffers.length} places to stay in {currentCity.name}
               </b>
               <Sort />
               <OfferPreviewList
-                offerPreviews={offerPreviews}
+                offerPreviews={currentCityOffers}
                 onOfferCardHover={setHoveredOffer}
               />
             </section>
             <div className="cities__right-section">
               <MainMap
                 city={currentCity}
-                offerPreviews={offerPreviews}
+                offerPreviews={currentCityOffers}
                 hoveredOffer={hoveredOffer}
               />
             </div>

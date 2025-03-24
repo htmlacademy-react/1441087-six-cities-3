@@ -69,6 +69,15 @@ const RATING_TYPES = [
   { value: 1, title: 'terribly' },
 ] as const;
 
+enum CityName {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf'
+}
+
 enum AppRoute {
   Root = '/',
   Login = '/login',
@@ -87,9 +96,10 @@ export {
   MIN_REVIEW_LENGTH,
   URL_PIN_DEFAULT,
   URL_PIN_ACTIVE,
-  CITIES,
   SORT_TYPES,
+  CITIES,
   RATING_TYPES,
+  CityName,
   AppRoute,
   AuthorizationStatus,
 };

@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { OfferPreview } from '../../types/offer';
 import { City } from '../../types/city';
 import { URL_PIN_DEFAULT, URL_PIN_ACTIVE } from '../../const';
-import useMap from '../../hooks/useMap';
+import useMap from '../../hooks/use-map';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -50,11 +50,7 @@ function MainMap(props: MainMapProps): JSX.Element {
     }
   }, [map, offerPreviews, hoveredOffer]);
 
-  return (
-    <section className="cities__map map" ref={mapRef}>
-      <p>{hoveredOffer?.id}</p>
-    </section>
-  );
+  return <section className="cities__map map" ref={mapRef}></section>;
 }
 
 export default MainMap;

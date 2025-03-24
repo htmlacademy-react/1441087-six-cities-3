@@ -1,5 +1,5 @@
 import { OfferPreview } from '../../types/offer';
-import { getCitiesNames, getCitiesWithFavorites, getCityFavorites } from '../../utils';
+import { getCitiesWithFavorites, getCityOffers } from '../../utils';
 import FavoriteListItem from './favorite-list-item';
 
 type FavoriteListProps = {
@@ -8,18 +8,17 @@ type FavoriteListProps = {
 
 function FavoriteList(props: FavoriteListProps): JSX.Element {
   const { offerPreviews } = props;
-  const citiesNames = getCitiesNames();
-  const citiesWithFavorites = getCitiesWithFavorites(citiesNames, offerPreviews);
+  const citiesWithFavorites = getCitiesWithFavorites(offerPreviews);
 
   return (
     <ul className="favorites__list">
-      {citiesWithFavorites.map((city) => (
+      {citiesWithFavorites ? citiesWithFavorites.map((city) => (
         <FavoriteListItem
-          key={city}
-          city={city}
-          offerPreviews={getCityFavorites(city, offerPreviews)}
+          key={city.name}
+          cityName={city.name}
+          offerPreviews={getCityOffers(city, offerPreviews)}
         />
-      ))}
+      )) : null}
     </ul>
   );
 }
