@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Максим Гончаренко](https://up.htmlacademy.ru/react-individual/3/user/1441087).
-* Наставник: ``.
+* Наставник: [Василий Петрухин](https://htmlacademy.ru/profile/id1528403).
 
 ---
 
