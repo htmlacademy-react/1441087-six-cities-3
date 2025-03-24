@@ -16,7 +16,7 @@ type MainPageProps = {
 function MainPage(props: MainPageProps): JSX.Element {
   const { offerPreviews } = props;
   const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
-  const currentCity = CITIES.Paris;
+  const currentCity = CITIES.Amsterdam;
   const currentCityOffers = getCityOffers(currentCity, offerPreviews);
 
   return (
