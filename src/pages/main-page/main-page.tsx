@@ -36,6 +36,7 @@ function MainPage(props: MainPageProps): JSX.Element {
               </b>
               <Sort />
               <OfferPreviewList
+                listType={'Cities'}
                 offerPreviews={currentCityOffers}
                 onOfferCardHover={setHoveredOffer}
               />

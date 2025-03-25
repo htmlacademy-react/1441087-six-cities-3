@@ -10,7 +10,7 @@ import OfferInside from '../../components/offer-inside';
 import OfferHost from '../../components/offer-host';
 import OfferReviews from '../../components/offer-reviews';
 import OfferMap from '../../components/offer-map';
-import OfferNearPlacesList from '../../components/offer-near-places-list';
+import OfferPreviewList from '../../components/offer-preview-list';
 
 const mockReviews = getMockReviews();
 
@@ -94,7 +94,8 @@ function OfferPage(props: OfferPageProps): JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <OfferNearPlacesList
+            <OfferPreviewList
+              listType={'NearPlaces'}
               offerPreviews={offerPreviews}
               onOfferCardHover={setHoveredOffer}
             />

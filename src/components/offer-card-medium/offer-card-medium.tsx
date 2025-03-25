@@ -2,34 +2,14 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { getCapitalizedString, getRatingWidth } from '../../utils';
 import { OfferPreview } from '../../types/offer';
-
-type OfferCardMediumType = 'Cities' | 'NearPlaces';
+import { OfferPreviewListType } from '../offer-preview-list/offer-preview-list-type';
+import { getOfferCardMediumClasses } from './offer-card-medium-utils';
 
 type OfferCardMediumProps = {
-  cardType: OfferCardMediumType;
+  cardType: OfferPreviewListType;
   offerPreview: OfferPreview;
   onHover: (hoveredOffer: OfferPreview | null) => void;
 };
-
-function getAdditionalClasses(cardType: OfferCardMediumType) {
-  switch (cardType) {
-    case 'Cities':
-      return {
-        articleClass: 'cities__card place-card',
-        imgWrapperClass: 'cities__image-wrapper place-card__image-wrapper',
-      };
-    case 'NearPlaces':
-      return {
-        articleClass: 'near-places__card place-card',
-        imgWrapperClass: 'near-places__image-wrapper place-card__image-wrapper',
-      };
-    default:
-      return {
-        articleClass: 'place-card',
-        imgWrapperClass: 'place-card__image-wrapper',
-      };
-  }
-}
 
 function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
   const {
@@ -46,7 +26,7 @@ function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
   const onHover = props.onHover;
 
   const offerLink = AppRoute.Offer.replace(':id', id);
-  const additionalClasses = getAdditionalClasses(cardType);
+  const additionalClasses = getOfferCardMediumClasses(cardType);
 
   return (
     <article
