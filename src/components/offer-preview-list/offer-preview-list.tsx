@@ -14,6 +14,7 @@ function OfferPreviewList(props: OfferPreviewListProps): JSX.Element {
       {offerPreviews.map((offerPreview) => (
         <OfferCardMedium
           key={offerPreview.id}
+          cardType={'Cities'}
           offerPreview={offerPreview}
           onHover={onOfferCardHover}
         />

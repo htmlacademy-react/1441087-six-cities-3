@@ -3,10 +3,33 @@ import { AppRoute } from '../../const';
 import { getCapitalizedString, getRatingWidth } from '../../utils';
 import { OfferPreview } from '../../types/offer';
 
+type OfferCardMediumType = 'Cities' | 'NearPlaces';
+
 type OfferCardMediumProps = {
+  cardType: OfferCardMediumType;
   offerPreview: OfferPreview;
   onHover: (hoveredOffer: OfferPreview | null) => void;
 };
+
+function getAdditionalClasses(cardType: OfferCardMediumType) {
+  switch (cardType) {
+    case 'Cities':
+      return {
+        articleClass: 'cities__card place-card',
+        imgWrapperClass: 'cities__image-wrapper place-card__image-wrapper',
+      };
+    case 'NearPlaces':
+      return {
+        articleClass: 'near-places__card place-card',
+        imgWrapperClass: 'near-places__image-wrapper place-card__image-wrapper',
+      };
+    default:
+      return {
+        articleClass: 'place-card',
+        imgWrapperClass: 'place-card__image-wrapper',
+      };
+  }
+}
 
 function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
   const {
@@ -19,13 +42,15 @@ function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
     previewImage,
     rating,
   } = props.offerPreview;
+  const cardType = props.cardType;
   const onHover = props.onHover;
 
   const offerLink = AppRoute.Offer.replace(':id', id);
+  const additionalClasses = getAdditionalClasses(cardType);
 
   return (
     <article
-      className="cities__card place-card"
+      className={additionalClasses.articleClass}
       onMouseEnter={() => onHover(props.offerPreview)}
       onMouseLeave={() => onHover(null)}
     >
@@ -34,7 +59,7 @@ function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={additionalClasses.imgWrapperClass}>
         <Link to={offerLink}>
           <img
             className="place-card__image"
