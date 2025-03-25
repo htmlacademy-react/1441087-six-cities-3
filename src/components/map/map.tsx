@@ -1,21 +1,25 @@
 import { useRef, useEffect } from 'react';
 import { OfferPreview } from '../../types/offer';
 import { City } from '../../types/city';
+import { Page } from '../../types/page';
 import { URL_PIN_DEFAULT, URL_PIN_ACTIVE } from '../../const';
+import { getMapClasses } from './map-utils';
 import useMap from '../../hooks/use-map';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-type MainMapProps = {
+type MapProps = {
+  pageType: Page;
   city: City;
   offerPreviews: OfferPreview[];
   hoveredOffer: OfferPreview | null;
 };
 
-function MainMap(props: MainMapProps): JSX.Element {
-  const { city, offerPreviews, hoveredOffer } = props;
+function Map(props: MapProps): JSX.Element {
+  const { pageType, city, offerPreviews, hoveredOffer } = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const mapClasses = getMapClasses(pageType);
 
   useEffect(() => {
     const defaultCustomIcon = leaflet.icon({
@@ -50,7 +54,7 @@ function MainMap(props: MainMapProps): JSX.Element {
     }
   }, [map, offerPreviews, hoveredOffer]);
 
-  return <section className="cities__map map" ref={mapRef}></section>;
+  return <section className={mapClasses.sectionClass} ref={mapRef}></section>;
 }
 
-export default MainMap;
+export default Map;

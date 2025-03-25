@@ -36,12 +36,12 @@ function getCityOffers(
   );
 }
 
-function isUserLoggedIn(currentAuthStatus: AuthorizationStatus): boolean {
+function isUserLoggedIn(currentAuthStatus: typeof AuthorizationStatus[keyof typeof AuthorizationStatus]): boolean {
   return currentAuthStatus === AuthorizationStatus.Auth;
 }
 
-function isRequiredPage(pathname: string, appRoute: AppRoute): boolean {
-  return (pathname as AppRoute) === appRoute;
+function isRequiredPage(pathname: string, appRoute: typeof AppRoute[keyof typeof AppRoute]): boolean {
+  return pathname === appRoute;
 }
 
 function pluralize(noun: string, count: number): string {

@@ -9,7 +9,7 @@ import OfferFeatures from '../../components/offer-features';
 import OfferInside from '../../components/offer-inside';
 import OfferHost from '../../components/offer-host';
 import OfferReviews from '../../components/offer-reviews';
-import OfferMap from '../../components/offer-map';
+import Map from '../../components/map';
 import OfferPreviewList from '../../components/offer-preview-list';
 
 const mockReviews = getMockReviews();
@@ -20,6 +20,7 @@ type OfferPageProps = {
 };
 
 function OfferPage(props: OfferPageProps): JSX.Element {
+  const { offer, offerPreviews } = props;
   const {
     bedrooms,
     description,
@@ -32,8 +33,7 @@ function OfferPage(props: OfferPageProps): JSX.Element {
     rating,
     title,
     type,
-  } = props.offer;
-  const offerPreviews = props.offerPreviews;
+  } = offer;
   const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
 
   return (
@@ -87,7 +87,12 @@ function OfferPage(props: OfferPageProps): JSX.Element {
               <OfferReviews reviews={mockReviews} />
             </div>
           </div>
-          <OfferMap hoveredOffer={hoveredOffer} />
+          <Map
+            pageType={'Offer'}
+            city={offer.city}
+            offerPreviews={offerPreviews}
+            hoveredOffer={hoveredOffer}
+          />
         </section>
         <div className="container">
           <section className="near-places places">
