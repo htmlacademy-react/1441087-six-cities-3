@@ -2,11 +2,13 @@ import { useRef, useEffect } from 'react';
 import { OfferPreview } from '../../types/offer';
 import { City } from '../../types/city';
 import { Page } from '../../types/page';
-import { URL_PIN_DEFAULT, URL_PIN_ACTIVE } from '../../const';
 import { getMapClasses } from './map-utils';
 import useMap from '../../hooks/use-map';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+
+const URL_PIN_DEFAULT = '../../../public/img/pin.svg';
+const URL_PIN_ACTIVE = '../../../public/img/pin-active.svg';
 
 type MapProps = {
   pageType: Page;

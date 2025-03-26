@@ -2,8 +2,6 @@ import { City } from './types/city';
 
 const NEAR_OFFERS_COUNT = 3;
 const MIN_REVIEW_LENGTH = 50;
-const URL_PIN_DEFAULT = '../../public/img/pin.svg';
-const URL_PIN_ACTIVE = '../../public/img/pin-active.svg';
 
 const AppRoute = {
   Root: '/',
@@ -96,8 +94,6 @@ const CITIES: Record<keyof typeof CityName, City> = {
 export {
   NEAR_OFFERS_COUNT,
   MIN_REVIEW_LENGTH,
-  URL_PIN_DEFAULT,
-  URL_PIN_ACTIVE,
   AppRoute,
   AuthorizationStatus,
   SortType,
