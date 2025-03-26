@@ -8,7 +8,7 @@ const URL_PIN_ACTIVE = '../../public/img/pin-active.svg';
 const AppRoute = {
   Root: '/',
   Login: '/login',
-  Offer: '/offer/:id',
+  Offer: '/offer/:offerId',
   Favorites: '/favorites',
 } as const;
 

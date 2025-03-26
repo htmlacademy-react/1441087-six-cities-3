@@ -6,7 +6,7 @@ import OfferCardMedium from '../../components/offer-card-medium';
 type OfferPreviewListProps = {
   listType: OfferPreviewListType;
   offerPreviews: OfferPreview[];
-  onOfferCardHover: (hoveredOffer: OfferPreview | null) => void;
+  onOfferCardHover?: (hoveredOffer: OfferPreview | null) => void;
 };
 
 function OfferPreviewList(props: OfferPreviewListProps): JSX.Element {

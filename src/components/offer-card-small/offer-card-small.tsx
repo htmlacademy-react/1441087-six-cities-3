@@ -18,7 +18,7 @@ function OfferCardSmall(props: OfferCardProps): JSX.Element {
     previewImage,
     rating,
   } = props.offerPreview;
-  const offerLink = AppRoute.Offer.replace(':id', id);
+  const offerLink = AppRoute.Offer.replace(':offerId', id);
 
   return (
     <article className="favorites__card place-card">

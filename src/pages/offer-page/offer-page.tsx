@@ -1,26 +1,34 @@
-import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Offer, OfferPreview } from '../../types/offer';
+import { OfferPreview } from '../../types/offer';
+import { getOfferPreviewById, getMockNearOfferPreviews } from './utils';
 import { getRatingWidth } from '../../utils';
 import { getMockReviews } from '../../mock/reviews-mock';
+import { offerMock } from '../../mock/offer-mock';
 import Header from '../../components/header';
 import OfferGallery from '../../components/offer-gallery';
 import OfferFeatures from '../../components/offer-features';
 import OfferInside from '../../components/offer-inside';
 import OfferHost from '../../components/offer-host';
 import OfferReviews from '../../components/offer-reviews';
-import Map from '../../components/map';
 import OfferPreviewList from '../../components/offer-preview-list';
+import Map from '../../components/map';
 
 const mockReviews = getMockReviews();
 
 type OfferPageProps = {
-  offer: Offer;
   offerPreviews: OfferPreview[];
 };
 
 function OfferPage(props: OfferPageProps): JSX.Element {
-  const { offer, offerPreviews } = props;
+  const { offerPreviews } = props;
+  const { offerId = '' } = useParams();
+
+  const offerPreview = getOfferPreviewById(offerPreviews, offerId);
+  const offerFull = offerMock;
+  const nearOfferPreviews = getMockNearOfferPreviews(offerPreview);
+  const mapOfferPreviews = [...nearOfferPreviews, offerPreview];
+
   const {
     bedrooms,
     description,
@@ -33,8 +41,7 @@ function OfferPage(props: OfferPageProps): JSX.Element {
     rating,
     title,
     type,
-  } = offer;
-  const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
+  } = offerFull;
 
   return (
     <div className="page">
@@ -89,9 +96,9 @@ function OfferPage(props: OfferPageProps): JSX.Element {
           </div>
           <Map
             pageType={'Offer'}
-            city={offer.city}
-            offerPreviews={offerPreviews}
-            hoveredOffer={hoveredOffer}
+            city={offerPreview.city}
+            offerPreviews={mapOfferPreviews}
+            hoveredOffer={offerPreview}
           />
         </section>
         <div className="container">
@@ -101,8 +108,7 @@ function OfferPage(props: OfferPageProps): JSX.Element {
             </h2>
             <OfferPreviewList
               listType={'NearPlaces'}
-              offerPreviews={offerPreviews}
-              onOfferCardHover={setHoveredOffer}
+              offerPreviews={nearOfferPreviews}
             />
           </section>
         </div>
