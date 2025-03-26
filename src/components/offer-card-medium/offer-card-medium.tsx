@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
-import { getCapitalizedString, getRatingWidth } from '../../utils';
 import { OfferPreview } from '../../types/offer';
+import { AppRoute } from '../../const';
+import { getCapitalizedString } from '../../utils/common-utils';
+import { getRatingWidth } from '../../utils/offer-utils';
 import { OfferPreviewListType } from '../offer-preview-list/offer-preview-list-type';
 import { getOfferCardMediumClasses } from './offer-card-medium-utils';
 

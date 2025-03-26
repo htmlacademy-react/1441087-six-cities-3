@@ -1,8 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { OfferPreview } from '../../types/offer';
-import { getOfferPreviewById } from './utils';
-import { getRatingWidth } from '../../utils';
+import { getOfferPreviewById, getRatingWidth } from '../../utils/offer-utils';
 import { getMockReviews } from '../../mock/reviews-mock';
 import { offerMock } from '../../mock/offer-mock';
 import { getMockNearOfferPreviews } from '../../mock/utils-mock';

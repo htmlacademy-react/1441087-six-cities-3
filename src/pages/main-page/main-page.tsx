@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { OfferPreview } from '../../types/offer';
 import { CITIES } from '../../const';
-import { getCityOffers } from '../../utils';
+import { getCityOffers } from '../../utils/city-utils';
 import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';

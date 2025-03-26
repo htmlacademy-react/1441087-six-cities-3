@@ -3,7 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { OfferPreview } from '../../types/offer';
 import { getMockAuthStatus } from '../../mock/auth-status-mock';
-import { isUserLoggedIn } from '../../utils';
+import { isUserLoggedIn } from '../../utils/app-utils';
 import MainPage from '../../pages/main-page';
 import LoginPage from '../../pages/login-page';
 import OfferPage from '../../pages/offer-page';

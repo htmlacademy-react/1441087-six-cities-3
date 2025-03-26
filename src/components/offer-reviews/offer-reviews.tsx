@@ -1,6 +1,6 @@
 import { Review } from '../../types/review';
 import { getMockAuthStatus } from '../../mock/auth-status-mock';
-import { isUserLoggedIn } from '../../utils';
+import { isUserLoggedIn } from '../../utils/app-utils';
 import OfferReviewItem from './offer-review-item';
 import ReviewForm from '../review-form';
 
