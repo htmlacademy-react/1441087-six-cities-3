@@ -8,7 +8,7 @@ function isUserLoggedIn(
 
 function isRequiredPage(
   pathname: string,
-  appRoute: (typeof AppRoute)[keyof typeof AppRoute]
+  appRoute: (keyof typeof AppRoute)
 ): boolean {
   return pathname === appRoute;
 }
