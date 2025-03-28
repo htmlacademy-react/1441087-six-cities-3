@@ -29,11 +29,18 @@ function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
   const offerLink = AppRoute.Offer.replace(':offerId', id);
   const additionalClasses = getOfferCardMediumClasses(cardType);
 
+  const handleMouseEnter = () => {
+    onHover?.(props.offerPreview);
+  };
+  const handleMouseLeave = () => {
+    onHover?.(null);
+  };
+
   return (
     <article
       className={additionalClasses.articleClass}
-      onMouseEnter={onHover ? () => onHover(props.offerPreview) : () => {}}
-      onMouseLeave={onHover ? () => onHover(null) : () => {}}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {isPremium && (
         <div className="place-card__mark">
