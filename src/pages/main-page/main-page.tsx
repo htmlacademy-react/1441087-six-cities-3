@@ -1,23 +1,17 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { OfferPreview } from '../../types/offer';
-import { CITIES } from '../../const';
-import { getCityOffers } from '../../utils/city-utils';
 import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';
 import Map from '../../components/map';
 import OfferPreviewList from '../../components/offer-preview-list';
+import useAppSelector from '../../hooks/use-app-selector';
 
-type MainPageProps = {
-  offerPreviews: OfferPreview[];
-};
-
-function MainPage(props: MainPageProps): JSX.Element {
-  const { offerPreviews } = props;
+function MainPage(): JSX.Element {
   const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
-  const currentCity = CITIES.Amsterdam;
-  const currentCityOffers = getCityOffers(currentCity, offerPreviews);
+  const currentCity = useAppSelector((state) => state.city);
+  const currentCityOffers = useAppSelector((state) => state.offerPreviews);
 
   return (
     <div className="page page--gray page--main">
@@ -26,7 +20,7 @@ function MainPage(props: MainPageProps): JSX.Element {
       </Helmet>
       <Header />
       <main className="page__main page__main--index">
-        <Navigation currentCity={currentCity} />
+        <Navigation />
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">

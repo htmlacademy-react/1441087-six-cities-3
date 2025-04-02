@@ -2,10 +2,6 @@ import { CITIES } from '../const';
 import { City } from '../types/city';
 import { OfferPreview } from '../types/offer';
 
-function getCitiesNames(): string[] {
-  return Object.keys(CITIES);
-}
-
 function getCitiesWithFavorites(offerPreviews: OfferPreview[]): City[] | null {
   const citiesNamesWithFavorites = new Set(
     offerPreviews.map((offerPreview) => offerPreview.city.name)
@@ -27,4 +23,4 @@ function getCityOffers(
   );
 }
 
-export { getCitiesNames, getCitiesWithFavorites, getCityOffers };
+export { getCitiesWithFavorites, getCityOffers };

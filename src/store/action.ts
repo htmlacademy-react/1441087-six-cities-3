@@ -5,4 +5,6 @@ const setCity = createAction('city/setCity', (city: City) => ({
   payload: city,
 }));
 
-export { setCity };
+const getCurrentCityOffers = createAction('offer/getCurrentCityOffers');
+
+export { setCity, getCurrentCityOffers };
