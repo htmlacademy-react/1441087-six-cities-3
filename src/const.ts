@@ -31,16 +31,7 @@ const RatingType = {
   Terribly: { value: 1, title: 'terribly' },
 } as const;
 
-const CityName = {
-  Paris: 'Paris',
-  Cologne: 'Cologne',
-  Brussels: 'Brussels',
-  Amsterdam: 'Amsterdam',
-  Hamburg: 'Hamburg',
-  Dusseldorf: 'Dusseldorf',
-} as const;
-
-const CITIES: Record<keyof typeof CityName, City> = {
+const CITIES: Record<string, City> = {
   Paris: {
     name: 'Paris',
     location: {
@@ -98,6 +89,5 @@ export {
   AuthorizationStatus,
   SortType,
   RatingType,
-  CityName,
   CITIES,
 };

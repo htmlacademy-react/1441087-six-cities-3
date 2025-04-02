@@ -1,9 +1,9 @@
-import { CITIES, CityName } from '../const';
+import { CITIES } from '../const';
 import { City } from '../types/city';
 import { OfferPreview } from '../types/offer';
 
 function getCitiesNames(): string[] {
-  return Object.values(CityName);
+  return Object.keys(CITIES);
 }
 
 function getCitiesWithFavorites(offerPreviews: OfferPreview[]): City[] | null {

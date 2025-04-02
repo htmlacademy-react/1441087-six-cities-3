@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import App from './components/app';
 import { getMockOfferPreviews } from './mock/offer-previews-mock';
 
@@ -11,6 +13,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offerPreviews={offerPreviews}/>
+    <Provider store={store}>
+      <App offerPreviews={offerPreviews} />
+    </Provider>
   </React.StrictMode>
 );
