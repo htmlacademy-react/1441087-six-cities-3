@@ -16,11 +16,11 @@ const AuthorizationStatus = {
   Unknown: 'UNKNOWN',
 } as const;
 
-const SortType = {
-  Popular: 'Popular',
-  PriceUp: 'Price: low to high',
-  PriceDown: 'Price: high to low',
-  TopRated: 'Top rated first',
+const SortOption = {
+  Popular: { title: 'Popular' },
+  PriceUp: { title: 'Price: low to high' },
+  PriceDown: { title: 'Price: high to low' },
+  TopRated: { title: 'Top rated first' },
 } as const;
 
 const RatingType = {
@@ -87,7 +87,7 @@ export {
   MIN_REVIEW_LENGTH,
   AppRoute,
   AuthorizationStatus,
-  SortType,
+  SortOption,
   RatingType,
   CITIES,
 };

@@ -1,6 +1,6 @@
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
-import { getCurrentCityOffers, setCity } from '../../store/action';
+import { setCity } from '../../store/action';
 import { City } from '../../types/city';
 
 type NavigationItemProps = {
@@ -15,7 +15,6 @@ function NavigationItem(props: NavigationItemProps): JSX.Element {
 
   const handleItemClick = () => {
     dispatch(setCity(itemCity));
-    dispatch(getCurrentCityOffers());
   };
 
   return (

@@ -1,22 +1,32 @@
-import { SortType } from '../../const';
+import { SortOption } from '../../const';
+import { SortType } from '../../types/sort';
 import SortItem from './sort-item';
 
 type SortListProps = {
   isVisible: boolean;
-  onClick: React.MouseEventHandler<HTMLUListElement>;
+  currentSortOption: SortType;
+  handleSetSortOption: (sortOption: SortType) => void;
+  setIsOpen: (isOpen: boolean) => void;
 };
 
 function SortList(props: SortListProps): JSX.Element {
-  const { isVisible, onClick } = props;
+  const { isVisible, currentSortOption, handleSetSortOption, setIsOpen } =
+    props;
 
   return (
     <ul
       className={`places__options places__options--custom ${
-        isVisible ? 'places__options--opened' : ''}`}
-      onClick={onClick}
+        isVisible ? 'places__options--opened' : ''
+      }`}
     >
-      {Object.values(SortType).map((sortType) => (
-        <SortItem key={sortType} itemSortType={sortType} />
+      {Object.values(SortOption).map((sortOption) => (
+        <SortItem
+          key={sortOption.title}
+          itemSortOption={sortOption}
+          currentSortOption={currentSortOption}
+          handleSetSortOption={handleSetSortOption}
+          setIsOpen={setIsOpen}
+        />
       ))}
     </ul>
   );
