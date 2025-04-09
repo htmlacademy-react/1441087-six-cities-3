@@ -1,6 +1,7 @@
 import { SortOptionLabel } from './const';
 import { SortOptionType } from './types';
 import { setSortOption } from '../../store/action';
+import { selectSortOption } from '../../store/selectors';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
 
@@ -11,7 +12,7 @@ type SortItemProps = {
 
 function SortItem(props: SortItemProps): JSX.Element {
   const { itemSortOption, setIsOpen } = props;
-  const currentSortOption = useAppSelector((state) => state.sortOption);
+  const currentSortOption = useAppSelector(selectSortOption);
   const dispatch = useAppDispatch();
 
   const className =

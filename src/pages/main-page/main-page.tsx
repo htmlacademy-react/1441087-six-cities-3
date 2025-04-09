@@ -4,6 +4,7 @@ import { OfferPreview } from '../../types/offer';
 import { getCityOffers } from '../../utils/city-utils';
 import { pluralize } from '../../utils/common-utils';
 import { sortOfferPreviews } from '../../components/sort/utils';
+import { selectCity, selectOfferPreviews, selectSortOption } from '../../store/selectors';
 import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';
@@ -13,9 +14,9 @@ import useAppSelector from '../../hooks/use-app-selector';
 
 function MainPage(): JSX.Element {
   const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
-  const currentCity = useAppSelector((state) => state.city);
-  const currentSortOption = useAppSelector((state) => state.sortOption);
-  const allOfferPreviews = useAppSelector((state) => state.offerPreviews);
+  const currentCity = useAppSelector(selectCity);
+  const currentSortOption = useAppSelector(selectSortOption);
+  const allOfferPreviews = useAppSelector(selectOfferPreviews);
 
   const cityOfferPreviews = getCityOffers(currentCity, allOfferPreviews);
   const sortedOfferPreviews = sortOfferPreviews(
