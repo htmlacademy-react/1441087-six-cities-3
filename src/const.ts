@@ -16,6 +16,9 @@ const AuthorizationStatus = {
   Unknown: 'UNKNOWN',
 } as const;
 
+type AuthorizationStatusType =
+  (typeof AuthorizationStatus)[keyof typeof AuthorizationStatus];
+
 const RatingType = {
   Perfect: { value: 5, title: 'perfect' },
   Good: { value: 4, title: 'good' },
@@ -74,6 +77,8 @@ const CITIES: Record<string, City> = {
     },
   },
 } as const;
+
+export type { AuthorizationStatusType };
 
 export {
   NEAR_OFFERS_COUNT,
