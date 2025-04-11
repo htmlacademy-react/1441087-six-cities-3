@@ -1,4 +1,4 @@
-const AUTH_TOKEN_NAME = 'six-cities';
+const AUTH_TOKEN_NAME = 'six-cities-token';
 
 type Token = string;
 
