@@ -2,15 +2,13 @@ import { createReducer } from '@reduxjs/toolkit';
 import { setCity, setSortOption, loadOfferPreviews, requireAuthorization } from './action';
 import { AuthorizationStatus, AuthorizationStatusType, CITIES } from '../const';
 import { SortOptionType } from '../components/sort/types';
-import { getMockOfferPreviews } from '../mock/offer-previews-mock';
 import { SortOption } from '../components/sort/const';
-
-const allOfferPreviews = getMockOfferPreviews();
+import { OfferPreviews } from '../types/offer';
 
 const initialState = {
   city: CITIES.Paris,
   sortOption: SortOption[0] as SortOptionType,
-  offerPreviews: allOfferPreviews,
+  offerPreviews: [] as OfferPreviews,
   authorizationStatus: AuthorizationStatus.Unknown as AuthorizationStatusType,
 };
 
