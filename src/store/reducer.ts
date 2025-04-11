@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setCity, setSortOption } from './action';
+import { setCity, setSortOption, loadOfferPreviews } from './action';
 import { CITIES } from '../const';
 import { SortOptionType } from '../components/sort/types';
 import { getMockOfferPreviews } from '../mock/offer-previews-mock';
@@ -20,6 +20,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSortOption, (state, action) => {
       state.sortOption = action.payload;
+    })
+    .addCase(loadOfferPreviews, (state, action) => {
+      state.offerPreviews = action.payload;
     });
 });
 
