@@ -5,7 +5,7 @@ import { OfferPreviews } from '../types/offer';
 import { AuthData } from '../types/auth-data';
 import { User } from '../types/user';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { loadOfferPreviews, requireAuthorization, setError } from './action';
+import { loadOfferPreviews, requireAuthorization, setError, setOfferPreviewsLoadingStatus } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { store } from '.';
 
@@ -28,8 +28,10 @@ const loadOfferPreviewsAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('offer/loadOfferPreviews', async (_arg, { dispatch, extra: api }) => {
+  dispatch(setOfferPreviewsLoadingStatus(true));
   const { data } = await api.get<OfferPreviews>(APIRoute.Offers);
   dispatch(loadOfferPreviews(data));
+  dispatch(setOfferPreviewsLoadingStatus(false));
 });
 
 const loginAction = createAsyncThunk<

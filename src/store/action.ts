@@ -10,7 +10,8 @@ const setCity = createAction<City>('city/setCity');
 
 const setSortOption = createAction<SortOptionType>('offer/setSortOption');
 const loadOfferPreviews = createAction<OfferPreviews>('offer/loadOfferPreviews');
+const setOfferPreviewsLoadingStatus = createAction<boolean>('offer/setOfferPreviewsLoadingStatus');
 
 const requireAuthorization = createAction<AuthorizationStatusType>('user/requireAuthorization');
 
-export { setError, setCity, setSortOption, loadOfferPreviews, requireAuthorization};
+export { setError, setCity, setSortOption, loadOfferPreviews, setOfferPreviewsLoadingStatus, requireAuthorization};

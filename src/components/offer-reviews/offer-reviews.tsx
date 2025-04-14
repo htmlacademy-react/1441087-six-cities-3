@@ -1,17 +1,18 @@
 import { Review } from '../../types/review';
-import { getMockAuthStatus } from '../../mock/auth-status-mock';
 import { isUserLoggedIn } from '../../utils/app-utils';
 import OfferReviewItem from './offer-review-item';
 import ReviewForm from '../review-form';
+import useAppSelector from '../../hooks/use-app-selector';
+import { selectAuthorizationStatus } from '../../store/selectors';
 
 type OfferReviewsProps = {
   reviews: Review[];
 };
 
-const isLoggedIn = isUserLoggedIn(getMockAuthStatus());
-
 function OfferReviews(props: OfferReviewsProps): JSX.Element {
   const { reviews } = props;
+  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
+  const isLoggedIn = isUserLoggedIn(authorizationStatus);
 
   return (
     <section className="offer__reviews reviews">

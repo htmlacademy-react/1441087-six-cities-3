@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setError, setCity, setSortOption, loadOfferPreviews, requireAuthorization,} from './action';
+import { setError, setCity, setSortOption, loadOfferPreviews, requireAuthorization, setOfferPreviewsLoadingStatus,} from './action';
 import { AuthorizationStatus, AuthorizationStatusType, CITIES } from '../const';
 import { SortOptionType } from '../components/sort/types';
 import { SortOption } from '../components/sort/const';
@@ -10,6 +10,7 @@ const initialState = {
   city: CITIES.Paris,
   sortOption: SortOption[0] as SortOptionType,
   offerPreviews: [] as OfferPreviews,
+  isOfferPreviewsLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown as AuthorizationStatusType,
 };
 
@@ -26,6 +27,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOfferPreviews, (state, action) => {
       state.offerPreviews = action.payload;
+    })
+    .addCase(setOfferPreviewsLoadingStatus, (state, action) => {
+      state.isOfferPreviewsLoading = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;

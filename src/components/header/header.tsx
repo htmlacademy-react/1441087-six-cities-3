@@ -1,16 +1,17 @@
-import { getMockAuthStatus } from '../../mock/auth-status-mock';
 import { useLocation } from 'react-router-dom';
 import { isRequiredPage, isUserLoggedIn } from '../../utils/app-utils';
+import { selectAuthorizationStatus } from '../../store/selectors';
 import Logo from '../logo';
 import HeaderUser from './header-user';
 import HeaderSignIn from './header-sign-in';
 import HeaderSignOut from './header-sign-out';
-
-const isLoggedIn = isUserLoggedIn(getMockAuthStatus());
+import useAppSelector from '../../hooks/use-app-selector';
 
 function Header(): JSX.Element {
   const { pathname } = useLocation();
   const isLoginPage = isRequiredPage(pathname, 'Login');
+  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
+  const isLoggedIn = isUserLoggedIn(authorizationStatus);
 
   return (
     <header className="header">
