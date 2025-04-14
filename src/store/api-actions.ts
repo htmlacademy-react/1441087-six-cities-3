@@ -4,20 +4,9 @@ import { AppDispatch, State } from '../types/state';
 import { OfferPreviews } from '../types/offer';
 import { AuthData } from '../types/auth-data';
 import { User } from '../types/user';
-import { APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { loadOfferPreviews, redirectToRoute, requireAuthorization, setError, setOfferPreviewsLoadingStatus } from './action';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
+import { loadOfferPreviews, redirectToRoute, requireAuthorization, setOfferPreviewsLoadingStatus } from './action';
 import { dropToken, saveToken } from '../services/token';
-import { store } from '.';
-
-const clearErrorAction = createAsyncThunk(
-  'app/clearError',
-  () => {
-    setTimeout(
-      () => store.dispatch(setError(null)),
-      TIMEOUT_SHOW_ERROR,
-    );
-  },
-);
 
 const loadOfferPreviewsAction = createAsyncThunk<
   void,
@@ -86,4 +75,4 @@ const checkAuthAction = createAsyncThunk<
   }
 });
 
-export { clearErrorAction, loadOfferPreviewsAction, loginAction, logoutAction, checkAuthAction };
+export { loadOfferPreviewsAction, loginAction, logoutAction, checkAuthAction };

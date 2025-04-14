@@ -4,7 +4,6 @@ import { SortOptionType } from '../components/sort/types';
 import { OfferPreviews } from '../types/offer';
 import { AppRouteType, AuthorizationStatusType } from '../const';
 
-const setError = createAction<string | null>('app/setError');
 const redirectToRoute = createAction<AppRouteType>('app/redirectToRoute');
 
 const setCity = createAction<City>('city/setCity');
@@ -16,7 +15,6 @@ const setOfferPreviewsLoadingStatus = createAction<boolean>('offer/setOfferPrevi
 const requireAuthorization = createAction<AuthorizationStatusType>('user/requireAuthorization');
 
 export {
-  setError,
   redirectToRoute,
   setCity,
   setSortOption,
