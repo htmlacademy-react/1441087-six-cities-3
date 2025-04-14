@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../const';
-import { selectAuthorizationStatus, selectIsUserLoggedIn, selectOfferPreviewsLoadingStatus } from '../../store/selectors';
+import { selectIsUserLoggedIn, selectOfferPreviewsLoadingStatus } from '../../store/selectors';
 import MainPage from '../../pages/main-page';
 import LoginPage from '../../pages/login-page';
 import OfferPage from '../../pages/offer-page';
@@ -14,7 +14,6 @@ import HistoryRouter from '../history-route';
 import browserHistory from '../../browser-history';
 
 function App(): JSX.Element {
-  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
   const isOfferPreviewsLoading = useAppSelector(
     selectOfferPreviewsLoadingStatus
@@ -39,7 +38,7 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={authorizationStatus}>
+              <PrivateRoute>
                 <FavoritesPage />
               </PrivateRoute>
             }
