@@ -4,8 +4,8 @@ import { AppDispatch, State } from '../types/state';
 import { OfferPreviews } from '../types/offer';
 import { AuthData } from '../types/auth-data';
 import { User } from '../types/user';
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { loadOfferPreviews, requireAuthorization, setError, setOfferPreviewsLoadingStatus } from './action';
+import { APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
+import { loadOfferPreviews, redirectToRoute, requireAuthorization, setError, setOfferPreviewsLoadingStatus } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { store } from '.';
 
@@ -50,6 +50,7 @@ const loginAction = createAsyncThunk<
     } = await api.post<User>(APIRoute.Login, { email, password });
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(redirectToRoute(AppRoute.Root));
   }
 );
 
@@ -65,6 +66,7 @@ const logoutAction = createAsyncThunk<
   await api.delete(APIRoute.Logout);
   dropToken();
   dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+  dispatch(redirectToRoute(AppRoute.Root));
 });
 
 const checkAuthAction = createAsyncThunk<

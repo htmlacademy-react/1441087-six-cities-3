@@ -12,6 +12,8 @@ const AppRoute = {
   Favorites: '/favorites',
 } as const;
 
+type AppRouteType = Values<typeof AppRoute>;
+
 const AuthorizationStatus = {
   Auth: 'AUTH',
   NoAuth: 'NO_AUTH',
@@ -87,7 +89,7 @@ const CITIES: Record<string, City> = {
   },
 } as const;
 
-export type { AuthorizationStatusType, APIRouteType };
+export type { AppRouteType, AuthorizationStatusType, APIRouteType };
 
 export {
   NEAR_OFFERS_COUNT,

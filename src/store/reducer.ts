@@ -1,5 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setError, setCity, setSortOption, loadOfferPreviews, requireAuthorization, setOfferPreviewsLoadingStatus,} from './action';
+import {
+  setError,
+  setCity,
+  setSortOption,
+  loadOfferPreviews,
+  requireAuthorization,
+  setOfferPreviewsLoadingStatus,
+} from './action';
 import { AuthorizationStatus, AuthorizationStatusType, CITIES } from '../const';
 import { SortOptionType } from '../components/sort/types';
 import { SortOption } from '../components/sort/const';
@@ -13,6 +20,8 @@ const initialState = {
   isOfferPreviewsLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown as AuthorizationStatusType,
 };
+
+type ReducerType = ReturnType<typeof reducer>;
 
 const reducer = createReducer(initialState, (builder) => {
   builder
@@ -36,4 +45,5 @@ const reducer = createReducer(initialState, (builder) => {
     });
 });
 
+export type { ReducerType };
 export { reducer };

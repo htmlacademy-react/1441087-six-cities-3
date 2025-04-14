@@ -2,9 +2,10 @@ import { createAction } from '@reduxjs/toolkit';
 import { City } from '../types/city';
 import { SortOptionType } from '../components/sort/types';
 import { OfferPreviews } from '../types/offer';
-import { AuthorizationStatusType } from '../const';
+import { AppRouteType, AuthorizationStatusType } from '../const';
 
 const setError = createAction<string | null>('app/setError');
+const redirectToRoute = createAction<AppRouteType>('app/redirectToRoute');
 
 const setCity = createAction<City>('city/setCity');
 
@@ -14,4 +15,12 @@ const setOfferPreviewsLoadingStatus = createAction<boolean>('offer/setOfferPrevi
 
 const requireAuthorization = createAction<AuthorizationStatusType>('user/requireAuthorization');
 
-export { setError, setCity, setSortOption, loadOfferPreviews, setOfferPreviewsLoadingStatus, requireAuthorization};
+export {
+  setError,
+  redirectToRoute,
+  setCity,
+  setSortOption,
+  loadOfferPreviews,
+  setOfferPreviewsLoadingStatus,
+  requireAuthorization
+};
