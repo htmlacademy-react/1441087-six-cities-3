@@ -1,8 +1,7 @@
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../const';
-import { isUserLoggedIn } from '../../utils/app-utils';
-import { selectAuthorizationStatus, selectOfferPreviewsLoadingStatus } from '../../store/selectors';
+import { selectAuthorizationStatus, selectIsUserLoggedIn, selectOfferPreviewsLoadingStatus } from '../../store/selectors';
 import MainPage from '../../pages/main-page';
 import LoginPage from '../../pages/login-page';
 import OfferPage from '../../pages/offer-page';
@@ -14,10 +13,10 @@ import useAppSelector from '../../hooks/use-app-selector';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
+  const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
   const isOfferPreviewsLoading = useAppSelector(
     selectOfferPreviewsLoadingStatus
   );
-  const isLoggedIn = isUserLoggedIn(authorizationStatus);
 
   if (isOfferPreviewsLoading) {
     return <LoadingPage />;

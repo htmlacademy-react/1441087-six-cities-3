@@ -1,9 +1,8 @@
 import { Review } from '../../types/review';
-import { isUserLoggedIn } from '../../utils/app-utils';
+import { selectIsUserLoggedIn } from '../../store/selectors';
 import OfferReviewItem from './offer-review-item';
 import ReviewForm from '../review-form';
 import useAppSelector from '../../hooks/use-app-selector';
-import { selectAuthorizationStatus } from '../../store/selectors';
 
 type OfferReviewsProps = {
   reviews: Review[];
@@ -11,8 +10,7 @@ type OfferReviewsProps = {
 
 function OfferReviews(props: OfferReviewsProps): JSX.Element {
   const { reviews } = props;
-  const authorizationStatus = useAppSelector(selectAuthorizationStatus);
-  const isLoggedIn = isUserLoggedIn(authorizationStatus);
+  const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
 
   return (
     <section className="offer__reviews reviews">

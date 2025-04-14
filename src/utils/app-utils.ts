@@ -1,11 +1,5 @@
-import { AppRoute, AuthorizationStatus, AuthorizationStatusType } from '../const';
+import { AppRoute } from '../const';
 import { Values } from '../types/common';
-
-function isUserLoggedIn(
-  currentAuthStatus: AuthorizationStatusType
-): boolean {
-  return currentAuthStatus === AuthorizationStatus.Auth;
-}
 
 function isRequiredPage(
   pathname: string,
@@ -14,4 +8,4 @@ function isRequiredPage(
   return pathname === appRoute;
 }
 
-export { isUserLoggedIn, isRequiredPage };
+export { isRequiredPage };
