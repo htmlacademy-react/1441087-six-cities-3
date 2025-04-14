@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { isRequiredPage, isUserLoggedIn } from '../../utils/app-utils';
 import { selectAuthorizationStatus } from '../../store/selectors';
+import { AppRoute } from '../../const';
 import Logo from '../logo';
 import HeaderUser from './header-user';
 import HeaderSignIn from './header-sign-in';
@@ -9,7 +10,7 @@ import useAppSelector from '../../hooks/use-app-selector';
 
 function Header(): JSX.Element {
   const { pathname } = useLocation();
-  const isLoginPage = isRequiredPage(pathname, 'Login');
+  const isLoginPage = isRequiredPage(pathname, AppRoute.Login);
   const authorizationStatus = useAppSelector(selectAuthorizationStatus);
   const isLoggedIn = isUserLoggedIn(authorizationStatus);
 
