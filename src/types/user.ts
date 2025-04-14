@@ -1,5 +1,4 @@
 type User = {
-  id: string;
   email: string;
   token: string;
   name: string;
