@@ -7,6 +7,7 @@ import {
   setOfferPreviewsLoadingStatus,
   loadOfferFull,
   loadReviews,
+  loadNearOfferPreviews,
 } from './action';
 import { AuthorizationStatus, AuthorizationStatusType, CITIES } from '../const';
 import { SortOptionType } from '../components/sort/types';
@@ -20,6 +21,7 @@ type State = {
   sortOption: SortOptionType;
   offerPreviews: OfferPreviews;
   offerFull: OfferFull | null;
+  nearOfferPreviews: OfferPreviews;
   isOfferPreviewsLoading: boolean;
   authorizationStatus: AuthorizationStatusType;
   reviews: Reviews;
@@ -30,6 +32,7 @@ const initialState: State = {
   sortOption: SortOption[0],
   offerPreviews: [],
   offerFull: null,
+  nearOfferPreviews: [],
   isOfferPreviewsLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   reviews: [],
@@ -59,6 +62,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadReviews, (state, action) => {
       state.reviews = action.payload;
+    })
+    .addCase(loadNearOfferPreviews, (state, action) => {
+      state.nearOfferPreviews = action.payload;
     });
 });
 

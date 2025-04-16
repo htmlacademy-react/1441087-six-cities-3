@@ -6,6 +6,7 @@ import { AuthData } from '../types/auth-data';
 import { UserAuth } from '../types/user';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import {
+  loadNearOfferPreviews,
   loadOfferFull,
   loadOfferPreviews,
   loadReviews,
@@ -56,6 +57,19 @@ const loadReviewsAction = createAsyncThunk<
 >('review/loadReviews', async (offerId, { dispatch, extra: api }) => {
   const { data } = await api.get<Reviews>(`${APIRoute.Reviews}/${offerId}`);
   dispatch(loadReviews(data));
+});
+
+const loadNearOfferPreviewsAction = createAsyncThunk<
+  void,
+  string,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('offer/loadNearOfferPreviews', async (offerId, { dispatch, extra: api }) => {
+  const { data } = await api.get<OfferPreviews>(`${APIRoute.Offers}/${offerId}/nearby`);
+  dispatch(loadNearOfferPreviews(data));
 });
 
 const loginAction = createAsyncThunk<
@@ -114,6 +128,7 @@ export {
   loadOfferPreviewsAction,
   loadOfferFullAction,
   loadReviewsAction,
+  loadNearOfferPreviewsAction,
   loginAction,
   logoutAction,
   checkAuthAction,

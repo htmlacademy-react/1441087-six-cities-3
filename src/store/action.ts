@@ -11,8 +11,9 @@ const setCity = createAction<City>('city/setCity');
 
 const setSortOption = createAction<SortOptionType>('offer/setSortOption');
 const loadOfferPreviews = createAction<OfferPreviews>('offer/loadOfferPreviews');
-const loadOfferFull = createAction<OfferFull>('offer/loadOfferFull');
 const setOfferPreviewsLoadingStatus = createAction<boolean>('offer/setOfferPreviewsLoadingStatus');
+const loadOfferFull = createAction<OfferFull>('offer/loadOfferFull');
+const loadNearOfferPreviews = createAction<OfferPreviews>('offer/loadNearOfferPreviews');
 
 const requireAuthorization = createAction<AuthorizationStatusType>('user/requireAuthorization');
 
@@ -24,6 +25,7 @@ export {
   setSortOption,
   loadOfferPreviews,
   loadOfferFull,
+  loadNearOfferPreviews,
   setOfferPreviewsLoadingStatus,
   requireAuthorization,
   loadReviews,

@@ -2,9 +2,8 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getOfferPreviewById, getRatingWidth } from '../../utils/offer-utils';
 import { store } from '../../store';
-import { loadOfferFullAction, loadReviewsAction } from '../../store/api-actions';
-import { selectOfferFull, selectOfferPreviews, selectReviews } from '../../store/selectors';
-import { getMockNearOfferPreviews } from '../../mock/utils-mock';
+import { loadNearOfferPreviewsAction, loadOfferFullAction, loadReviewsAction } from '../../store/api-actions';
+import { selectNearOfferPreviews, selectOfferFull, selectOfferPreviews, selectReviews } from '../../store/selectors';
 import Header from '../../components/header';
 import OfferGallery from '../../components/offer-gallery';
 import OfferFeatures from '../../components/offer-features';
@@ -20,6 +19,8 @@ function OfferPage(): JSX.Element {
   const offerFull = useAppSelector(selectOfferFull);
   const reviews = useAppSelector(selectReviews);
   const offerPreviews = useAppSelector(selectOfferPreviews);
+  const nearOfferPreviews = useAppSelector(selectNearOfferPreviews);
+
   const { offerId } = useParams();
 
   if (!offerId) {
@@ -29,15 +30,15 @@ function OfferPage(): JSX.Element {
   if (offerFull?.id !== offerId) {
     store.dispatch(loadOfferFullAction(offerId));
     store.dispatch(loadReviewsAction(offerId));
+    store.dispatch(loadNearOfferPreviewsAction(offerId));
   }
 
   if (!offerFull) {
     return <NotFoundPage />;
   }
 
-  const offerPreview = getOfferPreviewById(offerPreviews, offerId);
-  const nearOfferPreviews = getMockNearOfferPreviews(offerPreview);
-  const mapOfferPreviews = [...nearOfferPreviews, offerPreview];
+  const currentOfferPreview = getOfferPreviewById(offerPreviews, offerId);
+  const mapOfferPreviews = [...nearOfferPreviews.slice(0, 3), currentOfferPreview];
 
   const {
     bedrooms,
@@ -61,7 +62,7 @@ function OfferPage(): JSX.Element {
       <Header />
       <main className="page__main page__main--offer">
         <section className="offer">
-          <OfferGallery images={images} />
+          <OfferGallery images={images.slice(0, 6)} />
           <div className="offer__container container">
             <div className="offer__wrapper">
               {isPremium && (
@@ -106,9 +107,9 @@ function OfferPage(): JSX.Element {
           </div>
           <Map
             pageType={'Offer'}
-            city={offerPreview.city}
+            city={currentOfferPreview.city}
             offerPreviews={mapOfferPreviews}
-            hoveredOffer={offerPreview}
+            hoveredOffer={currentOfferPreview}
           />
         </section>
         <div className="container">
