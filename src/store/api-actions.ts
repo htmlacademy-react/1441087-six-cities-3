@@ -8,12 +8,14 @@ import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import {
   loadOfferFull,
   loadOfferPreviews,
+  loadReviews,
   redirectToRoute,
   requireAuthorization,
   setOfferPreviewsLoadingStatus,
 } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { State } from '../store/reducer';
+import { Reviews } from '../types/review';
 
 const loadOfferPreviewsAction = createAsyncThunk<
   void,
@@ -41,6 +43,19 @@ const loadOfferFullAction = createAsyncThunk<
 >('offer/loadOfferFull', async (offerId, { dispatch, extra: api }) => {
   const { data } = await api.get<OfferFull>(`${APIRoute.Offers}/${offerId}`);
   dispatch(loadOfferFull(data));
+});
+
+const loadReviewsAction = createAsyncThunk<
+  void,
+  string,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('review/loadReviews', async (offerId, { dispatch, extra: api }) => {
+  const { data } = await api.get<Reviews>(`${APIRoute.Reviews}/${offerId}`);
+  dispatch(loadReviews(data));
 });
 
 const loginAction = createAsyncThunk<
@@ -98,6 +113,7 @@ const checkAuthAction = createAsyncThunk<
 export {
   loadOfferPreviewsAction,
   loadOfferFullAction,
+  loadReviewsAction,
   loginAction,
   logoutAction,
   checkAuthAction,

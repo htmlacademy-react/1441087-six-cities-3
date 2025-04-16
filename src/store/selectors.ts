@@ -8,6 +8,7 @@ const selectOfferPreviewsLoadingStatus = (state: State) => state.isOfferPreviews
 const selectOfferFull = (state: State) => state.offerFull;
 const selectAuthorizationStatus = (state: State) => state.authorizationStatus;
 const selectIsUserLoggedIn = (state: State) => state.authorizationStatus === AuthorizationStatus.Auth;
+const selectReviews = (state: State) => state.reviews;
 
 export {
   selectCity,
@@ -17,4 +18,5 @@ export {
   selectOfferFull,
   selectAuthorizationStatus,
   selectIsUserLoggedIn,
+  selectReviews,
 };

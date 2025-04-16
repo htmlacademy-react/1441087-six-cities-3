@@ -3,6 +3,7 @@ import { City } from '../types/city';
 import { SortOptionType } from '../components/sort/types';
 import { OfferFull, OfferPreviews } from '../types/offer';
 import { AppRouteType, AuthorizationStatusType } from '../const';
+import { Reviews } from '../types/review';
 
 const redirectToRoute = createAction<AppRouteType>('app/redirectToRoute');
 
@@ -15,6 +16,8 @@ const setOfferPreviewsLoadingStatus = createAction<boolean>('offer/setOfferPrevi
 
 const requireAuthorization = createAction<AuthorizationStatusType>('user/requireAuthorization');
 
+const loadReviews = createAction<Reviews>('review/loadReviews');
+
 export {
   redirectToRoute,
   setCity,
@@ -22,5 +25,6 @@ export {
   loadOfferPreviews,
   loadOfferFull,
   setOfferPreviewsLoadingStatus,
-  requireAuthorization
+  requireAuthorization,
+  loadReviews,
 };

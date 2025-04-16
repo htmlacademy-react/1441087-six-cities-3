@@ -2,9 +2,8 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getOfferPreviewById, getRatingWidth } from '../../utils/offer-utils';
 import { store } from '../../store';
-import { loadOfferFullAction } from '../../store/api-actions';
-import { selectOfferFull, selectOfferPreviews } from '../../store/selectors';
-import { getMockReviews } from '../../mock/reviews-mock';
+import { loadOfferFullAction, loadReviewsAction } from '../../store/api-actions';
+import { selectOfferFull, selectOfferPreviews, selectReviews } from '../../store/selectors';
 import { getMockNearOfferPreviews } from '../../mock/utils-mock';
 import Header from '../../components/header';
 import OfferGallery from '../../components/offer-gallery';
@@ -17,10 +16,9 @@ import Map from '../../components/map';
 import useAppSelector from '../../hooks/use-app-selector';
 import NotFoundPage from '../not-found-page';
 
-const mockReviews = getMockReviews();
-
 function OfferPage(): JSX.Element {
   const offerFull = useAppSelector(selectOfferFull);
+  const reviews = useAppSelector(selectReviews);
   const offerPreviews = useAppSelector(selectOfferPreviews);
   const { offerId } = useParams();
 
@@ -30,6 +28,7 @@ function OfferPage(): JSX.Element {
 
   if (offerFull?.id !== offerId) {
     store.dispatch(loadOfferFullAction(offerId));
+    store.dispatch(loadReviewsAction(offerId));
   }
 
   if (!offerFull) {
@@ -102,7 +101,7 @@ function OfferPage(): JSX.Element {
               <div className="offer__description">
                 <p className="offer__text">{description}</p>
               </div>
-              <OfferReviews reviews={mockReviews} />
+              <OfferReviews reviews={reviews} />
             </div>
           </div>
           <Map

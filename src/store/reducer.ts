@@ -6,12 +6,14 @@ import {
   requireAuthorization,
   setOfferPreviewsLoadingStatus,
   loadOfferFull,
+  loadReviews,
 } from './action';
 import { AuthorizationStatus, AuthorizationStatusType, CITIES } from '../const';
 import { SortOptionType } from '../components/sort/types';
 import { SortOption } from '../components/sort/const';
 import { OfferFull, OfferPreviews } from '../types/offer';
 import { Values } from '../types/common';
+import { Reviews } from '../types/review';
 
 type State = {
   city: Values<typeof CITIES>;
@@ -20,6 +22,7 @@ type State = {
   offerFull: OfferFull | null;
   isOfferPreviewsLoading: boolean;
   authorizationStatus: AuthorizationStatusType;
+  reviews: Reviews;
 };
 
 const initialState: State = {
@@ -29,6 +32,7 @@ const initialState: State = {
   offerFull: null,
   isOfferPreviewsLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  reviews: [],
 };
 
 type ReducerType = ReturnType<typeof reducer>;
@@ -52,6 +56,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(loadReviews, (state, action) => {
+      state.reviews = action.payload;
     });
 });
 

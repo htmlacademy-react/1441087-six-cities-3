@@ -25,6 +25,7 @@ const APIRoute = {
   Login: '/login',
   Logout: '/logout',
   Offers: '/offers',
+  Reviews: '/comments',
 } as const;
 
 type APIRouteType = Values<typeof APIRoute>;
@@ -88,7 +89,18 @@ const CITIES: Record<string, City> = {
   },
 } as const;
 
-export type { AppRouteType, AuthorizationStatusType, APIRouteType };
+const DateFormat = {
+  Review: 'MMMM YYYY',
+} as const;
+
+type DateFormatType = Values<typeof DateFormat>;
+
+export type {
+  AppRouteType,
+  AuthorizationStatusType,
+  APIRouteType,
+  DateFormatType,
+};
 
 export {
   NEAR_OFFERS_COUNT,
@@ -98,4 +110,5 @@ export {
   APIRoute,
   RatingOption,
   CITIES,
+  DateFormat,
 };
