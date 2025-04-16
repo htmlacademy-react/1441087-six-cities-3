@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getOfferPreviewById, getRatingWidth } from '../../utils/offer-utils';
-import { selectOfferPreviews } from '../../store/selectors';
+import { store } from '../../store';
+import { loadOfferFullAction } from '../../store/api-actions';
+import { selectOfferFull, selectOfferPreviews } from '../../store/selectors';
 import { getMockReviews } from '../../mock/reviews-mock';
-import { offerMock } from '../../mock/offer-mock';
 import { getMockNearOfferPreviews } from '../../mock/utils-mock';
 import Header from '../../components/header';
 import OfferGallery from '../../components/offer-gallery';
@@ -14,15 +15,28 @@ import OfferReviews from '../../components/offer-reviews';
 import OfferPreviewList from '../../components/offer-preview-list';
 import Map from '../../components/map';
 import useAppSelector from '../../hooks/use-app-selector';
+import NotFoundPage from '../not-found-page';
 
 const mockReviews = getMockReviews();
 
 function OfferPage(): JSX.Element {
+  const offerFull = useAppSelector(selectOfferFull);
   const offerPreviews = useAppSelector(selectOfferPreviews);
-  const { offerId = '' } = useParams();
+  const { offerId } = useParams();
+
+  if (!offerId) {
+    return <NotFoundPage />;
+  }
+
+  if (offerFull?.id !== offerId) {
+    store.dispatch(loadOfferFullAction(offerId));
+  }
+
+  if (!offerFull) {
+    return <NotFoundPage />;
+  }
 
   const offerPreview = getOfferPreviewById(offerPreviews, offerId);
-  const offerFull = offerMock;
   const nearOfferPreviews = getMockNearOfferPreviews(offerPreview);
   const mapOfferPreviews = [...nearOfferPreviews, offerPreview];
 
