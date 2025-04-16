@@ -3,6 +3,7 @@ import { Values } from './types/common';
 
 const NEAR_OFFERS_COUNT = 3;
 const MIN_REVIEW_LENGTH = 50;
+const MAN_REVIEW_LENGTH = 300;
 
 const AppRoute = {
   Root: '/',
@@ -105,6 +106,7 @@ export type {
 export {
   NEAR_OFFERS_COUNT,
   MIN_REVIEW_LENGTH,
+  MAN_REVIEW_LENGTH,
   AppRoute,
   AuthorizationStatus,
   APIRoute,

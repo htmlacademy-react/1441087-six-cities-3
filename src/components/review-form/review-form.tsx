@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { ReviewChangeHandler } from '../../types/review';
-import { MIN_REVIEW_LENGTH, RatingOption } from '../../const';
+import {
+  MIN_REVIEW_LENGTH,
+  MAN_REVIEW_LENGTH,
+  RatingOption,
+} from '../../const';
 import ReviewRatingStar from './review-rating-star';
 
 function ReviewForm(): JSX.Element {
@@ -48,7 +52,11 @@ function ReviewForm(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={review.comment.length < MIN_REVIEW_LENGTH || !review.rating}
+          disabled={
+            !review.rating ||
+            review.comment.length < MIN_REVIEW_LENGTH ||
+            review.comment.length > MAN_REVIEW_LENGTH
+          }
         >
           Submit
         </button>
