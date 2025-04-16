@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import { AppDispatch, State } from '../types/state';
 import { OfferPreviews } from '../types/offer';
 import { AuthData } from '../types/auth-data';
-import { User } from '../types/user';
+import { UserAuth } from '../types/user';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { loadOfferPreviews, redirectToRoute, requireAuthorization, setOfferPreviewsLoadingStatus } from './action';
 import { dropToken, saveToken } from '../services/token';
@@ -36,7 +36,7 @@ const loginAction = createAsyncThunk<
   async ({ login: email, password }, { dispatch, extra: api }) => {
     const {
       data: { token },
-    } = await api.post<User>(APIRoute.Login, { email, password });
+    } = await api.post<UserAuth>(APIRoute.Login, { email, password });
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(redirectToRoute(AppRoute.Root));
