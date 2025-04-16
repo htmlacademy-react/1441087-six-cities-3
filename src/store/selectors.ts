@@ -1,5 +1,5 @@
 import { AuthorizationStatus } from '../const';
-import { State } from '../types/state';
+import { State } from './reducer';
 
 const selectCity = (state: State) => state.city;
 const selectSortOption = (state: State) => state.sortOption;

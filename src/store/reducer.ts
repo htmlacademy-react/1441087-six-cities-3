@@ -5,18 +5,30 @@ import {
   loadOfferPreviews,
   requireAuthorization,
   setOfferPreviewsLoadingStatus,
+  loadOfferFull,
 } from './action';
 import { AuthorizationStatus, AuthorizationStatusType, CITIES } from '../const';
 import { SortOptionType } from '../components/sort/types';
 import { SortOption } from '../components/sort/const';
-import { OfferPreviews } from '../types/offer';
+import { OfferFull, OfferPreviews } from '../types/offer';
+import { Values } from '../types/common';
 
-const initialState = {
+type State = {
+  city: Values<typeof CITIES>;
+  sortOption: SortOptionType;
+  offerPreviews: OfferPreviews;
+  offerFull: OfferFull | null;
+  isOfferPreviewsLoading: boolean;
+  authorizationStatus: AuthorizationStatusType;
+};
+
+const initialState: State = {
   city: CITIES.Paris,
-  sortOption: SortOption[0] as SortOptionType,
-  offerPreviews: [] as OfferPreviews,
+  sortOption: SortOption[0],
+  offerPreviews: [],
+  offerFull: null,
   isOfferPreviewsLoading: false,
-  authorizationStatus: AuthorizationStatus.Unknown as AuthorizationStatusType,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 type ReducerType = ReturnType<typeof reducer>;
@@ -32,6 +44,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOfferPreviews, (state, action) => {
       state.offerPreviews = action.payload;
     })
+    .addCase(loadOfferFull, (state, action) => {
+      state.offerFull = action.payload;
+    })
     .addCase(setOfferPreviewsLoadingStatus, (state, action) => {
       state.isOfferPreviewsLoading = action.payload;
     })
@@ -40,5 +55,5 @@ const reducer = createReducer(initialState, (builder) => {
     });
 });
 
-export type { ReducerType };
+export type { State, ReducerType };
 export { reducer };
