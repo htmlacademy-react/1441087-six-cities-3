@@ -61,7 +61,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.authorizationStatus = action.payload;
     })
     .addCase(loadReviews, (state, action) => {
-      state.reviews = action.payload;
+      state.reviews = action.payload.slice(0, 10);
     })
     .addCase(loadNearOfferPreviews, (state, action) => {
       state.nearOfferPreviews = action.payload.slice(0, 3);
