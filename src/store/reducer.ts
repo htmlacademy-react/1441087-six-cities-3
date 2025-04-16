@@ -64,7 +64,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.reviews = action.payload;
     })
     .addCase(loadNearOfferPreviews, (state, action) => {
-      state.nearOfferPreviews = action.payload;
+      state.nearOfferPreviews = action.payload.slice(0, 3);
     });
 });
 

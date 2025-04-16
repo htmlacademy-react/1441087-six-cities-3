@@ -38,7 +38,7 @@ function OfferPage(): JSX.Element {
   }
 
   const currentOfferPreview = getOfferPreviewById(offerPreviews, offerId);
-  const mapOfferPreviews = [...nearOfferPreviews.slice(0, 3), currentOfferPreview];
+  const mapOfferPreviews = [...nearOfferPreviews, currentOfferPreview];
 
   const {
     bedrooms,
