@@ -15,6 +15,7 @@ import { SortOption } from '../components/sort/const';
 import { OfferFull, OfferPreviews } from '../types/offer';
 import { Values } from '../types/common';
 import { Reviews } from '../types/review';
+import { sortReviewsDate } from '../utils/reviews-utils';
 
 type State = {
   city: Values<typeof CITIES>;
@@ -61,6 +62,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.authorizationStatus = action.payload;
     })
     .addCase(loadReviews, (state, action) => {
+      sortReviewsDate(action.payload);
       state.reviews = action.payload.slice(0, 10);
     })
     .addCase(loadNearOfferPreviews, (state, action) => {
