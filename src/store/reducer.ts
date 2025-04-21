@@ -1,19 +1,33 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { redirectToRoute, requireAuthorization, setCity, setSortOption } from './action';
 import {
-  requireAuthorization,
-  setCity,
-  setSortOption,
-} from './action';
-import { AuthorizationStatus, AuthorizationStatusType, CITIES, RequestStatus, RequestStatusType } from '../const';
+  AppRoute,
+  AuthorizationStatus,
+  AuthorizationStatusType,
+  CITIES,
+  RequestStatus,
+  RequestStatusType,
+} from '../const';
 import { SortOptionType } from '../components/sort/types';
 import { SortOption } from '../components/sort/const';
 import { OfferFull, OfferPreviews } from '../types/offer';
 import { Values } from '../types/common';
 import { Reviews } from '../types/review';
-import { getNearOfferPreviews, getOfferFull, getOfferPreviews, getReviews, postReview } from './api-actions';
+import {
+  getNearOfferPreviews,
+  getOfferFull,
+  getOfferPreviews,
+  getReviews,
+  postLogin,
+  postReview,
+} from './api-actions';
 import { sortReviewsDate } from '../utils/reviews-utils';
+import { saveToken } from '../services/token';
+import { CurrentUser } from '../types/user';
 
 type State = {
+  currentUser: CurrentUser | null;
+  authRequestStatus: RequestStatusType;
   authorizationStatus: AuthorizationStatusType;
   city: Values<typeof CITIES>;
   sortOption: SortOptionType;
@@ -34,6 +48,8 @@ type State = {
 };
 
 const initialState: State = {
+  currentUser: null,
+  authRequestStatus: RequestStatus.Idle,
   authorizationStatus: AuthorizationStatus.Unknown,
   city: CITIES.Paris,
   sortOption: SortOption[0],
@@ -57,6 +73,19 @@ type ReducerType = ReturnType<typeof reducer>;
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(postLogin.pending, (state) => {
+      state.authRequestStatus = RequestStatus.Loading;
+    })
+    .addCase(postLogin.fulfilled, (state, action) => {
+      saveToken(action.payload.token);
+      state.currentUser = action.payload;
+      state.authorizationStatus = AuthorizationStatus.Auth;
+      state.authRequestStatus = RequestStatus.Success;
+      redirectToRoute(AppRoute.Root);
+    })
+    .addCase(postLogin.rejected, (state) => {
+      state.authRequestStatus = RequestStatus.Failed;
+    })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
     })

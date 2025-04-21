@@ -3,15 +3,27 @@ import { AxiosInstance } from 'axios';
 import { AppDispatch } from '../types/state';
 import { OfferFull, OfferPreviews } from '../types/offer';
 import { AuthData } from '../types/auth-data';
-import { UserAuth } from '../types/user';
+import { CurrentUser } from '../types/user';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import {
   redirectToRoute,
   requireAuthorization,
 } from './action';
-import { dropToken, saveToken } from '../services/token';
+import { dropToken } from '../services/token';
 import { State } from '../store/reducer';
 import { NewReview, Review, Reviews } from '../types/review';
+
+const postLogin = createAsyncThunk<
+  CurrentUser,
+  AuthData,
+  { extra: AxiosInstance }
+>(
+  'user/postLogin',
+  async ({ login: email, password }, { extra: api }) => {
+    const response = await api.post<CurrentUser>(APIRoute.Login, { email, password });
+    return response.data;
+  }
+);
 
 const getOfferPreviews = createAsyncThunk<
   OfferPreviews,
@@ -48,26 +60,6 @@ const getNearOfferPreviews = createAsyncThunk<
   const response = await api.get<OfferPreviews>(`${APIRoute.Offers}/${offerId}/nearby`);
   return response.data;
 });
-
-const loginAction = createAsyncThunk<
-  void,
-  AuthData,
-  {
-    dispatch: AppDispatch;
-    state: State;
-    extra: AxiosInstance;
-  }
->(
-  'user/login',
-  async ({ login: email, password }, { dispatch, extra: api }) => {
-    const {
-      data: { token },
-    } = await api.post<UserAuth>(APIRoute.Login, { email, password });
-    saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    dispatch(redirectToRoute(AppRoute.Root));
-  }
-);
 
 const logoutAction = createAsyncThunk<
   void,
@@ -114,11 +106,11 @@ const postReview = createAsyncThunk<
 );
 
 export {
+  postLogin,
   getOfferPreviews,
   getOfferFull,
   getReviews,
   getNearOfferPreviews,
-  loginAction,
   logoutAction,
   checkAuthAction,
   postReview,
