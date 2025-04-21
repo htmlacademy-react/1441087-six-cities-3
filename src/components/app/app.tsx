@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../const';
 import { selectIsUserLoggedIn } from '../../store/selectors';
-import { checkAuthAction, getOfferPreviews } from '../../store/api-actions';
+import { getLogin, getOfferPreviews } from '../../store/api-actions';
 import { getToken } from '../../services/token';
 import MainPage from '../../pages/main-page';
 import LoginPage from '../../pages/login-page';
@@ -23,7 +23,7 @@ function App(): JSX.Element {
   const token = getToken();
   useEffect(() => {
     if (token) {
-      dispatch(checkAuthAction());
+      dispatch(getLogin());
     }
   }, [dispatch, token]);
 

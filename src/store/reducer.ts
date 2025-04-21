@@ -1,7 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
   redirectToRoute,
-  requireAuthorization,
   setCity,
   setSortOption,
 } from './action';
@@ -20,6 +19,7 @@ import { Values } from '../types/common';
 import { Reviews } from '../types/review';
 import {
   deleteLogout,
+  getLogin,
   getNearOfferPreviews,
   getOfferFull,
   getOfferPreviews,
@@ -79,6 +79,12 @@ type ReducerType = ReturnType<typeof reducer>;
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(getLogin.pending, (state) => {
+      state.authorizationStatus = AuthorizationStatus.Auth;
+    })
+    .addCase(getLogin.rejected, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
     .addCase(postLogin.pending, (state) => {
       state.authRequestStatus = RequestStatus.Loading;
     })
@@ -97,9 +103,6 @@ const reducer = createReducer(initialState, (builder) => {
       state.currentUser = null;
       state.authorizationStatus = AuthorizationStatus.NoAuth;
       redirectToRoute(AppRoute.Root);
-    })
-    .addCase(requireAuthorization, (state, action) => {
-      state.authorizationStatus = action.payload;
     })
     .addCase(setCity, (state, action) => {
       state.city = action.payload;

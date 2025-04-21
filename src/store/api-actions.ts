@@ -1,15 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { AppDispatch } from '../types/state';
 import { OfferFull, OfferPreviews } from '../types/offer';
 import { AuthData } from '../types/auth-data';
 import { CurrentUser } from '../types/user';
-import { APIRoute, AuthorizationStatus } from '../const';
-import {
-  requireAuthorization,
-} from './action';
-import { State } from '../store/reducer';
+import { APIRoute } from '../const';
 import { NewReview, Review, Reviews } from '../types/review';
+
+const getLogin = createAsyncThunk<
+  void,
+  undefined,
+  { extra: AxiosInstance }
+>('user/getLogin', async (_arg, { extra: api }) => {
+  await api.get(APIRoute.Login);
+});
 
 const postLogin = createAsyncThunk<
   CurrentUser,
@@ -67,22 +70,22 @@ const getNearOfferPreviews = createAsyncThunk<
   return response.data;
 });
 
-const checkAuthAction = createAsyncThunk<
-  void,
-  undefined,
-  {
-    dispatch: AppDispatch;
-    state: State;
-    extra: AxiosInstance;
-  }
->('user/checkAuth', async (_arg, { dispatch, extra: api }) => {
-  try {
-    await api.get(APIRoute.Login);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
-  } catch {
-    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-  }
-});
+// const checkAuthAction = createAsyncThunk<
+//   void,
+//   undefined,
+//   {
+//     dispatch: AppDispatch;
+//     state: State;
+//     extra: AxiosInstance;
+//   }
+// >('user/checkAuth', async (_arg, { dispatch, extra: api }) => {
+//   try {
+//     await api.get(APIRoute.Login);
+//     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+//   } catch {
+//     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+//   }
+// });
 
 const postReview = createAsyncThunk<
   Review,
@@ -97,12 +100,12 @@ const postReview = createAsyncThunk<
 );
 
 export {
+  getLogin,
   postLogin,
   deleteLogout,
   getOfferPreviews,
   getOfferFull,
   getReviews,
   getNearOfferPreviews,
-  checkAuthAction,
   postReview,
 };
