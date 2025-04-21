@@ -1,7 +1,7 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getOfferPreviewById, getRatingWidth } from '../../utils/offer-utils';
-import { store } from '../../store';
 import { loadNearOfferPreviewsAction, loadOfferFullAction, loadReviewsAction } from '../../store/api-actions';
 import { selectNearOfferPreviews, selectOfferFull, selectOfferPreviews, selectReviews } from '../../store/selectors';
 import Header from '../../components/header';
@@ -14,26 +14,25 @@ import OfferPreviewList from '../../components/offer-preview-list';
 import Map from '../../components/map';
 import useAppSelector from '../../hooks/use-app-selector';
 import NotFoundPage from '../not-found-page';
+import useAppDispatch from '../../hooks/use-app-dispatch';
 
 function OfferPage(): JSX.Element {
   const offerFull = useAppSelector(selectOfferFull);
   const reviews = useAppSelector(selectReviews);
   const offerPreviews = useAppSelector(selectOfferPreviews);
   const nearOfferPreviews = useAppSelector(selectNearOfferPreviews);
-
+  const dispatch = useAppDispatch();
   const { offerId } = useParams();
 
-  if (!offerId) {
-    return <NotFoundPage />;
-  }
+  useEffect(() => {
+    if (offerId && offerFull?.id !== offerId) {
+      dispatch(loadOfferFullAction(offerId));
+      dispatch(loadReviewsAction(offerId));
+      dispatch(loadNearOfferPreviewsAction(offerId));
+    }
+  }, [dispatch, offerId, offerFull]);
 
-  if (offerFull?.id !== offerId) {
-    store.dispatch(loadOfferFullAction(offerId));
-    store.dispatch(loadReviewsAction(offerId));
-    store.dispatch(loadNearOfferPreviewsAction(offerId));
-  }
-
-  if (!offerFull) {
+  if (!offerId || !offerFull) {
     return <NotFoundPage />;
   }
 

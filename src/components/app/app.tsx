@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../const';
 import { selectIsUserLoggedIn, selectOfferPreviewsLoadingStatus } from '../../store/selectors';
+import { checkAuthAction, loadOfferPreviewsAction } from '../../store/api-actions';
 import MainPage from '../../pages/main-page';
 import LoginPage from '../../pages/login-page';
 import OfferPage from '../../pages/offer-page';
@@ -12,12 +14,19 @@ import PrivateRoute from '../private-route';
 import useAppSelector from '../../hooks/use-app-selector';
 import HistoryRouter from '../history-route';
 import browserHistory from '../../browser-history';
+import useAppDispatch from '../../hooks/use-app-dispatch';
 
 function App(): JSX.Element {
   const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
   const isOfferPreviewsLoading = useAppSelector(
     selectOfferPreviewsLoadingStatus
   );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadOfferPreviewsAction());
+    dispatch(checkAuthAction());
+  }, [dispatch]);
 
   if (isOfferPreviewsLoading) {
     return <LoadingPage />;
