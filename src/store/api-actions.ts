@@ -12,7 +12,10 @@ import {
   loadReviews,
   redirectToRoute,
   requireAuthorization,
+  setNearOfferPreviewsLoadingStatus,
+  setOfferFullLoadingStatus,
   setOfferPreviewsLoadingStatus,
+  setReviewsLoadingStatus,
 } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { State } from '../store/reducer';
@@ -42,8 +45,10 @@ const loadOfferFullAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('offer/loadOfferFull', async (offerId, { dispatch, extra: api }) => {
+  dispatch(setOfferFullLoadingStatus(true));
   const { data } = await api.get<OfferFull>(`${APIRoute.Offers}/${offerId}`);
   dispatch(loadOfferFull(data));
+  dispatch(setOfferFullLoadingStatus(false));
 });
 
 const loadReviewsAction = createAsyncThunk<
@@ -55,8 +60,10 @@ const loadReviewsAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('review/loadReviews', async (offerId, { dispatch, extra: api }) => {
+  dispatch(setReviewsLoadingStatus(true));
   const { data } = await api.get<Reviews>(`${APIRoute.Reviews}/${offerId}`);
   dispatch(loadReviews(data));
+  dispatch(setReviewsLoadingStatus(false));
 });
 
 const loadNearOfferPreviewsAction = createAsyncThunk<
@@ -68,8 +75,10 @@ const loadNearOfferPreviewsAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('offer/loadNearOfferPreviews', async (offerId, { dispatch, extra: api }) => {
+  dispatch(setNearOfferPreviewsLoadingStatus(true));
   const { data } = await api.get<OfferPreviews>(`${APIRoute.Offers}/${offerId}/nearby`);
   dispatch(loadNearOfferPreviews(data));
+  dispatch(setNearOfferPreviewsLoadingStatus(false));
 });
 
 const loginAction = createAsyncThunk<

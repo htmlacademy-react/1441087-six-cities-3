@@ -2,8 +2,22 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getOfferPreviewById, getRatingWidth } from '../../utils/offer-utils';
-import { loadNearOfferPreviewsAction, loadOfferFullAction, loadReviewsAction } from '../../store/api-actions';
-import { selectNearOfferPreviews, selectOfferFull, selectOfferPreviews, selectReviews } from '../../store/selectors';
+import {
+  loadNearOfferPreviewsAction,
+  loadOfferFullAction,
+  loadReviewsAction,
+} from '../../store/api-actions';
+import {
+  selectNearOfferPreviews,
+  selectNearOfferPreviewsLoadingStatus,
+  selectOfferFull,
+  selectOfferFullLoadingStatus,
+  selectOfferPreviews,
+  selectReviews,
+  selectReviewsLoadingStatus,
+} from '../../store/selectors';
+import useAppDispatch from '../../hooks/use-app-dispatch';
+import useAppSelector from '../../hooks/use-app-selector';
 import Header from '../../components/header';
 import OfferGallery from '../../components/offer-gallery';
 import OfferFeatures from '../../components/offer-features';
@@ -12,15 +26,19 @@ import OfferHost from '../../components/offer-host';
 import OfferReviews from '../../components/offer-reviews';
 import OfferPreviewList from '../../components/offer-preview-list';
 import Map from '../../components/map';
-import useAppSelector from '../../hooks/use-app-selector';
 import NotFoundPage from '../not-found-page';
-import useAppDispatch from '../../hooks/use-app-dispatch';
+import LoadingPage from '../loading-page';
 
 function OfferPage(): JSX.Element {
   const offerFull = useAppSelector(selectOfferFull);
-  const reviews = useAppSelector(selectReviews);
-  const offerPreviews = useAppSelector(selectOfferPreviews);
+  const offerFullLoadingStatus = useAppSelector(selectOfferFullLoadingStatus);
   const nearOfferPreviews = useAppSelector(selectNearOfferPreviews);
+  const nearOfferPreviewsLoadingStatus = useAppSelector(
+    selectNearOfferPreviewsLoadingStatus
+  );
+  const reviews = useAppSelector(selectReviews);
+  const reviewsLoadingStatus = useAppSelector(selectReviewsLoadingStatus);
+  const offerPreviews = useAppSelector(selectOfferPreviews);
   const dispatch = useAppDispatch();
   const { offerId } = useParams();
 
@@ -31,6 +49,14 @@ function OfferPage(): JSX.Element {
       dispatch(loadNearOfferPreviewsAction(offerId));
     }
   }, [dispatch, offerId, offerFull]);
+
+  if (
+    offerFullLoadingStatus ||
+    nearOfferPreviewsLoadingStatus ||
+    reviewsLoadingStatus
+  ) {
+    return <LoadingPage />;
+  }
 
   if (!offerId || !offerFull) {
     return <NotFoundPage />;
