@@ -95,7 +95,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.nearOfferPreviewsStatus = RequestStatus.Loading;
     })
     .addCase(getNearOfferPreviews.fulfilled, (state, action) => {
-      state.nearOfferPreviews = action.payload;
+      state.nearOfferPreviews = action.payload.slice(0, 3);
       state.nearOfferPreviewsStatus = RequestStatus.Success;
     })
     .addCase(getNearOfferPreviews.rejected, (state) => {

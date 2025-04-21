@@ -59,7 +59,14 @@ function OfferPage(): JSX.Element {
     return <LoadingPage />;
   }
 
-  if (!offerId || !offerFull) {
+  if (
+    !offerId ||
+    !offerFull ||
+    offerPreviewsStatus === 'Failed' ||
+    offerFullStatus === 'Failed' ||
+    reviewsStatus === 'Failed' ||
+    nearOfferPreviewsStatus === 'Failed'
+  ) {
     return <NotFoundPage />;
   }
 
