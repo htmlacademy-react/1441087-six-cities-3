@@ -13,6 +13,7 @@ import {
   selectOfferFull,
   selectOfferFullLoadingStatus,
   selectOfferPreviews,
+  selectOfferPreviewsLoadingStatus,
   selectReviews,
   selectReviewsLoadingStatus,
 } from '../../store/selectors';
@@ -30,15 +31,16 @@ import NotFoundPage from '../not-found-page';
 import LoadingPage from '../loading-page';
 
 function OfferPage(): JSX.Element {
+  const offerPreviews = useAppSelector(selectOfferPreviews);
+  const isOfferPreviewsLoading = useAppSelector(selectOfferPreviewsLoadingStatus);
   const offerFull = useAppSelector(selectOfferFull);
-  const offerFullLoadingStatus = useAppSelector(selectOfferFullLoadingStatus);
+  const isOfferFullLoading = useAppSelector(selectOfferFullLoadingStatus);
   const nearOfferPreviews = useAppSelector(selectNearOfferPreviews);
-  const nearOfferPreviewsLoadingStatus = useAppSelector(
+  const isNearOfferPreviewsLoading = useAppSelector(
     selectNearOfferPreviewsLoadingStatus
   );
   const reviews = useAppSelector(selectReviews);
-  const reviewsLoadingStatus = useAppSelector(selectReviewsLoadingStatus);
-  const offerPreviews = useAppSelector(selectOfferPreviews);
+  const isReviewsLoading = useAppSelector(selectReviewsLoadingStatus);
   const dispatch = useAppDispatch();
   const { offerId } = useParams();
 
@@ -51,9 +53,10 @@ function OfferPage(): JSX.Element {
   }, [dispatch, offerId, offerFull]);
 
   if (
-    offerFullLoadingStatus ||
-    nearOfferPreviewsLoadingStatus ||
-    reviewsLoadingStatus
+    isOfferPreviewsLoading ||
+    isOfferFullLoading ||
+    isNearOfferPreviewsLoading ||
+    isReviewsLoading
   ) {
     return <LoadingPage />;
   }

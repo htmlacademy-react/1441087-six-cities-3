@@ -14,15 +14,21 @@ import useAppSelector from '../../hooks/use-app-selector';
 import HistoryRouter from '../history-route';
 import browserHistory from '../../browser-history';
 import useAppDispatch from '../../hooks/use-app-dispatch';
+import { getToken } from '../../services/token';
 
 function App(): JSX.Element {
   const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
-
   const dispatch = useAppDispatch();
+
+  const token = getToken();
+  useEffect(() => {
+    if (token) {
+      dispatch(checkAuthAction());
+    }
+  }, [dispatch, token]);
 
   useEffect(() => {
     dispatch(loadOfferPreviewsAction());
-    dispatch(checkAuthAction());
   }, [dispatch]);
 
   return (
