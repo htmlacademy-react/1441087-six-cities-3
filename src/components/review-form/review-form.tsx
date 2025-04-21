@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { ReviewChangeHandler } from '../../types/review';
 import {
   MIN_REVIEW_LENGTH,
@@ -6,20 +6,36 @@ import {
   RatingOption,
 } from '../../const';
 import ReviewRatingStar from './review-rating-star';
+import useAppDispatch from '../../hooks/use-app-dispatch';
+import { postReview } from '../../store/api-actions';
+import { useParams } from 'react-router-dom';
 
 function ReviewForm(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const { offerId = '' } = useParams();
   const [review, setReview] = useState({
     comment: '',
     rating: 0,
   });
 
-  const handleChange: ReviewChangeHandler = (evt): void => {
+  const handleCommentChange: ReviewChangeHandler = (evt): void => {
     const { name, value } = evt.currentTarget;
     setReview({ ...review, [name]: value });
   };
 
+  const handleRatingChange: ReviewChangeHandler = (evt): void => {
+    const { name, value } = evt.currentTarget;
+    setReview({ ...review, [name]: Number(value) });
+  };
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    dispatch(postReview({ offerId, review }));
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="comment">
         Your review
       </label>
@@ -29,7 +45,7 @@ function ReviewForm(): JSX.Element {
             key={value}
             value={value}
             title={title}
-            onChange={handleChange}
+            onChange={handleRatingChange}
           />
         ))}
       </div>
@@ -39,7 +55,7 @@ function ReviewForm(): JSX.Element {
         name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
         defaultValue={review.comment}
-        onChange={handleChange}
+        onChange={handleCommentChange}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

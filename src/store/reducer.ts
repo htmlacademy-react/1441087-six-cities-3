@@ -10,7 +10,8 @@ import { SortOption } from '../components/sort/const';
 import { OfferFull, OfferPreviews } from '../types/offer';
 import { Values } from '../types/common';
 import { Reviews } from '../types/review';
-import { getNearOfferPreviews, getOfferFull, getOfferPreviews, getReviews } from './api-actions';
+import { getNearOfferPreviews, getOfferFull, getOfferPreviews, getReviews, postReview } from './api-actions';
+import { sortReviewsDate } from '../utils/reviews-utils';
 
 type State = {
   authorizationStatus: AuthorizationStatusType;
@@ -28,6 +29,8 @@ type State = {
 
   reviews: Reviews;
   reviewsStatus: RequestStatusType;
+
+  postReviewStatus: RequestStatusType;
 };
 
 const initialState: State = {
@@ -46,6 +49,8 @@ const initialState: State = {
 
   nearOfferPreviews: [],
   nearOfferPreviewsStatus: RequestStatus.Idle,
+
+  postReviewStatus: RequestStatus.Idle,
 };
 
 type ReducerType = ReturnType<typeof reducer>;
@@ -85,7 +90,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.reviewsStatus = RequestStatus.Loading;
     })
     .addCase(getReviews.fulfilled, (state, action) => {
-      state.reviews = action.payload;
+      state.reviews = sortReviewsDate(action.payload);
       state.reviewsStatus = RequestStatus.Success;
     })
     .addCase(getReviews.rejected, (state) => {
@@ -100,6 +105,16 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(getNearOfferPreviews.rejected, (state) => {
       state.nearOfferPreviewsStatus = RequestStatus.Failed;
+    })
+    .addCase(postReview.pending, (state) => {
+      state.postReviewStatus = RequestStatus.Loading;
+    })
+    .addCase(postReview.fulfilled, (state, action) => {
+      state.reviews = [action.payload, ...state.reviews];
+      state.postReviewStatus = RequestStatus.Success;
+    })
+    .addCase(postReview.rejected, (state) => {
+      state.postReviewStatus = RequestStatus.Failed;
     });
 });
 

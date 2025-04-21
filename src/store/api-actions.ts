@@ -11,7 +11,7 @@ import {
 } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { State } from '../store/reducer';
-import { Reviews } from '../types/review';
+import { NewReview, Review, Reviews } from '../types/review';
 
 const getOfferPreviews = createAsyncThunk<
   OfferPreviews,
@@ -101,6 +101,18 @@ const checkAuthAction = createAsyncThunk<
   }
 });
 
+const postReview = createAsyncThunk<
+  Review,
+  {offerId: string; review: NewReview},
+  { extra: AxiosInstance }
+>(
+  'review/postReview',
+  async ({offerId, review}, { extra: api }) => {
+    const response = await api.post<Review>(`${APIRoute.Reviews}/${offerId}`, review);
+    return response.data;
+  }
+);
+
 export {
   getOfferPreviews,
   getOfferFull,
@@ -109,4 +121,5 @@ export {
   loginAction,
   logoutAction,
   checkAuthAction,
+  postReview,
 };

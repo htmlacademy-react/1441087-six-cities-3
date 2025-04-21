@@ -11,8 +11,13 @@ type Review = {
 
 type Reviews = Review[];
 
+type NewReview = {
+  comment: string;
+  rating: number;
+};
+
 type ReviewChangeHandler = ReactEventHandler<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
-export type { Review, Reviews, ReviewChangeHandler };
+export type { Review, Reviews, NewReview, ReviewChangeHandler };
