@@ -1,5 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { redirectToRoute, requireAuthorization, setCity, setSortOption } from './action';
+import {
+  redirectToRoute,
+  requireAuthorization,
+  setCity,
+  setSortOption,
+} from './action';
 import {
   AppRoute,
   AuthorizationStatus,
@@ -14,6 +19,7 @@ import { OfferFull, OfferPreviews } from '../types/offer';
 import { Values } from '../types/common';
 import { Reviews } from '../types/review';
 import {
+  deleteLogout,
   getNearOfferPreviews,
   getOfferFull,
   getOfferPreviews,
@@ -22,7 +28,7 @@ import {
   postReview,
 } from './api-actions';
 import { sortReviewsDate } from '../utils/reviews-utils';
-import { saveToken } from '../services/token';
+import { dropToken, saveToken } from '../services/token';
 import { CurrentUser } from '../types/user';
 
 type State = {
@@ -85,6 +91,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(postLogin.rejected, (state) => {
       state.authRequestStatus = RequestStatus.Failed;
+    })
+    .addCase(deleteLogout.fulfilled, (state) => {
+      dropToken();
+      state.currentUser = null;
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+      redirectToRoute(AppRoute.Root);
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;

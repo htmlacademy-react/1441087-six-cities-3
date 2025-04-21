@@ -4,12 +4,10 @@ import { AppDispatch } from '../types/state';
 import { OfferFull, OfferPreviews } from '../types/offer';
 import { AuthData } from '../types/auth-data';
 import { CurrentUser } from '../types/user';
-import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
+import { APIRoute, AuthorizationStatus } from '../const';
 import {
-  redirectToRoute,
   requireAuthorization,
 } from './action';
-import { dropToken } from '../services/token';
 import { State } from '../store/reducer';
 import { NewReview, Review, Reviews } from '../types/review';
 
@@ -24,6 +22,14 @@ const postLogin = createAsyncThunk<
     return response.data;
   }
 );
+
+const deleteLogout = createAsyncThunk<
+  void,
+  undefined,
+  { extra: AxiosInstance }
+>('user/deleteLogout', async (_arg, { extra: api }) => {
+  await api.delete(APIRoute.Logout);
+});
 
 const getOfferPreviews = createAsyncThunk<
   OfferPreviews,
@@ -61,21 +67,6 @@ const getNearOfferPreviews = createAsyncThunk<
   return response.data;
 });
 
-const logoutAction = createAsyncThunk<
-  void,
-  undefined,
-  {
-    dispatch: AppDispatch;
-    state: State;
-    extra: AxiosInstance;
-  }
->('user/logout', async (_arg, { dispatch, extra: api }) => {
-  await api.delete(APIRoute.Logout);
-  dropToken();
-  dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-  dispatch(redirectToRoute(AppRoute.Root));
-});
-
 const checkAuthAction = createAsyncThunk<
   void,
   undefined,
@@ -107,11 +98,11 @@ const postReview = createAsyncThunk<
 
 export {
   postLogin,
+  deleteLogout,
   getOfferPreviews,
   getOfferFull,
   getReviews,
   getNearOfferPreviews,
-  logoutAction,
   checkAuthAction,
   postReview,
 };
