@@ -4,7 +4,7 @@ import { OfferPreview } from '../../types/offer';
 import { getCityOffers } from '../../utils/city-utils';
 import { pluralize } from '../../utils/common-utils';
 import { sortOfferPreviews } from '../../components/sort/utils';
-import { selectCity, selectOfferPreviews, selectOfferPreviewsLoadingStatus, selectSortOption } from '../../store/selectors';
+import { selectCity, selectOfferPreviews, selectOfferPreviewsStatus, selectSortOption } from '../../store/selectors';
 import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';
@@ -18,11 +18,11 @@ function MainPage(): JSX.Element {
   const currentCity = useAppSelector(selectCity);
   const currentSortOption = useAppSelector(selectSortOption);
   const allOfferPreviews = useAppSelector(selectOfferPreviews);
-  const isOfferPreviewsLoading = useAppSelector(
-    selectOfferPreviewsLoadingStatus
+  const offerPreviewsStatus = useAppSelector(
+    selectOfferPreviewsStatus
   );
 
-  if (isOfferPreviewsLoading) {
+  if (offerPreviewsStatus === 'Loading') {
     return <LoadingPage />;
   }
 

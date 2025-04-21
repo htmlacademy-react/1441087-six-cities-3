@@ -96,11 +96,21 @@ const DateFormat = {
 
 type DateFormatType = Values<typeof DateFormat>;
 
+const RequestStatus = {
+  Idle: 'Idle',
+  Loading: 'Loading',
+  Success: 'Success',
+  Failed: 'Failed'
+} as const;
+
+type RequestStatusType = Values<typeof RequestStatus>;
+
 export type {
   AppRouteType,
   AuthorizationStatusType,
   APIRouteType,
   DateFormatType,
+  RequestStatusType,
 };
 
 export {
@@ -113,4 +123,5 @@ export {
   RatingOption,
   CITIES,
   DateFormat,
+  RequestStatus,
 };

@@ -7,16 +7,16 @@ const selectCity = (state: State) => state.city;
 const selectSortOption = (state: State) => state.sortOption;
 
 const selectOfferPreviews = (state: State) => state.offerPreviews;
-const selectOfferPreviewsLoadingStatus = (state: State) => state.isOfferPreviewsLoading;
+const selectOfferPreviewsStatus = (state: State) => state.offerPreviewsStatus;
 
 const selectOfferFull = (state: State) => state.offerFull;
-const selectOfferFullLoadingStatus = (state: State) => state.isOfferFullLoading;
+const selectOfferFullStatus = (state: State) => state.offerFullStatus;
 
 const selectNearOfferPreviews = (state: State) => state.nearOfferPreviews;
-const selectNearOfferPreviewsLoadingStatus = (state: State) => state.isNearOfferPreviewsLoading;
+const selectNearOfferPreviewsStatus = (state: State) => state.nearOfferPreviewsStatus;
 
 const selectReviews = (state: State) => state.reviews;
-const selectReviewsLoadingStatus = (state: State) => state.isReviewsLoading;
+const selectReviewsStatus = (state: State) => state.reviewsStatus;
 
 
 export {
@@ -25,11 +25,11 @@ export {
   selectCity,
   selectSortOption,
   selectOfferPreviews,
-  selectOfferPreviewsLoadingStatus,
+  selectOfferPreviewsStatus,
   selectOfferFull,
-  selectOfferFullLoadingStatus,
+  selectOfferFullStatus,
   selectNearOfferPreviews,
-  selectNearOfferPreviewsLoadingStatus,
+  selectNearOfferPreviewsStatus,
   selectReviews,
-  selectReviewsLoadingStatus,
+  selectReviewsStatus,
 };

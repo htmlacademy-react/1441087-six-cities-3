@@ -6,79 +6,47 @@ import { AuthData } from '../types/auth-data';
 import { UserAuth } from '../types/user';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import {
-  loadNearOfferPreviews,
-  loadOfferFull,
-  loadOfferPreviews,
-  loadReviews,
   redirectToRoute,
   requireAuthorization,
-  setNearOfferPreviewsLoadingStatus,
-  setOfferFullLoadingStatus,
-  setOfferPreviewsLoadingStatus,
-  setReviewsLoadingStatus,
 } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { State } from '../store/reducer';
 import { Reviews } from '../types/review';
 
-const loadOfferPreviewsAction = createAsyncThunk<
-  void,
+const getOfferPreviews = createAsyncThunk<
+  OfferPreviews,
   undefined,
-  {
-    dispatch: AppDispatch;
-    state: State;
-    extra: AxiosInstance;
-  }
->('offer/loadOfferPreviews', async (_arg, { dispatch, extra: api }) => {
-  dispatch(setOfferPreviewsLoadingStatus(true));
-  const { data } = await api.get<OfferPreviews>(APIRoute.Offers);
-  dispatch(loadOfferPreviews(data));
-  dispatch(setOfferPreviewsLoadingStatus(false));
+  { extra: AxiosInstance }
+>('offer/getOfferPreviews', async (_arg, { extra: api }) => {
+  const response = await api.get<OfferPreviews>(APIRoute.Offers);
+  return response.data;
 });
 
-const loadOfferFullAction = createAsyncThunk<
-  void,
+const getOfferFull = createAsyncThunk<
+  OfferFull,
   string,
-  {
-    dispatch: AppDispatch;
-    state: State;
-    extra: AxiosInstance;
-  }
->('offer/loadOfferFull', async (offerId, { dispatch, extra: api }) => {
-  dispatch(setOfferFullLoadingStatus(true));
-  const { data } = await api.get<OfferFull>(`${APIRoute.Offers}/${offerId}`);
-  dispatch(loadOfferFull(data));
-  dispatch(setOfferFullLoadingStatus(false));
+  { extra: AxiosInstance }
+>('offer/getOfferFull', async (offerId, { extra: api }) => {
+  const response = await api.get<OfferFull>(`${APIRoute.Offers}/${offerId}`);
+  return response.data;
 });
 
-const loadReviewsAction = createAsyncThunk<
-  void,
+const getReviews = createAsyncThunk<
+  Reviews,
   string,
-  {
-    dispatch: AppDispatch;
-    state: State;
-    extra: AxiosInstance;
-  }
->('review/loadReviews', async (offerId, { dispatch, extra: api }) => {
-  dispatch(setReviewsLoadingStatus(true));
-  const { data } = await api.get<Reviews>(`${APIRoute.Reviews}/${offerId}`);
-  dispatch(loadReviews(data));
-  dispatch(setReviewsLoadingStatus(false));
+  { extra: AxiosInstance }
+>('review/getReviews', async (offerId, { extra: api }) => {
+  const response = await api.get<Reviews>(`${APIRoute.Reviews}/${offerId}`);
+  return response.data;
 });
 
-const loadNearOfferPreviewsAction = createAsyncThunk<
-  void,
+const getNearOfferPreviews = createAsyncThunk<
+  OfferPreviews,
   string,
-  {
-    dispatch: AppDispatch;
-    state: State;
-    extra: AxiosInstance;
-  }
->('offer/loadNearOfferPreviews', async (offerId, { dispatch, extra: api }) => {
-  dispatch(setNearOfferPreviewsLoadingStatus(true));
-  const { data } = await api.get<OfferPreviews>(`${APIRoute.Offers}/${offerId}/nearby`);
-  dispatch(loadNearOfferPreviews(data));
-  dispatch(setNearOfferPreviewsLoadingStatus(false));
+  { extra: AxiosInstance }
+>('offer/getNearOfferPreviews', async (offerId, { extra: api }) => {
+  const response = await api.get<OfferPreviews>(`${APIRoute.Offers}/${offerId}/nearby`);
+  return response.data;
 });
 
 const loginAction = createAsyncThunk<
@@ -134,10 +102,10 @@ const checkAuthAction = createAsyncThunk<
 });
 
 export {
-  loadOfferPreviewsAction,
-  loadOfferFullAction,
-  loadReviewsAction,
-  loadNearOfferPreviewsAction,
+  getOfferPreviews,
+  getOfferFull,
+  getReviews,
+  getNearOfferPreviews,
   loginAction,
   logoutAction,
   checkAuthAction,

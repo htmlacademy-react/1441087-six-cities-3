@@ -3,19 +3,19 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getOfferPreviewById, getRatingWidth } from '../../utils/offer-utils';
 import {
-  loadNearOfferPreviewsAction,
-  loadOfferFullAction,
-  loadReviewsAction,
+  getOfferFull,
+  getReviews,
+  getNearOfferPreviews,
 } from '../../store/api-actions';
 import {
-  selectNearOfferPreviews,
-  selectNearOfferPreviewsLoadingStatus,
-  selectOfferFull,
-  selectOfferFullLoadingStatus,
   selectOfferPreviews,
-  selectOfferPreviewsLoadingStatus,
+  selectOfferPreviewsStatus,
+  selectOfferFull,
+  selectOfferFullStatus,
   selectReviews,
-  selectReviewsLoadingStatus,
+  selectReviewsStatus,
+  selectNearOfferPreviews,
+  selectNearOfferPreviewsStatus,
 } from '../../store/selectors';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
@@ -32,31 +32,29 @@ import LoadingPage from '../loading-page';
 
 function OfferPage(): JSX.Element {
   const offerPreviews = useAppSelector(selectOfferPreviews);
-  const isOfferPreviewsLoading = useAppSelector(selectOfferPreviewsLoadingStatus);
+  const offerPreviewsStatus = useAppSelector(selectOfferPreviewsStatus);
   const offerFull = useAppSelector(selectOfferFull);
-  const isOfferFullLoading = useAppSelector(selectOfferFullLoadingStatus);
-  const nearOfferPreviews = useAppSelector(selectNearOfferPreviews);
-  const isNearOfferPreviewsLoading = useAppSelector(
-    selectNearOfferPreviewsLoadingStatus
-  );
+  const offerFullStatus = useAppSelector(selectOfferFullStatus);
   const reviews = useAppSelector(selectReviews);
-  const isReviewsLoading = useAppSelector(selectReviewsLoadingStatus);
+  const reviewsStatus = useAppSelector(selectReviewsStatus);
+  const nearOfferPreviews = useAppSelector(selectNearOfferPreviews);
+  const nearOfferPreviewsStatus = useAppSelector(selectNearOfferPreviewsStatus);
   const dispatch = useAppDispatch();
   const { offerId } = useParams();
 
   useEffect(() => {
     if (offerId && offerFull?.id !== offerId) {
-      dispatch(loadOfferFullAction(offerId));
-      dispatch(loadReviewsAction(offerId));
-      dispatch(loadNearOfferPreviewsAction(offerId));
+      dispatch(getOfferFull(offerId));
+      dispatch(getReviews(offerId));
+      dispatch(getNearOfferPreviews(offerId));
     }
   }, [dispatch, offerId, offerFull]);
 
   if (
-    isOfferPreviewsLoading ||
-    isOfferFullLoading ||
-    isNearOfferPreviewsLoading ||
-    isReviewsLoading
+    offerPreviewsStatus === 'Loading' ||
+    offerFullStatus === 'Loading' ||
+    reviewsStatus === 'Loading' ||
+    nearOfferPreviewsStatus === 'Loading'
   ) {
     return <LoadingPage />;
   }
