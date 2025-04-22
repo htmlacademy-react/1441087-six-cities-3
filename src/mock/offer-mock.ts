@@ -43,8 +43,6 @@ const offerMock: OfferFull = {
     'Coffee machine',
   ],
   host: {
-    email: 'test@mail.com',
-    token: '',
     isPro: true,
     name: 'Angelina',
     avatarUrl:
