@@ -1,22 +1,34 @@
 import { FormEvent, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { ReviewChangeHandler } from '../../types/review';
 import {
   MIN_REVIEW_LENGTH,
   MAN_REVIEW_LENGTH,
   RatingOption,
+  RequestStatus,
 } from '../../const';
-import ReviewRatingStar from './review-rating-star';
-import useAppDispatch from '../../hooks/use-app-dispatch';
+import { selectPostReviewStatus } from '../../store/selectors';
 import { postReview } from '../../store/api-actions';
-import { useParams } from 'react-router-dom';
+import useAppDispatch from '../../hooks/use-app-dispatch';
+import useAppSelector from '../../hooks/use-app-selector';
+import ReviewRatingStar from './review-rating-star';
 
 function ReviewForm(): JSX.Element {
   const dispatch = useAppDispatch();
+  const postReviewStatus = useAppSelector(selectPostReviewStatus);
   const { offerId = '' } = useParams();
   const [review, setReview] = useState({
     comment: '',
     rating: 0,
   });
+
+  const disabledInputs = postReviewStatus === RequestStatus.Loading;
+
+  const disabledForm =
+    !review.rating ||
+    review.comment.length < MIN_REVIEW_LENGTH ||
+    review.comment.length > MAN_REVIEW_LENGTH ||
+    postReviewStatus === RequestStatus.Loading;
 
   const handleCommentChange: ReviewChangeHandler = (evt): void => {
     const { name, value } = evt.currentTarget;
@@ -30,8 +42,12 @@ function ReviewForm(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
     dispatch(postReview({ offerId, review }));
+    evt.currentTarget.reset();
+    setReview({
+      comment: '',
+      rating: 0,
+    });
   };
 
   return (
@@ -45,6 +61,7 @@ function ReviewForm(): JSX.Element {
             key={value}
             value={value}
             title={title}
+            disabled={disabledInputs}
             onChange={handleRatingChange}
           />
         ))}
@@ -55,6 +72,7 @@ function ReviewForm(): JSX.Element {
         name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
         defaultValue={review.comment}
+        disabled={disabledInputs}
         onChange={handleCommentChange}
       />
       <div className="reviews__button-wrapper">
@@ -68,11 +86,7 @@ function ReviewForm(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={
-            !review.rating ||
-            review.comment.length < MIN_REVIEW_LENGTH ||
-            review.comment.length > MAN_REVIEW_LENGTH
-          }
+          disabled={disabledForm}
         >
           Submit
         </button>

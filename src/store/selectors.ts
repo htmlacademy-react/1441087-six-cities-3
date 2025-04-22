@@ -18,6 +18,7 @@ const selectNearOfferPreviewsStatus = (state: State) => state.nearOfferPreviewsS
 const selectReviews = (state: State) => state.reviews;
 const selectReviewsStatus = (state: State) => state.reviewsStatus;
 
+const selectPostReviewStatus = (state: State) => state.postReviewStatus;
 
 export {
   selectAuthorizationStatus,
@@ -32,4 +33,5 @@ export {
   selectNearOfferPreviewsStatus,
   selectReviews,
   selectReviewsStatus,
+  selectPostReviewStatus,
 };

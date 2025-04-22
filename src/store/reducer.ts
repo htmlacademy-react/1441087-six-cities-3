@@ -154,7 +154,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.postReviewStatus = RequestStatus.Loading;
     })
     .addCase(postReview.fulfilled, (state, action) => {
-      state.reviews = [action.payload, ...state.reviews];
+      state.reviews.unshift(action.payload);
       state.postReviewStatus = RequestStatus.Success;
     })
     .addCase(postReview.rejected, (state) => {
