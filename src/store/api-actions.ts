@@ -53,6 +53,24 @@ const getOfferFull = createAsyncThunk<
   return response.data;
 });
 
+const getNearOfferPreviews = createAsyncThunk<
+  OfferPreviews,
+  string,
+  { extra: AxiosInstance }
+>('offer/getNearOfferPreviews', async (offerId, { extra: api }) => {
+  const response = await api.get<OfferPreviews>(`${APIRoute.Offers}/${offerId}/nearby`);
+  return response.data;
+});
+
+const getFavoriteOffers = createAsyncThunk<
+  OfferPreviews,
+  undefined,
+  { extra: AxiosInstance }
+>('offer/getFavoriteOffers', async (_arg, { extra: api }) => {
+  const response = await api.get<OfferPreviews>(APIRoute.Favorite);
+  return response.data;
+});
+
 const getReviews = createAsyncThunk<
   Reviews,
   string,
@@ -62,14 +80,6 @@ const getReviews = createAsyncThunk<
   return response.data;
 });
 
-const getNearOfferPreviews = createAsyncThunk<
-  OfferPreviews,
-  string,
-  { extra: AxiosInstance }
->('offer/getNearOfferPreviews', async (offerId, { extra: api }) => {
-  const response = await api.get<OfferPreviews>(`${APIRoute.Offers}/${offerId}/nearby`);
-  return response.data;
-});
 
 const postReview = createAsyncThunk<
   Review,
@@ -89,7 +99,8 @@ export {
   logout,
   getOfferPreviews,
   getOfferFull,
-  getReviews,
   getNearOfferPreviews,
+  getFavoriteOffers,
+  getReviews,
   postReview,
 };

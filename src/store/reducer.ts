@@ -26,6 +26,7 @@ import {
   getReviews,
   getNearOfferPreviews,
   postReview,
+  getFavoriteOffers,
 } from './api-actions';
 import { sortReviewsDate } from '../utils/reviews-utils';
 import { dropToken, saveToken } from '../services/token';
@@ -47,6 +48,9 @@ type State = {
   nearOfferPreviews: OfferPreviews;
   nearOfferPreviewsStatus: RequestStatusType;
 
+  favoriteOfferPreviews: OfferPreviews;
+  favoriteOfferPreviewsStatus: RequestStatusType;
+
   reviews: Reviews;
   reviewsStatus: RequestStatusType;
 
@@ -66,11 +70,14 @@ const initialState: State = {
   offerFull: null,
   offerFullStatus: RequestStatus.Idle,
 
-  reviews: [],
-  reviewsStatus: RequestStatus.Idle,
-
   nearOfferPreviews: [],
   nearOfferPreviewsStatus: RequestStatus.Idle,
+
+  favoriteOfferPreviews: [],
+  favoriteOfferPreviewsStatus: RequestStatus.Idle,
+
+  reviews: [],
+  reviewsStatus: RequestStatus.Idle,
 
   postReviewStatus: RequestStatus.Idle,
 };
@@ -151,6 +158,16 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(getNearOfferPreviews.rejected, (state) => {
       state.nearOfferPreviewsStatus = RequestStatus.Failed;
+    })
+    .addCase(getFavoriteOffers.pending, (state) => {
+      state.favoriteOfferPreviewsStatus = RequestStatus.Loading;
+    })
+    .addCase(getFavoriteOffers.fulfilled, (state, action) => {
+      state.favoriteOfferPreviews = action.payload;
+      state.favoriteOfferPreviewsStatus = RequestStatus.Success;
+    })
+    .addCase(getFavoriteOffers.rejected, (state) => {
+      state.favoriteOfferPreviewsStatus = RequestStatus.Failed;
     })
     .addCase(postReview.pending, (state) => {
       state.postReviewStatus = RequestStatus.Loading;

@@ -16,6 +16,9 @@ const selectOfferFullStatus = (state: State) => state.offerFullStatus;
 const selectNearOfferPreviews = (state: State) => state.nearOfferPreviews;
 const selectNearOfferPreviewsStatus = (state: State) => state.nearOfferPreviewsStatus;
 
+const selectFavoriteOfferPreviews = (state: State) => state.favoriteOfferPreviews;
+const selectFavoriteOfferPreviewsStatus = (state: State) => state.favoriteOfferPreviewsStatus;
+
 const selectReviews = (state: State) => state.reviews;
 const selectReviewsStatus = (state: State) => state.reviewsStatus;
 
@@ -33,6 +36,8 @@ export {
   selectOfferFullStatus,
   selectNearOfferPreviews,
   selectNearOfferPreviewsStatus,
+  selectFavoriteOfferPreviews,
+  selectFavoriteOfferPreviewsStatus,
   selectReviews,
   selectReviewsStatus,
   selectPostReviewStatus,

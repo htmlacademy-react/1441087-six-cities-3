@@ -27,6 +27,7 @@ const APIRoute = {
   Logout: '/logout',
   Offers: '/offers',
   Reviews: '/comments',
+  Favorite: '/favorite',
 } as const;
 
 type APIRouteType = Values<typeof APIRoute>;
