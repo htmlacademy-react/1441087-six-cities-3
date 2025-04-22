@@ -6,31 +6,31 @@ import { CurrentUser } from '../types/user';
 import { APIRoute } from '../const';
 import { NewReview, Review, Reviews } from '../types/review';
 
-const getLogin = createAsyncThunk<
+const checkAuth = createAsyncThunk<
   void,
   undefined,
   { extra: AxiosInstance }
->('user/getLogin', async (_arg, { extra: api }) => {
+>('user/checkAuth', async (_arg, { extra: api }) => {
   await api.get(APIRoute.Login);
 });
 
-const postLogin = createAsyncThunk<
+const login = createAsyncThunk<
   CurrentUser,
   AuthData,
   { extra: AxiosInstance }
 >(
-  'user/postLogin',
+  'user/login',
   async ({ login: email, password }, { extra: api }) => {
     const response = await api.post<CurrentUser>(APIRoute.Login, { email, password });
     return response.data;
   }
 );
 
-const deleteLogout = createAsyncThunk<
+const logout = createAsyncThunk<
   void,
   undefined,
   { extra: AxiosInstance }
->('user/deleteLogout', async (_arg, { extra: api }) => {
+>('user/logout', async (_arg, { extra: api }) => {
   await api.delete(APIRoute.Logout);
 });
 
@@ -70,23 +70,6 @@ const getNearOfferPreviews = createAsyncThunk<
   return response.data;
 });
 
-// const checkAuthAction = createAsyncThunk<
-//   void,
-//   undefined,
-//   {
-//     dispatch: AppDispatch;
-//     state: State;
-//     extra: AxiosInstance;
-//   }
-// >('user/checkAuth', async (_arg, { dispatch, extra: api }) => {
-//   try {
-//     await api.get(APIRoute.Login);
-//     dispatch(requireAuthorization(AuthorizationStatus.Auth));
-//   } catch {
-//     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-//   }
-// });
-
 const postReview = createAsyncThunk<
   Review,
   {offerId: string; review: NewReview},
@@ -100,9 +83,9 @@ const postReview = createAsyncThunk<
 );
 
 export {
-  getLogin,
-  postLogin,
-  deleteLogout,
+  checkAuth,
+  login,
+  logout,
   getOfferPreviews,
   getOfferFull,
   getReviews,

@@ -18,13 +18,13 @@ import { OfferFull, OfferPreviews } from '../types/offer';
 import { Values } from '../types/common';
 import { Reviews } from '../types/review';
 import {
-  deleteLogout,
-  getLogin,
-  getNearOfferPreviews,
-  getOfferFull,
+  checkAuth,
+  login,
+  logout,
   getOfferPreviews,
+  getOfferFull,
   getReviews,
-  postLogin,
+  getNearOfferPreviews,
   postReview,
 } from './api-actions';
 import { sortReviewsDate } from '../utils/reviews-utils';
@@ -79,26 +79,26 @@ type ReducerType = ReturnType<typeof reducer>;
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(getLogin.pending, (state) => {
+    .addCase(checkAuth.pending, (state) => {
       state.authorizationStatus = AuthorizationStatus.Auth;
     })
-    .addCase(getLogin.rejected, (state) => {
+    .addCase(checkAuth.rejected, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
     })
-    .addCase(postLogin.pending, (state) => {
+    .addCase(login.pending, (state) => {
       state.authRequestStatus = RequestStatus.Loading;
     })
-    .addCase(postLogin.fulfilled, (state, action) => {
+    .addCase(login.fulfilled, (state, action) => {
       saveToken(action.payload.token);
       state.currentUser = action.payload;
       state.authorizationStatus = AuthorizationStatus.Auth;
       state.authRequestStatus = RequestStatus.Success;
       redirectToRoute(AppRoute.Root);
     })
-    .addCase(postLogin.rejected, (state) => {
+    .addCase(login.rejected, (state) => {
       state.authRequestStatus = RequestStatus.Failed;
     })
-    .addCase(deleteLogout.fulfilled, (state) => {
+    .addCase(logout.fulfilled, (state) => {
       dropToken();
       state.currentUser = null;
       state.authorizationStatus = AuthorizationStatus.NoAuth;

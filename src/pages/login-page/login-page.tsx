@@ -1,6 +1,6 @@
 import { FormEvent, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { postLogin } from '../../store/api-actions';
+import { login } from '../../store/api-actions';
 import Header from '../../components/header';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 
@@ -15,7 +15,7 @@ function LoginPage(): JSX.Element {
 
     if (loginRef.current !== null && passwordRef.current !== null) {
       dispatch(
-        postLogin({
+        login({
           login: loginRef.current.value,
           password: passwordRef.current.value,
         })
