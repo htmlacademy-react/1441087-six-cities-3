@@ -3,6 +3,7 @@ import { State } from './reducer';
 
 const selectAuthorizationStatus = (state: State) => state.authorizationStatus;
 const selectIsUserLoggedIn = (state: State) => state.authorizationStatus === AuthorizationStatus.Auth;
+const selectCurrentUser = (state: State) => state.currentUser;
 const selectCity = (state: State) => state.city;
 const selectSortOption = (state: State) => state.sortOption;
 
@@ -23,6 +24,7 @@ const selectPostReviewStatus = (state: State) => state.postReviewStatus;
 export {
   selectAuthorizationStatus,
   selectIsUserLoggedIn,
+  selectCurrentUser,
   selectCity,
   selectSortOption,
   selectOfferPreviews,
