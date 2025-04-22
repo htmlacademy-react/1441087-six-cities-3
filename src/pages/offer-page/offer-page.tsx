@@ -29,6 +29,7 @@ import OfferPreviewList from '../../components/offer-preview-list';
 import Map from '../../components/map';
 import NotFoundPage from '../not-found-page';
 import LoadingPage from '../loading-page';
+import ReviewForm from '../../components/review-form';
 
 function OfferPage(): JSX.Element {
   const offerPreviews = useAppSelector(selectOfferPreviews);
@@ -135,7 +136,10 @@ function OfferPage(): JSX.Element {
               <div className="offer__description">
                 <p className="offer__text">{description}</p>
               </div>
-              <OfferReviews reviews={reviews} />
+              <OfferReviews
+                reviews={reviews}
+                reviewForm={<ReviewForm offerId={offerId} />}
+              />
             </div>
           </div>
           <Map

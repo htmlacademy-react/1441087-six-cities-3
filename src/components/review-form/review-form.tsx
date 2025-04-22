@@ -1,5 +1,4 @@
 import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { ReviewChangeHandler } from '../../types/review';
 import {
   MIN_REVIEW_LENGTH,
@@ -13,10 +12,14 @@ import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
 import ReviewRatingStar from './review-rating-star';
 
-function ReviewForm(): JSX.Element {
+type ReviewFormProps = {
+  offerId: string;
+};
+
+function ReviewForm(props: ReviewFormProps): JSX.Element {
+  const { offerId } = props;
   const dispatch = useAppDispatch();
   const postReviewStatus = useAppSelector(selectPostReviewStatus);
-  const { offerId = '' } = useParams();
   const [review, setReview] = useState({
     comment: '',
     rating: 0,
