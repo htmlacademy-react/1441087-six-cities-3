@@ -79,10 +79,12 @@ type ReducerType = ReturnType<typeof reducer>;
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(checkAuth.pending, (state) => {
+    .addCase(checkAuth.fulfilled, (state, action) => {
+      state.currentUser = action.payload;
       state.authorizationStatus = AuthorizationStatus.Auth;
     })
     .addCase(checkAuth.rejected, (state) => {
+      state.currentUser = null;
       state.authorizationStatus = AuthorizationStatus.NoAuth;
     })
     .addCase(login.pending, (state) => {

@@ -7,11 +7,12 @@ import { APIRoute } from '../const';
 import { NewReview, Review, Reviews } from '../types/review';
 
 const checkAuth = createAsyncThunk<
-  void,
+  CurrentUser,
   undefined,
   { extra: AxiosInstance }
 >('user/checkAuth', async (_arg, { extra: api }) => {
-  await api.get(APIRoute.Login);
+  const response = await api.get<CurrentUser>(APIRoute.Login);
+  return response.data;
 });
 
 const login = createAsyncThunk<
