@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { isRequiredPage } from '../../utils/app-utils';
 import { selectCurrentUser } from '../../store/selectors';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../const/app-const';
 import Logo from '../logo';
 import HeaderUser from './header-user';
 import HeaderSignIn from './header-sign-in';

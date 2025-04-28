@@ -1,11 +1,8 @@
 import { FormEvent, useState } from 'react';
-import { ReviewChangeHandler } from '../../types/review';
-import {
-  MIN_REVIEW_LENGTH,
-  MAN_REVIEW_LENGTH,
-  RatingOption,
-  RequestStatus,
-} from '../../const';
+import { ReviewChangeHandler } from '../../types/review-types';
+import { MAN_REVIEW_LENGTH, MIN_REVIEW_LENGTH } from '../../const/review-const';
+import { RequestStatus } from '../../const/api-const';
+import { RatingOption } from '../../const/app-const';
 import { selectPostReviewStatus } from '../../store/selectors';
 import { postReview } from '../../store/api-actions';
 import useAppDispatch from '../../hooks/use-app-dispatch';

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
-import { CurrentUser } from '../../types/user';
+import { CurrentUser } from '../../types/user-types';
+import { AppRoute } from '../../const/app-const';
 
 type HeaderUserProps = {
   user: CurrentUser;

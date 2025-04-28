@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute } from '../../const';
 import { selectIsUserLoggedIn } from '../../store/selectors';
 import { checkAuth, getOfferPreviews } from '../../store/api-actions';
+import { AppRoute } from '../../const/app-const';
 import { getToken } from '../../services/token';
 import MainPage from '../../pages/main-page';
 import LoginPage from '../../pages/login-page';

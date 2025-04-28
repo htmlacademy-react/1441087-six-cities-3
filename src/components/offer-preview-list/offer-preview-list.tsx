@@ -1,4 +1,4 @@
-import { OfferPreview, OfferPreviews } from '../../types/offer';
+import { OfferPreview, OfferPreviews } from '../../types/offer-types';
 import { OfferPreviewListType } from './offer-preview-list-type';
 import { getOfferPreviewListClasses } from './offer-preview-list-utils';
 import OfferCardMedium from '../../components/offer-card-medium';

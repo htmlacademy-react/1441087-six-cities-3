@@ -1,9 +1,8 @@
-import { User } from './user';
-import { City } from './city';
-import { Location } from './location';
+import { User } from './user-types';
+import { Location } from './location-types';
+import { City } from './app-types';
 
-
-type OfferBase = {
+export type OfferBase = {
   id: string;
   title: string;
   type: string;
@@ -15,13 +14,13 @@ type OfferBase = {
   rating: number;
 };
 
-type OfferPreview = OfferBase & {
+export type OfferPreview = OfferBase & {
   previewImage: string;
 };
 
-type OfferPreviews = OfferPreview[];
+export type OfferPreviews = OfferPreview[];
 
-type OfferFull = OfferBase & {
+export type OfferFull = OfferBase & {
   description: string;
   bedrooms: number;
   goods: string[];
@@ -29,5 +28,3 @@ type OfferFull = OfferBase & {
   images: string[];
   maxAdults: number;
 };
-
-export type { OfferPreview, OfferPreviews, OfferFull };

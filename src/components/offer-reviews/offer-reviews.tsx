@@ -1,8 +1,8 @@
-import { Review } from '../../types/review';
+import { ReactNode } from 'react';
+import { Review } from '../../types/review-types';
 import { selectIsUserLoggedIn } from '../../store/selectors';
 import OfferReviewItem from './offer-review-item';
 import useAppSelector from '../../hooks/use-app-selector';
-import { ReactNode } from 'react';
 
 type OfferReviewsProps = {
   reviews: Review[];

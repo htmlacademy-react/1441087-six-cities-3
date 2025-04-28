@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { OfferPreview } from '../../types/offer';
+import { OfferPreview } from '../../types/offer-types';
 import { getCityOffers } from '../../utils/city-utils';
 import { pluralize } from '../../utils/common-utils';
 import { sortOfferPreviews } from '../../components/sort/utils';
-import { selectCity, selectOfferPreviews, selectOfferPreviewsStatus, selectSortOption } from '../../store/selectors';
+import {
+  selectCity,
+  selectOfferPreviews,
+  selectOfferPreviewsStatus,
+  selectSortOption,
+} from '../../store/selectors';
 import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';
@@ -18,9 +23,7 @@ function MainPage(): JSX.Element {
   const currentCity = useAppSelector(selectCity);
   const currentSortOption = useAppSelector(selectSortOption);
   const allOfferPreviews = useAppSelector(selectOfferPreviews);
-  const offerPreviewsStatus = useAppSelector(
-    selectOfferPreviewsStatus
-  );
+  const offerPreviewsStatus = useAppSelector(selectOfferPreviewsStatus);
 
   if (offerPreviewsStatus === 'Loading') {
     return <LoadingPage />;

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { OfferPreview } from '../../types/offer';
-import { AppRoute } from '../../const';
+import { OfferPreview } from '../../types/offer-types';
+import { AppRoute } from '../../const/app-const';
 import { getCapitalizedString } from '../../utils/common-utils';
 import { getRatingWidth } from '../../utils/offer-utils';
 

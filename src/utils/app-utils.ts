@@ -1,11 +1,9 @@
-import { AppRoute } from '../const';
-import { Values } from '../types/common';
+import { AppRoute } from '../const/app-const';
+import { Values } from '../types/common-types';
 
-function isRequiredPage(
+export function isRequiredPage(
   pathname: string,
   appRoute: Values<typeof AppRoute>
 ): boolean {
   return pathname === appRoute;
 }
-
-export { isRequiredPage };

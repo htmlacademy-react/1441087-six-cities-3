@@ -1,22 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
-import {
-  redirectToRoute,
-  setCity,
-  setSortOption,
-} from './action';
-import {
-  AppRoute,
-  AuthorizationStatus,
-  AuthorizationStatusType,
-  CITIES,
-  RequestStatus,
-  RequestStatusType,
-} from '../const';
+import { redirectToRoute, setCity, setSortOption } from './action';
 import { SortOptionType } from '../components/sort/types';
 import { SortOption } from '../components/sort/const';
-import { OfferFull, OfferPreviews } from '../types/offer';
-import { Values } from '../types/common';
-import { Reviews } from '../types/review';
+import { OfferFull, OfferPreviews } from '../types/offer-types';
+import { Values } from '../types/common-types';
+import { Reviews } from '../types/review-types';
 import {
   checkAuth,
   login,
@@ -30,7 +18,10 @@ import {
 } from './api-actions';
 import { sortReviewsDate } from '../utils/reviews-utils';
 import { dropToken, saveToken } from '../services/token';
-import { CurrentUser } from '../types/user';
+import { CurrentUser } from '../types/user-types';
+import { AuthorizationStatusType, RequestStatusType } from '../types/api-types';
+import { AppRoute, CITIES } from '../const/app-const';
+import { AuthorizationStatus, RequestStatus } from '../const/api-const';
 
 type State = {
   currentUser: CurrentUser | null;

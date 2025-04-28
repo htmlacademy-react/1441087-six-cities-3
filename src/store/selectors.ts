@@ -1,4 +1,4 @@
-import { AuthorizationStatus } from '../const';
+import { AuthorizationStatus } from '../const/api-const';
 import { State } from './reducer';
 
 const selectAuthorizationStatus = (state: State) => state.authorizationStatus;
