@@ -3,6 +3,7 @@ import { store } from '../store';
 import { AuthorizationStatusType, RequestStatusType } from './api-types';
 import { Values } from './common-types';
 import { OfferFull, OfferPreviews } from './offer-types';
+import { Reviews } from './review-types';
 import { CurrentUser } from './user-types';
 
 export type AppDispatch = typeof store.dispatch;
@@ -27,4 +28,11 @@ export type OfferSlice = {
 
   favoriteOfferPreviews: OfferPreviews;
   favoriteOfferPreviewsStatus: RequestStatusType;
+};
+
+export type ReviewSlice = {
+  reviews: Reviews;
+  reviewsStatus: RequestStatusType;
+
+  postReviewStatus: RequestStatusType;
 };
