@@ -1,8 +1,8 @@
 import { SortOptionType } from '../components/sort/types';
-import { CITIES } from '../const/app-const';
 import { NameSpace } from '../const/store-const';
 import { store } from '../store';
 import { AuthorizationStatusType, RequestStatusType } from './api-types';
+import { City } from './app-types';
 import { Values } from './common-types';
 import { OfferFull, OfferPreviews } from './offer-types';
 import { Reviews } from './review-types';
@@ -20,29 +20,27 @@ export type UserSlice = {
   currentUser: CurrentUser | null;
 };
 
-export type OfferSlice = {
+export type OffersSlice = {
+  city: City;
   sortOption: SortOptionType;
 
   offerPreviews: OfferPreviews;
   offerPreviewsStatus: RequestStatusType;
 
+  favoriteOfferPreviews: OfferPreviews;
+  favoriteOfferPreviewsStatus: RequestStatusType;
+};
+
+export type FullOfferSlice = {
   offerFull: OfferFull | null;
   offerFullStatus: RequestStatusType;
 
   nearOfferPreviews: OfferPreviews;
   nearOfferPreviewsStatus: RequestStatusType;
 
-  favoriteOfferPreviews: OfferPreviews;
-  favoriteOfferPreviewsStatus: RequestStatusType;
-};
-
-export type ReviewSlice = {
   reviews: Reviews;
   reviewsStatus: RequestStatusType;
 
   postReviewStatus: RequestStatusType;
 };
 
-export type CitySlice = {
-  city: Values<typeof CITIES>;
-};

@@ -1,6 +1,5 @@
 export const NameSpace = {
   User: 'User',
-  City: 'City',
-  Offer: 'Offer',
-  Review: 'Review',
+  Offers: 'Offers',
+  FullOffer: 'FullOffer',
 } as const;

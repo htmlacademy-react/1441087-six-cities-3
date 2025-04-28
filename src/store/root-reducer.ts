@@ -1,13 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { NameSpace } from '../const/store-const';
-import citySlice from './city-slice';
-import userSlice from './user-slice';
-import offerSlice from './offer-slice';
-import reviewSlice from './review-slice';
+import { fullOfferReducer } from './slices/full-offer-slice';
+import { offersReducer } from './slices/offers-slice';
+import { userReducer } from './slices/user-slice';
 
 export const rootReducer = combineReducers({
-  [NameSpace.City]: citySlice.reducer,
-  [NameSpace.User]: userSlice.reducer,
-  [NameSpace.Offer]: offerSlice.reducer,
-  [NameSpace.Review]: reviewSlice.reducer,
+  [NameSpace.FullOffer]: fullOfferReducer,
+  [NameSpace.Offers]: offersReducer,
+  [NameSpace.User]: userReducer,
 });

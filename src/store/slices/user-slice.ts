@@ -13,7 +13,7 @@ const initialState: UserSlice = {
   currentUser: null,
 };
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: NameSpace.User,
   initialState,
   reducers: {},
@@ -38,6 +38,7 @@ export const userSlice = createSlice({
         redirectToRoute(AppRoute.Root);
       })
       .addCase(login.rejected, (state) => {
+        state.authStatus = AuthorizationStatus.NoAuth;
         state.authRequestStatus = RequestStatus.Failed;
       })
       .addCase(logout.fulfilled, (state) => {
@@ -48,3 +49,5 @@ export const userSlice = createSlice({
       });
   },
 });
+
+export const userReducer = userSlice.reducer;
