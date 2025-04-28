@@ -2,17 +2,9 @@ import { createReducer } from '@reduxjs/toolkit';
 import { setCity, setSortOption } from './action';
 import { SortOptionType } from '../components/sort/types';
 import { SortOption } from '../components/sort/const';
-import { OfferFull, OfferPreviews } from '../types/offer-types';
 import { Values } from '../types/common-types';
 import { Reviews } from '../types/review-types';
-import {
-  getOfferPreviews,
-  getOfferFull,
-  getReviews,
-  getNearOfferPreviews,
-  postReview,
-  getFavoriteOffers,
-} from './api-actions';
+import { getReviews, postReview } from './api-actions';
 import { sortReviewsDate } from '../utils/reviews-utils';
 import { RequestStatusType } from '../types/api-types';
 import { CITIES } from '../const/app-const';
@@ -21,18 +13,6 @@ import { RequestStatus } from '../const/api-const';
 type State = {
   city: Values<typeof CITIES>;
   sortOption: SortOptionType;
-
-  offerPreviews: OfferPreviews;
-  offerPreviewsStatus: RequestStatusType;
-
-  offerFull: OfferFull | null;
-  offerFullStatus: RequestStatusType;
-
-  nearOfferPreviews: OfferPreviews;
-  nearOfferPreviewsStatus: RequestStatusType;
-
-  favoriteOfferPreviews: OfferPreviews;
-  favoriteOfferPreviewsStatus: RequestStatusType;
 
   reviews: Reviews;
   reviewsStatus: RequestStatusType;
@@ -43,18 +23,6 @@ type State = {
 const initialState: State = {
   city: CITIES.Paris,
   sortOption: SortOption[0],
-
-  offerPreviews: [],
-  offerPreviewsStatus: RequestStatus.Idle,
-
-  offerFull: null,
-  offerFullStatus: RequestStatus.Idle,
-
-  nearOfferPreviews: [],
-  nearOfferPreviewsStatus: RequestStatus.Idle,
-
-  favoriteOfferPreviews: [],
-  favoriteOfferPreviewsStatus: RequestStatus.Idle,
 
   reviews: [],
   reviewsStatus: RequestStatus.Idle,
@@ -72,26 +40,6 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setSortOption, (state, action) => {
       state.sortOption = action.payload;
     })
-    .addCase(getOfferPreviews.pending, (state) => {
-      state.offerPreviewsStatus = RequestStatus.Loading;
-    })
-    .addCase(getOfferPreviews.fulfilled, (state, action) => {
-      state.offerPreviews = action.payload;
-      state.offerPreviewsStatus = RequestStatus.Success;
-    })
-    .addCase(getOfferPreviews.rejected, (state) => {
-      state.offerPreviewsStatus = RequestStatus.Failed;
-    })
-    .addCase(getOfferFull.pending, (state) => {
-      state.offerFullStatus = RequestStatus.Loading;
-    })
-    .addCase(getOfferFull.fulfilled, (state, action) => {
-      state.offerFull = action.payload;
-      state.offerFullStatus = RequestStatus.Success;
-    })
-    .addCase(getOfferFull.rejected, (state) => {
-      state.offerFullStatus = RequestStatus.Failed;
-    })
     .addCase(getReviews.pending, (state) => {
       state.reviewsStatus = RequestStatus.Loading;
     })
@@ -101,26 +49,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(getReviews.rejected, (state) => {
       state.reviewsStatus = RequestStatus.Failed;
-    })
-    .addCase(getNearOfferPreviews.pending, (state) => {
-      state.nearOfferPreviewsStatus = RequestStatus.Loading;
-    })
-    .addCase(getNearOfferPreviews.fulfilled, (state, action) => {
-      state.nearOfferPreviews = action.payload.slice(0, 3);
-      state.nearOfferPreviewsStatus = RequestStatus.Success;
-    })
-    .addCase(getNearOfferPreviews.rejected, (state) => {
-      state.nearOfferPreviewsStatus = RequestStatus.Failed;
-    })
-    .addCase(getFavoriteOffers.pending, (state) => {
-      state.favoriteOfferPreviewsStatus = RequestStatus.Loading;
-    })
-    .addCase(getFavoriteOffers.fulfilled, (state, action) => {
-      state.favoriteOfferPreviews = action.payload;
-      state.favoriteOfferPreviewsStatus = RequestStatus.Success;
-    })
-    .addCase(getFavoriteOffers.rejected, (state) => {
-      state.favoriteOfferPreviewsStatus = RequestStatus.Failed;
     })
     .addCase(postReview.pending, (state) => {
       state.postReviewStatus = RequestStatus.Loading;
