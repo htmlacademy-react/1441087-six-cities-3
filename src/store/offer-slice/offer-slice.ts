@@ -1,7 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const/store-const';
 import { OfferSlice } from '../../types/store-types';
 import { RequestStatus } from '../../const/api-const';
+import { SortOption } from '../../components/sort/const';
+import { SortOptionType } from '../../components/sort/types';
 import {
   getOfferPreviews,
   getOfferFull,
@@ -10,6 +12,8 @@ import {
 } from '../api-actions';
 
 const initialState: OfferSlice = {
+  sortOption: SortOption[0],
+
   offerPreviews: [],
   offerPreviewsStatus: RequestStatus.Idle,
 
@@ -26,7 +30,11 @@ const initialState: OfferSlice = {
 export const offerSlice = createSlice({
   name: NameSpace.Offer,
   initialState,
-  reducers: {},
+  reducers: {
+    setSortOption(state, action: PayloadAction<SortOptionType>) {
+      state.sortOption = action.payload;
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(getOfferPreviews.pending, (state) => {

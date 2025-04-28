@@ -1,3 +1,4 @@
+import { SortOptionType } from '../components/sort/types';
 import { CITIES } from '../const/app-const';
 import { NameSpace } from '../const/store-const';
 import { store } from '../store';
@@ -9,6 +10,8 @@ import { CurrentUser } from './user-types';
 
 export type AppDispatch = typeof store.dispatch;
 
+export type State = ReturnType<typeof store.getState>;
+
 export type NameSpaceType = Values<typeof NameSpace>;
 
 export type UserSlice = {
@@ -18,6 +21,8 @@ export type UserSlice = {
 };
 
 export type OfferSlice = {
+  sortOption: SortOptionType;
+
   offerPreviews: OfferPreviews;
   offerPreviewsStatus: RequestStatusType;
 
