@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { UserSlice } from '../../types/store-types';
-import { AuthorizationStatus, RequestStatus } from '../../const/api-const';
-import { NameSpace } from '../../const/store-const';
-import { checkAuth, login, logout } from '../api-actions';
-import { dropToken, saveToken } from '../../services/token';
-import { redirectToRoute } from '../action';
-import { AppRoute } from '../../const/app-const';
+import { UserSlice } from '../../../types/store-types';
+import { AuthorizationStatus, RequestStatus } from '../../../const/api-const';
+import { NameSpace } from '../../../const/store-const';
+import { dropToken, saveToken } from '../../../services/token';
+import { redirectToRoute } from '../../app-actions';
+import { AppRoute } from '../../../const/app-const';
+import { checkAuth, login, logout } from './async-actions';
+import { selectCurrentUser, selectIsUserLoggedIn } from './selectors';
 
 const initialState: UserSlice = {
   authStatus: AuthorizationStatus.Unknown,
@@ -51,3 +52,7 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+
+export const userActions = { checkAuth, login, logout };
+
+export const userSelectors = { selectIsUserLoggedIn, selectCurrentUser };

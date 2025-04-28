@@ -1,14 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../../const/store-const';
-import { FullOfferSlice } from '../../types/store-types';
-import { RequestStatus } from '../../const/api-const';
-import { sortReviewsDate } from '../../utils/reviews-utils';
+import { FullOfferSlice } from '../../../types/store-types';
+import { RequestStatus } from '../../../const/api-const';
+import { NameSpace } from '../../../const/store-const';
+import { sortReviewsDate } from '../../../utils/reviews-utils';
 import {
-  getOfferFull,
   getNearOfferPreviews,
+  getOfferFull,
   getReviews,
   postReview,
-} from '../api-actions';
+} from './async-actions';
+import {
+  selectNearOfferPreviews,
+  selectNearOfferPreviewsStatus,
+  selectOfferFull,
+  selectOfferFullStatus,
+  selectPostReviewStatus,
+  selectReviews,
+  selectReviewsStatus,
+} from './selectors';
 
 const initialState: FullOfferSlice = {
   offerFull: null,
@@ -23,7 +32,7 @@ const initialState: FullOfferSlice = {
   postReviewStatus: RequestStatus.Idle,
 };
 
-export const fullOfferSlice = createSlice({
+const fullOfferSlice = createSlice({
   name: NameSpace.FullOffer,
   initialState,
   reducers: {},
@@ -73,3 +82,20 @@ export const fullOfferSlice = createSlice({
 });
 
 export const fullOfferReducer = fullOfferSlice.reducer;
+
+export const fullOfferActions = {
+  getOfferFull,
+  getNearOfferPreviews,
+  getReviews,
+  postReview,
+};
+
+export const fullOfferSelectors = {
+  selectOfferFull,
+  selectOfferFullStatus,
+  selectNearOfferPreviews,
+  selectNearOfferPreviewsStatus,
+  selectReviews,
+  selectReviewsStatus,
+  selectPostReviewStatus,
+};

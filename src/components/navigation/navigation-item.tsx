@@ -1,5 +1,5 @@
 import { City } from '../../types/app-types';
-import { setCity } from '../../store/action';
+import { setCity } from '../../store/app-actions';
 import { selectCity } from '../../store/selectors';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';

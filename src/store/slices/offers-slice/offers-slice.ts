@@ -1,15 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { NameSpace } from '../../const/store-const';
-import { OffersSlice } from '../../types/store-types';
-import { RequestStatus } from '../../const/api-const';
-import { CITIES } from '../../const/app-const';
-import { City } from '../../types/app-types';
-import { SortOption } from '../../components/sort/const';
-import { SortOptionType } from '../../components/sort/types';
+import { OffersSlice } from '../../../types/store-types';
+import { CITIES } from '../../../const/app-const';
+import { SortOption } from '../../../components/sort/const';
+import { RequestStatus } from '../../../const/api-const';
+import { NameSpace } from '../../../const/store-const';
+import { City } from '../../../types/app-types';
+import { SortOptionType } from '../../../components/sort/types';
+import { getFavoriteOffers, getOffersPreviews } from './async-actions';
 import {
-  getOfferPreviews,
-  getFavoriteOffers,
-} from '../api-actions';
+  selectCity,
+  selectFavoriteOfferPreviews,
+  selectFavoriteOfferPreviewsStatus,
+  selectOfferPreviews,
+  selectOfferPreviewsStatus,
+  selectSortOption,
+} from './selectors';
 
 const initialState: OffersSlice = {
   city: CITIES.Paris,
@@ -22,7 +27,7 @@ const initialState: OffersSlice = {
   favoriteOfferPreviewsStatus: RequestStatus.Idle,
 };
 
-export const offersSlice = createSlice({
+const offersSlice = createSlice({
   name: NameSpace.Offers,
   initialState,
   reducers: {
@@ -35,14 +40,14 @@ export const offersSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(getOfferPreviews.pending, (state) => {
+      .addCase(getOffersPreviews.pending, (state) => {
         state.offerPreviewsStatus = RequestStatus.Loading;
       })
-      .addCase(getOfferPreviews.fulfilled, (state, action) => {
+      .addCase(getOffersPreviews.fulfilled, (state, action) => {
         state.offerPreviews = action.payload;
         state.offerPreviewsStatus = RequestStatus.Success;
       })
-      .addCase(getOfferPreviews.rejected, (state) => {
+      .addCase(getOffersPreviews.rejected, (state) => {
         state.offerPreviewsStatus = RequestStatus.Failed;
       })
       .addCase(getFavoriteOffers.pending, (state) => {
@@ -59,3 +64,17 @@ export const offersSlice = createSlice({
 });
 
 export const offersReducer = offersSlice.reducer;
+
+export const offersActions = {
+  ...offersSlice.actions,
+  getOffersPreviews,
+  getFavoriteOffers,
+};
+export const offersSelectors = {
+  selectCity,
+  selectSortOption,
+  selectOfferPreviews,
+  selectOfferPreviewsStatus,
+  selectFavoriteOfferPreviews,
+  selectFavoriteOfferPreviewsStatus,
+};

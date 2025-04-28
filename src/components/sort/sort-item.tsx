@@ -1,6 +1,6 @@
 import { SortOptionLabel } from './const';
 import { SortOptionType } from './types';
-import { setSortOption } from '../../store/action';
+import { setSortOption } from '../../store/app-actions';
 import { selectSortOption } from '../../store/selectors';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
