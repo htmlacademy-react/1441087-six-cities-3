@@ -8,7 +8,7 @@ export type AppDispatch = typeof store.dispatch;
 
 export type NameSpaceType = Values<typeof NameSpace>;
 
-export type UserProcess = {
+export type UserSlice = {
   authStatus: AuthorizationStatusType;
   authRequestStatus: RequestStatusType;
   currentUser: CurrentUser | null;

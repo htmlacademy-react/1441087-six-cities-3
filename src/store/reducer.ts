@@ -1,14 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { redirectToRoute, setCity, setSortOption } from './action';
+import { setCity, setSortOption } from './action';
 import { SortOptionType } from '../components/sort/types';
 import { SortOption } from '../components/sort/const';
 import { OfferFull, OfferPreviews } from '../types/offer-types';
 import { Values } from '../types/common-types';
 import { Reviews } from '../types/review-types';
 import {
-  checkAuth,
-  login,
-  logout,
   getOfferPreviews,
   getOfferFull,
   getReviews,
@@ -17,16 +14,11 @@ import {
   getFavoriteOffers,
 } from './api-actions';
 import { sortReviewsDate } from '../utils/reviews-utils';
-import { dropToken, saveToken } from '../services/token';
-import { CurrentUser } from '../types/user-types';
-import { AuthorizationStatusType, RequestStatusType } from '../types/api-types';
-import { AppRoute, CITIES } from '../const/app-const';
-import { AuthorizationStatus, RequestStatus } from '../const/api-const';
+import { RequestStatusType } from '../types/api-types';
+import { CITIES } from '../const/app-const';
+import { RequestStatus } from '../const/api-const';
 
 type State = {
-  currentUser: CurrentUser | null;
-  authRequestStatus: RequestStatusType;
-  authorizationStatus: AuthorizationStatusType;
   city: Values<typeof CITIES>;
   sortOption: SortOptionType;
 
@@ -49,9 +41,6 @@ type State = {
 };
 
 const initialState: State = {
-  currentUser: null,
-  authRequestStatus: RequestStatus.Idle,
-  authorizationStatus: AuthorizationStatus.Unknown,
   city: CITIES.Paris,
   sortOption: SortOption[0],
 
@@ -77,33 +66,6 @@ type ReducerType = ReturnType<typeof reducer>;
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(checkAuth.fulfilled, (state, action) => {
-      state.currentUser = action.payload;
-      state.authorizationStatus = AuthorizationStatus.Auth;
-    })
-    .addCase(checkAuth.rejected, (state) => {
-      state.currentUser = null;
-      state.authorizationStatus = AuthorizationStatus.NoAuth;
-    })
-    .addCase(login.pending, (state) => {
-      state.authRequestStatus = RequestStatus.Loading;
-    })
-    .addCase(login.fulfilled, (state, action) => {
-      saveToken(action.payload.token);
-      state.currentUser = action.payload;
-      state.authorizationStatus = AuthorizationStatus.Auth;
-      state.authRequestStatus = RequestStatus.Success;
-      redirectToRoute(AppRoute.Root);
-    })
-    .addCase(login.rejected, (state) => {
-      state.authRequestStatus = RequestStatus.Failed;
-    })
-    .addCase(logout.fulfilled, (state) => {
-      dropToken();
-      state.currentUser = null;
-      state.authorizationStatus = AuthorizationStatus.NoAuth;
-      redirectToRoute(AppRoute.Root);
-    })
     .addCase(setCity, (state, action) => {
       state.city = action.payload;
     })
