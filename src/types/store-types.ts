@@ -1,3 +1,4 @@
+import { CITIES } from '../const/app-const';
 import { NameSpace } from '../const/store-const';
 import { store } from '../store';
 import { AuthorizationStatusType, RequestStatusType } from './api-types';
@@ -35,4 +36,8 @@ export type ReviewSlice = {
   reviewsStatus: RequestStatusType;
 
   postReviewStatus: RequestStatusType;
+};
+
+export type CitySlice = {
+  city: Values<typeof CITIES>;
 };
