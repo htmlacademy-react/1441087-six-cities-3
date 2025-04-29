@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { OfferPreview } from '../../types/offer-types';
-import { getCityOffers } from '../../utils/city-utils';
 import { pluralize } from '../../utils/common-utils';
-import { sortOfferPreviews } from '../../components/sort/utils';
 import { offersSelectors } from '../../store/slices/offers-slice/offers-slice';
+import { RequestStatus } from '../../const/api-const';
 import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';
@@ -12,26 +11,17 @@ import Map from '../../components/map';
 import OfferPreviewList from '../../components/offer-preview-list';
 import useAppSelector from '../../hooks/use-app-selector';
 import LoadingPage from '../loading-page';
-import { RequestStatus } from '../../const/api-const';
+import useMainOfferPreviews from '../../hooks/use-main-offer-previews';
 
 function MainPage(): JSX.Element {
   const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
+  const [offerPreviews, countOfferPreviews] = useMainOfferPreviews();
   const currentCity = useAppSelector(offersSelectors.selectCity);
-  const currentSortOption = useAppSelector(offersSelectors.selectSortOption);
-  const allOfferPreviews = useAppSelector(offersSelectors.selectOfferPreviews);
   const offerPreviewsStatus = useAppSelector(offersSelectors.selectOfferPreviewsStatus);
 
   if (offerPreviewsStatus === RequestStatus.Loading) {
     return <LoadingPage />;
   }
-
-  const cityOfferPreviews = getCityOffers(currentCity, allOfferPreviews);
-  const sortedOfferPreviews = sortOfferPreviews(
-    cityOfferPreviews,
-    currentSortOption
-  );
-
-  const countOfferPreviews = sortedOfferPreviews.length;
 
   return (
     <div className="page page--gray page--main">
@@ -54,7 +44,7 @@ function MainPage(): JSX.Element {
               <Sort />
               <OfferPreviewList
                 listType={'Cities'}
-                offerPreviews={sortedOfferPreviews}
+                offerPreviews={offerPreviews}
                 onOfferCardHover={setHoveredOffer}
               />
             </section>
@@ -62,7 +52,7 @@ function MainPage(): JSX.Element {
               <Map
                 pageType={'Main'}
                 city={currentCity}
-                offerPreviews={sortedOfferPreviews}
+                offerPreviews={offerPreviews}
                 hoveredOffer={hoveredOffer}
               />
             </div>
