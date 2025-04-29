@@ -12,6 +12,7 @@ import Map from '../../components/map';
 import OfferPreviewList from '../../components/offer-preview-list';
 import useAppSelector from '../../hooks/use-app-selector';
 import LoadingPage from '../loading-page';
+import { RequestStatus } from '../../const/api-const';
 
 function MainPage(): JSX.Element {
   const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
@@ -20,7 +21,7 @@ function MainPage(): JSX.Element {
   const allOfferPreviews = useAppSelector(offersSelectors.selectOfferPreviews);
   const offerPreviewsStatus = useAppSelector(offersSelectors.selectOfferPreviewsStatus);
 
-  if (offerPreviewsStatus === 'Loading') {
+  if (offerPreviewsStatus === RequestStatus.Loading) {
     return <LoadingPage />;
   }
 
