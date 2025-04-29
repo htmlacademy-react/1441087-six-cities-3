@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { sortOfferPreviews } from '../components/sort/utils';
 import { offersSelectors } from '../store/slices/offers-slice/offers-slice';
 import { OfferPreviews } from '../types/offer-types';
@@ -14,7 +15,8 @@ const useMainOfferPreviews = (): ResultMainOfferPreviews => {
   let offerPreviews = getCityOffers(currentCity, allOfferPreviews);
   offerPreviews = sortOfferPreviews(offerPreviews, currentSortOption);
 
-  const countOfferPreviews = offerPreviews.length;
+  offerPreviews = useMemo(() => offerPreviews, [offerPreviews]);
+  const countOfferPreviews = useMemo(() => offerPreviews.length, [offerPreviews]);
 
   return [offerPreviews, countOfferPreviews];
 };
