@@ -2,21 +2,8 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getOfferPreviewById, getRatingWidth } from '../../utils/offer-utils';
-import {
-  getOfferFull,
-  getReviews,
-  getNearOfferPreviews,
-} from '../../store/api-actions';
-import {
-  selectOfferPreviews,
-  selectOfferPreviewsStatus,
-  selectOfferFull,
-  selectOfferFullStatus,
-  selectReviews,
-  selectReviewsStatus,
-  selectNearOfferPreviews,
-  selectNearOfferPreviewsStatus,
-} from '../../store/selectors';
+import { offersSelectors } from '../../store/slices/offers-slice/offers-slice';
+import { fullOfferActions, fullOfferSelectors } from '../../store/slices/full-offer-slice/full-offer-slice';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
 import Header from '../../components/header';
@@ -32,22 +19,22 @@ import LoadingPage from '../loading-page';
 import ReviewForm from '../../components/review-form';
 
 function OfferPage(): JSX.Element {
-  const offerPreviews = useAppSelector(selectOfferPreviews);
-  const offerPreviewsStatus = useAppSelector(selectOfferPreviewsStatus);
-  const offerFull = useAppSelector(selectOfferFull);
-  const offerFullStatus = useAppSelector(selectOfferFullStatus);
-  const reviews = useAppSelector(selectReviews);
-  const reviewsStatus = useAppSelector(selectReviewsStatus);
-  const nearOfferPreviews = useAppSelector(selectNearOfferPreviews);
-  const nearOfferPreviewsStatus = useAppSelector(selectNearOfferPreviewsStatus);
+  const offerPreviews = useAppSelector(offersSelectors.selectOfferPreviews);
+  const offerPreviewsStatus = useAppSelector(offersSelectors.selectOfferPreviewsStatus);
+  const offerFull = useAppSelector(fullOfferSelectors.selectOfferFull);
+  const offerFullStatus = useAppSelector(fullOfferSelectors.selectOfferFullStatus);
+  const reviews = useAppSelector(fullOfferSelectors.selectReviews);
+  const reviewsStatus = useAppSelector(fullOfferSelectors.selectReviewsStatus);
+  const nearOfferPreviews = useAppSelector(fullOfferSelectors.selectNearOfferPreviews);
+  const nearOfferPreviewsStatus = useAppSelector(fullOfferSelectors.selectNearOfferPreviewsStatus);
   const dispatch = useAppDispatch();
   const { offerId } = useParams();
 
   useEffect(() => {
     if (offerId && offerFull?.id !== offerId) {
-      dispatch(getOfferFull(offerId));
-      dispatch(getReviews(offerId));
-      dispatch(getNearOfferPreviews(offerId));
+      dispatch(fullOfferActions.getOfferFull(offerId));
+      dispatch(fullOfferActions.getReviews(offerId));
+      dispatch(fullOfferActions.getNearOfferPreviews(offerId));
     }
   }, [dispatch, offerId, offerFull]);
 

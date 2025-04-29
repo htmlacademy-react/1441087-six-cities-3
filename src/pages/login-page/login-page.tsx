@@ -1,8 +1,8 @@
 import { FormEvent, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { login } from '../../store/api-actions';
 import Header from '../../components/header';
 import useAppDispatch from '../../hooks/use-app-dispatch';
+import { userActions } from '../../store/slices/user-slice/user-slice';
 
 function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -15,7 +15,7 @@ function LoginPage(): JSX.Element {
 
     if (loginRef.current !== null && passwordRef.current !== null) {
       dispatch(
-        login({
+        userActions.login({
           login: loginRef.current.value,
           password: passwordRef.current.value,
         })

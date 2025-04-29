@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { selectFavoriteOfferPreviews } from '../../store/selectors';
-import { getFavoriteOffers } from '../../store/api-actions';
+import { offersActions, offersSelectors } from '../../store/slices/offers-slice/offers-slice';
 import useAppSelector from '../../hooks/use-app-selector';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import Header from '../../components/header';
@@ -10,14 +9,14 @@ import Footer from '../../components/footer';
 import FavoriteEmpty from '../../components/favorite-empty';
 
 function FavoritesPage(): JSX.Element {
-  const favoriteOfferPreviews = useAppSelector(selectFavoriteOfferPreviews);
+  const favoriteOfferPreviews = useAppSelector(offersSelectors.selectFavoriteOfferPreviews);
   const favoriteEmpty = favoriteOfferPreviews.length === 0;
   const pageAddClass = favoriteEmpty ? ' page--favorites-empty' : '';
   const mainAddClass = favoriteEmpty ? ' page__main--favorites-empty' : '';
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getFavoriteOffers());
+    dispatch(offersActions.getFavoriteOffers);
   }, [dispatch]);
 
   return (

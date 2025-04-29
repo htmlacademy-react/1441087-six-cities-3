@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { selectIsUserLoggedIn } from '../../store/selectors';
-import { checkAuth, getOfferPreviews } from '../../store/api-actions';
 import { AppRoute } from '../../const/app-const';
 import { getToken } from '../../services/token';
+import { userActions, userSelectors } from '../../store/slices/user-slice/user-slice';
+import { offersActions } from '../../store/slices/offers-slice/offers-slice';
 import MainPage from '../../pages/main-page';
 import LoginPage from '../../pages/login-page';
 import OfferPage from '../../pages/offer-page';
@@ -17,18 +17,18 @@ import browserHistory from '../../browser-history';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 
 function App(): JSX.Element {
-  const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
+  const isLoggedIn = useAppSelector(userSelectors.selectIsUserLoggedIn);
   const dispatch = useAppDispatch();
 
   const token = getToken();
   useEffect(() => {
     if (token) {
-      dispatch(checkAuth());
+      dispatch(userActions.checkAuth());
     }
   }, [dispatch, token]);
 
   useEffect(() => {
-    dispatch(getOfferPreviews());
+    dispatch(offersActions.getOffersPreviews());
   }, [dispatch]);
 
   return (

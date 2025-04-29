@@ -4,12 +4,7 @@ import { OfferPreview } from '../../types/offer-types';
 import { getCityOffers } from '../../utils/city-utils';
 import { pluralize } from '../../utils/common-utils';
 import { sortOfferPreviews } from '../../components/sort/utils';
-import {
-  selectCity,
-  selectOfferPreviews,
-  selectOfferPreviewsStatus,
-  selectSortOption,
-} from '../../store/selectors';
+import { offersSelectors } from '../../store/slices/offers-slice/offers-slice';
 import Header from '../../components/header';
 import Navigation from '../../components/navigation';
 import Sort from '../../components/sort';
@@ -20,10 +15,10 @@ import LoadingPage from '../loading-page';
 
 function MainPage(): JSX.Element {
   const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
-  const currentCity = useAppSelector(selectCity);
-  const currentSortOption = useAppSelector(selectSortOption);
-  const allOfferPreviews = useAppSelector(selectOfferPreviews);
-  const offerPreviewsStatus = useAppSelector(selectOfferPreviewsStatus);
+  const currentCity = useAppSelector(offersSelectors.selectCity);
+  const currentSortOption = useAppSelector(offersSelectors.selectSortOption);
+  const allOfferPreviews = useAppSelector(offersSelectors.selectOfferPreviews);
+  const offerPreviewsStatus = useAppSelector(offersSelectors.selectOfferPreviewsStatus);
 
   if (offerPreviewsStatus === 'Loading') {
     return <LoadingPage />;

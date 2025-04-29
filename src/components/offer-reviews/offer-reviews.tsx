@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Review } from '../../types/review-types';
-import { selectIsUserLoggedIn } from '../../store/selectors';
+import { userSelectors } from '../../store/slices/user-slice/user-slice';
 import OfferReviewItem from './offer-review-item';
 import useAppSelector from '../../hooks/use-app-selector';
 
@@ -11,7 +11,7 @@ type OfferReviewsProps = {
 
 function OfferReviews(props: OfferReviewsProps): JSX.Element {
   const { reviews, reviewForm } = props;
-  const isLoggedIn = useAppSelector(selectIsUserLoggedIn);
+  const isLoggedIn = useAppSelector(userSelectors.selectIsUserLoggedIn);
 
   return (
     <section className="offer__reviews reviews">

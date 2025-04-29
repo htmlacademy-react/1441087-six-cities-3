@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { isRequiredPage } from '../../utils/app-utils';
-import { selectCurrentUser } from '../../store/selectors';
 import { AppRoute } from '../../const/app-const';
+import { userSelectors } from '../../store/slices/user-slice/user-slice';
 import Logo from '../logo';
 import HeaderUser from './header-user';
 import HeaderSignIn from './header-sign-in';
@@ -10,7 +10,7 @@ import useAppSelector from '../../hooks/use-app-selector';
 
 function Header(): JSX.Element {
   const { pathname } = useLocation();
-  const currentUser = useAppSelector(selectCurrentUser);
+  const currentUser = useAppSelector(userSelectors.selectCurrentUser);
   const isLoginPage = isRequiredPage(pathname, AppRoute.Login);
 
   return (

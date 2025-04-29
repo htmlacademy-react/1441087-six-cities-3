@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
-import { selectIsUserLoggedIn } from '../../store/selectors';
 import { AppRoute } from '../../const/app-const';
+import { userSelectors } from '../../store/slices/user-slice/user-slice';
 import useAppSelector from '../../hooks/use-app-selector';
 
 type PrivateRouteProps = {
@@ -9,7 +9,7 @@ type PrivateRouteProps = {
 
 function PrivateRoute(props: PrivateRouteProps): JSX.Element {
   const { children } = props;
-  const authorizationStatus = useAppSelector(selectIsUserLoggedIn);
+  const authorizationStatus = useAppSelector(userSelectors.selectIsUserLoggedIn);
 
   return authorizationStatus ? (
     children
