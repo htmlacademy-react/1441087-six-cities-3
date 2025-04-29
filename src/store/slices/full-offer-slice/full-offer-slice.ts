@@ -10,6 +10,8 @@ import {
   postReview,
 } from './async-actions';
 import {
+  selectIsFailed,
+  selectIsLoading,
   selectNearOfferPreviews,
   selectNearOfferPreviewsStatus,
   selectOfferFull,
@@ -98,4 +100,6 @@ export const fullOfferSelectors = {
   selectReviews,
   selectReviewsStatus,
   selectPostReviewStatus,
+  selectIsLoading,
+  selectIsFailed,
 };

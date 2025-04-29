@@ -20,13 +20,11 @@ import ReviewForm from '../../components/review-form';
 
 function OfferPage(): JSX.Element {
   const offerPreviews = useAppSelector(offersSelectors.selectOfferPreviews);
-  const offerPreviewsStatus = useAppSelector(offersSelectors.selectOfferPreviewsStatus);
   const offerFull = useAppSelector(fullOfferSelectors.selectOfferFull);
-  const offerFullStatus = useAppSelector(fullOfferSelectors.selectOfferFullStatus);
   const reviews = useAppSelector(fullOfferSelectors.selectReviews);
-  const reviewsStatus = useAppSelector(fullOfferSelectors.selectReviewsStatus);
   const nearOfferPreviews = useAppSelector(fullOfferSelectors.selectNearOfferPreviews);
-  const nearOfferPreviewsStatus = useAppSelector(fullOfferSelectors.selectNearOfferPreviewsStatus);
+  const isLoading = useAppSelector(fullOfferSelectors.selectIsLoading);
+  const isFailed = useAppSelector(fullOfferSelectors.selectIsFailed);
   const dispatch = useAppDispatch();
   const { offerId } = useParams();
 
@@ -38,23 +36,11 @@ function OfferPage(): JSX.Element {
     }
   }, [dispatch, offerId, offerFull]);
 
-  if (
-    offerPreviewsStatus === 'Loading' ||
-    offerFullStatus === 'Loading' ||
-    reviewsStatus === 'Loading' ||
-    nearOfferPreviewsStatus === 'Loading'
-  ) {
+  if (isLoading) {
     return <LoadingPage />;
   }
 
-  if (
-    !offerId ||
-    !offerFull ||
-    offerPreviewsStatus === 'Failed' ||
-    offerFullStatus === 'Failed' ||
-    reviewsStatus === 'Failed' ||
-    nearOfferPreviewsStatus === 'Failed'
-  ) {
+  if (!offerId || !offerFull || isFailed) {
     return <NotFoundPage />;
   }
 
