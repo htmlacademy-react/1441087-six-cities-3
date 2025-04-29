@@ -67,7 +67,7 @@ function OfferPage(): JSX.Element {
       <Header />
       <main className="page__main page__main--offer">
         <section className="offer">
-          <OfferGallery images={images.slice(0, 6)} />
+          <OfferGallery images={images} />
           <div className="offer__container container">
             <div className="offer__wrapper">
               {isPremium && (
