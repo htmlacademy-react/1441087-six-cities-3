@@ -2,7 +2,7 @@ import { OfferPreview, OfferPreviews } from '../types/offer-types';
 
 export function getOfferPreviewById(
   offerPreviews: OfferPreviews,
-  offerId: string
+  offerId?: string
 ): OfferPreview {
   return offerPreviews.filter((offerPreview) => offerPreview.id === offerId)[0];
 }

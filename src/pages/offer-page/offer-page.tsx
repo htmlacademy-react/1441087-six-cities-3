@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { getOfferPreviewById, getRatingWidth } from '../../utils/offer-utils';
-import { offersSelectors } from '../../store/slices/offers-slice/offers-slice';
+import { getRatingWidth } from '../../utils/offer-utils';
 import { fullOfferActions, fullOfferSelectors } from '../../store/slices/full-offer-slice/full-offer-slice';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
@@ -19,8 +18,8 @@ import LoadingPage from '../loading-page';
 import ReviewForm from '../../components/review-form';
 
 function OfferPage(): JSX.Element {
-  const offerPreviews = useAppSelector(offersSelectors.selectOfferPreviews);
   const offerFull = useAppSelector(fullOfferSelectors.selectOfferFull);
+  const currentOfferPreview = useAppSelector(fullOfferSelectors.selectCurrentOfferPreview);
   const reviews = useAppSelector(fullOfferSelectors.selectReviews);
   const nearOfferPreviews = useAppSelector(fullOfferSelectors.selectNearOfferPreviews);
   const isLoading = useAppSelector(fullOfferSelectors.selectIsLoading);
@@ -44,7 +43,6 @@ function OfferPage(): JSX.Element {
     return <NotFoundPage />;
   }
 
-  const currentOfferPreview = getOfferPreviewById(offerPreviews, offerId);
   const mapOfferPreviews = [...nearOfferPreviews, currentOfferPreview];
 
   const {

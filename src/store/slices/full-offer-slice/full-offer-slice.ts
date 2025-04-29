@@ -10,6 +10,7 @@ import {
   postReview,
 } from './async-actions';
 import {
+  selectCurrentOfferPreview,
   selectIsFailed,
   selectIsLoading,
   selectNearOfferPreviews,
@@ -102,4 +103,5 @@ export const fullOfferSelectors = {
   selectPostReviewStatus,
   selectIsLoading,
   selectIsFailed,
+  selectCurrentOfferPreview,
 };
