@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getRatingWidth } from '../../utils/offer-utils';
 import { fullOfferActions, fullOfferSelectors } from '../../store/slices/full-offer-slice/full-offer-slice';
+import { NEAR_OFFERS_COUNT } from '../../const/offer-const';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
 import Header from '../../components/header';
@@ -21,7 +22,7 @@ function OfferPage(): JSX.Element {
   const offerFull = useAppSelector(fullOfferSelectors.selectOfferFull);
   const currentOfferPreview = useAppSelector(fullOfferSelectors.selectCurrentOfferPreview);
   const reviews = useAppSelector(fullOfferSelectors.selectReviews);
-  const nearOfferPreviews = useAppSelector(fullOfferSelectors.selectNearOfferPreviews);
+  const nearOfferPreviews = useAppSelector(fullOfferSelectors.selectNearOfferPreviews).slice(0, NEAR_OFFERS_COUNT);
   const isLoading = useAppSelector(fullOfferSelectors.selectIsLoading);
   const isFailed = useAppSelector(fullOfferSelectors.selectIsFailed);
   const dispatch = useAppDispatch();
@@ -34,26 +35,6 @@ function OfferPage(): JSX.Element {
       dispatch(fullOfferActions.getNearOfferPreviews(offerId));
     }
   }, [dispatch, offerId, offerFull]);
-
-  // Executing requests sequentially. Does not solve the nearOffers problem.
-  // useEffect(() => {
-  //   if (offerId && offerFull?.id !== offerId) {
-  //     dispatch(fullOfferActions.getOfferFull(offerId))
-  //       .then(() => dispatch(fullOfferActions.getReviews(offerId)))
-  //       .then(()=> dispatch(fullOfferActions.getNearOfferPreviews(offerId)));
-  //   }
-  // }, [dispatch, offerId, offerFull]);
-
-  // PromiseAll. Does not solve the nearOffers problem.
-  // useEffect(() => {
-  //   if (offerId && offerFull?.id !== offerId) {
-  //     Promise.all([
-  //       dispatch(fullOfferActions.getOfferFull(offerId)),
-  //       dispatch(fullOfferActions.getReviews(offerId)),
-  //       dispatch(fullOfferActions.getNearOfferPreviews(offerId))
-  //     ]);
-  //   }
-  // }, [dispatch, offerId, offerFull]);
 
   if (isLoading) {
     return <LoadingPage />;
