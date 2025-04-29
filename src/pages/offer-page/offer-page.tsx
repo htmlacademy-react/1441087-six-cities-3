@@ -35,6 +35,26 @@ function OfferPage(): JSX.Element {
     }
   }, [dispatch, offerId, offerFull]);
 
+  // Executing requests sequentially. Does not solve the nearOffers problem.
+  // useEffect(() => {
+  //   if (offerId && offerFull?.id !== offerId) {
+  //     dispatch(fullOfferActions.getOfferFull(offerId))
+  //       .then(() => dispatch(fullOfferActions.getReviews(offerId)))
+  //       .then(()=> dispatch(fullOfferActions.getNearOfferPreviews(offerId)));
+  //   }
+  // }, [dispatch, offerId, offerFull]);
+
+  // PromiseAll. Does not solve the nearOffers problem.
+  // useEffect(() => {
+  //   if (offerId && offerFull?.id !== offerId) {
+  //     Promise.all([
+  //       dispatch(fullOfferActions.getOfferFull(offerId)),
+  //       dispatch(fullOfferActions.getReviews(offerId)),
+  //       dispatch(fullOfferActions.getNearOfferPreviews(offerId))
+  //     ]);
+  //   }
+  // }, [dispatch, offerId, offerFull]);
+
   if (isLoading) {
     return <LoadingPage />;
   }
