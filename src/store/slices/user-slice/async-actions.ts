@@ -1,18 +1,16 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
 import { AuthData, CurrentUser } from '../../../types/user-types';
 import { APIRoute } from '../../../const/api-const';
+import createAppAsyncThunk from '../../create-app-async-thunk';
 
-export const checkAuth = createAsyncThunk<
+export const checkAuth = createAppAsyncThunk<
   CurrentUser,
-  undefined,
-  { extra: AxiosInstance }
+  undefined
 >('user/checkAuth', async (_arg, { extra: api }) => {
   const response = await api.get<CurrentUser>(APIRoute.Login);
   return response.data;
 });
 
-export const login = createAsyncThunk<CurrentUser, AuthData, { extra: AxiosInstance }>(
+export const login = createAppAsyncThunk<CurrentUser, AuthData>(
   'user/login',
   async ({ login: email, password }, { extra: api }) => {
     const response = await api.post<CurrentUser>(APIRoute.Login, {
@@ -23,7 +21,7 @@ export const login = createAsyncThunk<CurrentUser, AuthData, { extra: AxiosInsta
   }
 );
 
-export const logout = createAsyncThunk<void, undefined, { extra: AxiosInstance }>(
+export const logout = createAppAsyncThunk<void, undefined>(
   'user/logout',
   async (_arg, { extra: api }) => {
     await api.delete(APIRoute.Logout);
