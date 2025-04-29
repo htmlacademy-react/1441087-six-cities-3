@@ -52,7 +52,7 @@ const fullOfferSlice = createSlice({
         state.nearOfferPreviewsStatus = RequestStatus.Loading;
       })
       .addCase(getNearOfferPreviews.fulfilled, (state, action) => {
-        state.nearOfferPreviews = action.payload.slice(0, 3);
+        state.nearOfferPreviews = action.payload;
         state.nearOfferPreviewsStatus = RequestStatus.Success;
       })
       .addCase(getNearOfferPreviews.rejected, (state) => {
