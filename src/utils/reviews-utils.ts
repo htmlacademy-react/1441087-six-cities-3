@@ -6,5 +6,5 @@ function compareDateDown(firstReview: Review, secondReview: Review): number {
 }
 
 export function sortReviewsDate(reviews: Reviews): Reviews {
-  return reviews.sort(compareDateDown);
+  return reviews.toSorted(compareDateDown);
 }

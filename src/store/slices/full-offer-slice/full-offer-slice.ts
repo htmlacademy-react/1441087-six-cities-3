@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { FullOfferSlice } from '../../../types/store-types';
 import { RequestStatus } from '../../../const/api-const';
 import { NameSpace } from '../../../const/store-const';
-import { sortReviewsDate } from '../../../utils/reviews-utils';
 import {
   getNearOfferPreviews,
   getOfferFull,
@@ -65,7 +64,7 @@ const fullOfferSlice = createSlice({
         state.reviewsStatus = RequestStatus.Loading;
       })
       .addCase(getReviews.fulfilled, (state, action) => {
-        state.reviews = sortReviewsDate(action.payload);
+        state.reviews = action.payload;
         state.reviewsStatus = RequestStatus.Success;
       })
       .addCase(getReviews.rejected, (state) => {
@@ -75,7 +74,7 @@ const fullOfferSlice = createSlice({
         state.postReviewStatus = RequestStatus.Loading;
       })
       .addCase(postReview.fulfilled, (state, action) => {
-        state.reviews.unshift(action.payload);
+        state.reviews.push(action.payload);
         state.postReviewStatus = RequestStatus.Success;
       })
       .addCase(postReview.rejected, (state) => {
