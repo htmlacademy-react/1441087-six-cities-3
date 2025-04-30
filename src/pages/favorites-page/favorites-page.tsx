@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { offersActions, offersSelectors } from '../../store/slices/offers-slice/offers-slice';
+import { offersSelectors } from '../../store/slices/offers-slice/offers-slice';
 import useAppSelector from '../../hooks/use-app-selector';
-import useAppDispatch from '../../hooks/use-app-dispatch';
 import Header from '../../components/header';
 import FavoriteList from '../../components/favorite-list';
 import Footer from '../../components/footer';
@@ -10,14 +8,9 @@ import FavoriteEmpty from '../../components/favorite-empty';
 
 function FavoritesPage(): JSX.Element {
   const favoriteOfferPreviews = useAppSelector(offersSelectors.selectFavoriteOfferPreviews);
-  const favoriteEmpty = favoriteOfferPreviews.length === 0;
-  const pageAddClass = favoriteEmpty ? ' page--favorites-empty' : '';
-  const mainAddClass = favoriteEmpty ? ' page__main--favorites-empty' : '';
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(offersActions.getFavoriteOffers);
-  }, [dispatch]);
+  const isFavoriteEmpty = favoriteOfferPreviews.length === 0;
+  const pageAddClass = isFavoriteEmpty ? ' page--favorites-empty' : '';
+  const mainAddClass = isFavoriteEmpty ? ' page__main--favorites-empty' : '';
 
   return (
     <div className={`page${pageAddClass}`}>
@@ -27,7 +20,7 @@ function FavoritesPage(): JSX.Element {
       <Header />
       <main className={`page__main page__main--favorites${mainAddClass}`}>
         <div className="page__favorites-container container">
-          {favoriteEmpty
+          {isFavoriteEmpty
             ? <FavoriteEmpty />
             : <FavoriteList offerPreviews={favoriteOfferPreviews} />}
         </div>

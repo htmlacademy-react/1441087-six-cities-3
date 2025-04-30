@@ -30,9 +30,9 @@ function MainPage(): JSX.Element {
       <Header />
       <main className={`page__main page__main--index${mainAddClass}`}>
         <Navigation />
-        {!isOffersEmpty
-          ? <MainOffers currentCity={currentCity} offerPreviews={offerPreviews} />
-          : <MainOffersEmpty currentCity={currentCity}/>}
+        {isOffersEmpty
+          ? <MainOffersEmpty currentCity={currentCity}/>
+          : <MainOffers currentCity={currentCity} offerPreviews={offerPreviews} />}
       </main>
     </div>
   );
