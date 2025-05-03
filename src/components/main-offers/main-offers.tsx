@@ -5,6 +5,7 @@ import { City } from '../../types/app-types';
 import Sort from '../../components/sort';
 import Map from '../../components/map';
 import OfferPreviewList from '../../components/offer-preview-list';
+import useUpdateFavoriteOffer from '../../hooks/use-update-favorite-offer';
 
 type MainOffersProps = {
   currentCity: City;
@@ -12,8 +13,9 @@ type MainOffersProps = {
 };
 
 function MainOffers(props: MainOffersProps): JSX.Element {
-  const { currentCity, offerPreviews } = props;
   const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
+  const updateFavoriteClick = useUpdateFavoriteOffer();
+  const { currentCity, offerPreviews } = props;
   const countOfferPreviews = offerPreviews.length;
 
   return (
@@ -32,6 +34,7 @@ function MainOffers(props: MainOffersProps): JSX.Element {
             listType={'Cities'}
             offerPreviews={offerPreviews}
             onOfferCardHover={setHoveredOffer}
+            onFavoriteClick={updateFavoriteClick}
           />
         </section>
         <div className="cities__right-section">

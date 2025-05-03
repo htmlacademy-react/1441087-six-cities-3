@@ -6,7 +6,12 @@ import { RequestStatus } from '../../../const/api-const';
 import { NameSpace } from '../../../const/store-const';
 import { City } from '../../../types/app-types';
 import { SortOptionType } from '../../../components/sort/types';
-import { getFavoriteOffers, getOffersPreviews } from './async-actions';
+import { getOfferPreviewById } from '../../../utils/offer-utils';
+import {
+  getFavoriteOffers,
+  getOffersPreviews,
+  updateFavoriteOffer,
+} from './async-actions';
 import {
   selectCity,
   selectFavoriteOfferPreviews,
@@ -59,6 +64,16 @@ const offersSlice = createSlice({
       })
       .addCase(getFavoriteOffers.rejected, (state) => {
         state.favoriteOfferPreviewsStatus = RequestStatus.Failed;
+      })
+      .addCase(updateFavoriteOffer.fulfilled, (state, action) => {
+        if (action.payload.isFavorite) {
+          state.favoriteOfferPreviews.push(action.payload);
+        } else {
+          state.favoriteOfferPreviews = state.favoriteOfferPreviews
+            .filter((offerPreview) => offerPreview.id !== action.payload.id);
+        }
+        getOfferPreviewById(state.offerPreviews, action.payload.id).isFavorite =
+          action.payload.isFavorite;
       });
   },
 });
@@ -69,6 +84,7 @@ export const offersActions = {
   ...offersSlice.actions,
   getOffersPreviews,
   getFavoriteOffers,
+  updateFavoriteOffer,
 };
 export const offersSelectors = {
   selectCity,

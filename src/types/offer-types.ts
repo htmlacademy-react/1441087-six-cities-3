@@ -2,6 +2,11 @@ import { User } from './user-types';
 import { Location } from './location-types';
 import { City } from './app-types';
 
+export type FavoriteData = {
+  offerId: string;
+  status: number;
+}
+
 export type OfferBase = {
   id: string;
   title: string;
