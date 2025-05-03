@@ -6,7 +6,7 @@ import useAppDispatch from './use-app-dispatch';
 import useAppSelector from './use-app-selector';
 
 const useUpdateFavoriteOffer = () => {
-  const isUserLoggedIn = useAppSelector(userSelectors.selectIsUserLoggedIn);
+  const isLoggedIn = useAppSelector(userSelectors.selectIsUserLoggedIn);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const useUpdateFavoriteOffer = () => {
   ): void => {
     evt.preventDefault();
 
-    if (!isUserLoggedIn) {
+    if (!isLoggedIn) {
       navigate(AppRoute.Login);
     } else {
       dispatch(offersActions.updateFavoriteOffer({

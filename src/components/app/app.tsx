@@ -31,11 +31,11 @@ function App(): JSX.Element {
           dispatch(offersActions.getFavoriteOffers());
         });
     }
-  }, [dispatch, token]);
+  }, [dispatch, token, isLoggedIn]);
 
   useEffect(() => {
     dispatch(offersActions.getOffersPreviews());
-  }, [dispatch]);
+  }, [dispatch, isLoggedIn]);
 
   return (
     <HelmetProvider>
