@@ -25,7 +25,6 @@ const useUpdateFavoriteOffer = () => {
         status: Number(!isFavorite),
       }));
     }
-
   };
 
   return updateFavoriteOffer;

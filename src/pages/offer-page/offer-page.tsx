@@ -65,7 +65,7 @@ function OfferPage(): JSX.Element {
       <Helmet>
         <title>6 Cities. Offer</title>
       </Helmet>
-      <Header />
+      <Header showUser/>
       <main className="page__main page__main--offer">
         <section className="offer">
           <OfferGallery images={images} />

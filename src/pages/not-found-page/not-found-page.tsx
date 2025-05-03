@@ -9,7 +9,7 @@ function NotFoundPage(): JSX.Element {
       <Helmet>
         <title>6 Cities. Not Found</title>
       </Helmet>
-      <Header />
+      <Header showUser={false}/>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">

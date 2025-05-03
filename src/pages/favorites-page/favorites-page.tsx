@@ -21,7 +21,7 @@ function FavoritesPage(): JSX.Element {
       <Helmet>
         <title>6 Cities. Favorites</title>
       </Helmet>
-      <Header />
+      <Header showUser/>
       <main className={`page__main page__main--favorites${mainAddClass}`}>
         <div className="page__favorites-container container">
           {isFavoriteEmpty ? (

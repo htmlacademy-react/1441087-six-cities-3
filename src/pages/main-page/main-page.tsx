@@ -29,7 +29,7 @@ function MainPage(): JSX.Element {
       <Helmet>
         <title>6 Cities</title>
       </Helmet>
-      <Header />
+      <Header showUser/>
       <main className={`page__main page__main--index${mainAddClass}`}>
         <Navigation />
         {isOffersEmpty ? (
