@@ -1,8 +1,8 @@
 import { FormEvent, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { userActions } from '../../store/slices/user-slice/user-slice';
 import Header from '../../components/header';
 import useAppDispatch from '../../hooks/use-app-dispatch';
-import { userActions } from '../../store/slices/user-slice/user-slice';
 
 function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
