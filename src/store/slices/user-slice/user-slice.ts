@@ -3,8 +3,6 @@ import { UserSlice } from '../../../types/store-types';
 import { AuthorizationStatus, RequestStatus } from '../../../const/api-const';
 import { NameSpace } from '../../../const/store-const';
 import { dropToken, saveToken } from '../../../services/token';
-import { redirectToRoute } from '../../app-actions';
-import { AppRoute } from '../../../const/app-const';
 import { checkAuth, login, logout } from './async-actions';
 import { selectCurrentUser, selectIsUserLoggedIn } from './selectors';
 
@@ -36,7 +34,6 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
         state.authStatus = AuthorizationStatus.Auth;
         state.authRequestStatus = RequestStatus.Success;
-        redirectToRoute(AppRoute.Root);
       })
       .addCase(login.rejected, (state) => {
         state.authStatus = AuthorizationStatus.NoAuth;
@@ -46,7 +43,6 @@ const userSlice = createSlice({
         dropToken();
         state.currentUser = null;
         state.authStatus = AuthorizationStatus.NoAuth;
-        redirectToRoute(AppRoute.Root);
       });
   },
 });

@@ -1,21 +1,31 @@
-import { Navigate } from 'react-router-dom';
-import { AppRoute } from '../../const/app-const';
+import { ReactNode } from 'react';
+import { Location, Navigate, useLocation } from 'react-router-dom';
 import { userSelectors } from '../../store/slices/user-slice/user-slice';
+import { AppRoute } from '../../const/app-const';
 import useAppSelector from '../../hooks/use-app-selector';
 
 type PrivateRouteProps = {
-  children: JSX.Element;
+  onlyNotAuth?: boolean;
+  children: ReactNode;
 };
 
-function PrivateRoute(props: PrivateRouteProps): JSX.Element {
-  const { children } = props;
+type FromState = {
+  from?: Location;
+};
+
+export default function PrivateRoute(props: PrivateRouteProps) {
+  const { onlyNotAuth, children } = props;
+  const location: Location<FromState> = useLocation() as Location<FromState>;
   const isLoggedIn = useAppSelector(userSelectors.selectIsUserLoggedIn);
 
-  return isLoggedIn ? (
-    children
-  ) : (
-    <Navigate to={AppRoute.Login} />
-  );
-}
+  if (isLoggedIn && onlyNotAuth) {
+    const from = location.state?.from || { pathname: AppRoute.Root };
+    return <Navigate to={from} />;
+  }
 
-export default PrivateRoute;
+  if (!isLoggedIn && !onlyNotAuth) {
+    return <Navigate state={{ from: location }} to={AppRoute.Login} />;
+  }
+
+  return children;
+}
