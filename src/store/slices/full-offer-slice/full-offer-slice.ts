@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { FullOfferSlice } from '../../../types/store-types';
 import { RequestStatus } from '../../../const/api-const';
 import { NameSpace } from '../../../const/store-const';
+import { updateFavoriteOffer } from '../offers-slice/async-actions';
 import {
   getNearOfferPreviews,
   getOfferFull,
@@ -79,6 +80,17 @@ const fullOfferSlice = createSlice({
       })
       .addCase(postReview.rejected, (state) => {
         state.postReviewStatus = RequestStatus.Failed;
+      })
+      .addCase(updateFavoriteOffer.fulfilled, (state, action) => {
+        if (state.offerFull?.id === action.payload.id) {
+          state.offerFull.isFavorite = action.payload.isFavorite;
+        }
+
+        const nearOfferPreview = state.nearOfferPreviews
+          .find((offerPreview) => offerPreview.id === action.payload.id);
+        if (nearOfferPreview) {
+          nearOfferPreview.isFavorite = action.payload.isFavorite;
+        }
       });
   },
 });

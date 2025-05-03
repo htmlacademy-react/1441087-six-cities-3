@@ -54,6 +54,7 @@ function OfferCardSmall(props: OfferCardProps): JSX.Element {
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <FavoriteButton
+            buttonType='PlaceCard'
             isFavorite={isFavorite}
             onClick={handleFavoriteClick}
           />
