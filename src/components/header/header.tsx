@@ -1,4 +1,5 @@
 import { userSelectors } from '../../store/slices/user-slice/user-slice';
+import { offersSelectors } from '../../store/slices/offers-slice/offers-slice';
 import Logo from '../logo';
 import HeaderUser from './header-user';
 import HeaderSignIn from './header-sign-in';
@@ -12,6 +13,9 @@ type HeaderProps = {
 function Header(props: HeaderProps): JSX.Element {
   const { showUser } = props;
   const currentUser = useAppSelector(userSelectors.selectCurrentUser);
+  const favoriteOffersCount = useAppSelector(
+    offersSelectors.selectFavoriteOfferPreviews
+  ).length;
 
   return (
     <header className="header">
@@ -23,7 +27,12 @@ function Header(props: HeaderProps): JSX.Element {
           {showUser && (
             <nav className="header__nav">
               <ul className="header__nav-list">
-                {currentUser && <HeaderUser user={currentUser} />}
+                {currentUser && (
+                  <HeaderUser
+                    user={currentUser}
+                    favoriteOffersCount={favoriteOffersCount}
+                  />
+                )}
                 {currentUser ? <HeaderSignOut /> : <HeaderSignIn />}
               </ul>
             </nav>
