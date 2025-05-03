@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AxiosError } from 'axios';
 import { offersActions } from '../store/slices/offers-slice/offers-slice';
 import { AppRoute } from '../const/app-const';
 import { userSelectors } from '../store/slices/user-slice/user-slice';
@@ -23,7 +25,11 @@ const useUpdateFavoriteOffer = () => {
       dispatch(offersActions.updateFavoriteOffer({
         offerId: id,
         status: Number(!isFavorite),
-      }));
+      }))
+        .unwrap()
+        .catch((error: AxiosError) => {
+          toast.warn(error.message);
+        });
     }
   };
 
