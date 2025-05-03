@@ -73,7 +73,10 @@ function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <FavoriteButton isFavorite={isFavorite} onClick={handleFavoriteClick} />
+          <FavoriteButton
+            isFavorite={isFavorite}
+            onClick={handleFavoriteClick}
+          />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

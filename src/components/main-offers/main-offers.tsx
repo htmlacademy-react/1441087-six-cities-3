@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { OfferPreview, OfferPreviews } from '../../types/offer-types';
+import { updateFavoriteOfferType } from '../../hooks/use-update-favorite-offer';
 import { pluralize } from '../../utils/common-utils';
 import { City } from '../../types/app-types';
 import Sort from '../../components/sort';
 import Map from '../../components/map';
 import OfferPreviewList from '../../components/offer-preview-list';
-import useUpdateFavoriteOffer from '../../hooks/use-update-favorite-offer';
 
 type MainOffersProps = {
   currentCity: City;
   offerPreviews: OfferPreviews;
+  onFavoriteClick: updateFavoriteOfferType;
 };
 
 function MainOffers(props: MainOffersProps): JSX.Element {
   const [hoveredOffer, setHoveredOffer] = useState<OfferPreview | null>(null);
-  const updateFavoriteClick = useUpdateFavoriteOffer();
-  const { currentCity, offerPreviews } = props;
+  const { currentCity, offerPreviews, onFavoriteClick } = props;
   const countOfferPreviews = offerPreviews.length;
 
   return (
@@ -34,7 +34,7 @@ function MainOffers(props: MainOffersProps): JSX.Element {
             listType={'Cities'}
             offerPreviews={offerPreviews}
             onOfferCardHover={setHoveredOffer}
-            onFavoriteClick={updateFavoriteClick}
+            onFavoriteClick={onFavoriteClick}
           />
         </section>
         <div className="cities__right-section">

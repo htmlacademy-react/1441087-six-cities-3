@@ -5,9 +5,13 @@ import Header from '../../components/header';
 import FavoriteList from '../../components/favorite-list';
 import Footer from '../../components/footer';
 import FavoriteEmpty from '../../components/favorite-empty';
+import useUpdateFavoriteOffer from '../../hooks/use-update-favorite-offer';
 
 function FavoritesPage(): JSX.Element {
-  const favoriteOfferPreviews = useAppSelector(offersSelectors.selectFavoriteOfferPreviews);
+  const favoriteOfferPreviews = useAppSelector(
+    offersSelectors.selectFavoriteOfferPreviews
+  );
+  const updateFavoriteClick = useUpdateFavoriteOffer();
   const isFavoriteEmpty = favoriteOfferPreviews.length === 0;
   const pageAddClass = isFavoriteEmpty ? ' page--favorites-empty' : '';
   const mainAddClass = isFavoriteEmpty ? ' page__main--favorites-empty' : '';
@@ -20,9 +24,14 @@ function FavoritesPage(): JSX.Element {
       <Header />
       <main className={`page__main page__main--favorites${mainAddClass}`}>
         <div className="page__favorites-container container">
-          {isFavoriteEmpty
-            ? <FavoriteEmpty />
-            : <FavoriteList offerPreviews={favoriteOfferPreviews} />}
+          {isFavoriteEmpty ? (
+            <FavoriteEmpty />
+          ) : (
+            <FavoriteList
+              offerPreviews={favoriteOfferPreviews}
+              onFavoriteClick={updateFavoriteClick}
+            />
+          )}
         </div>
       </main>
       <Footer />
