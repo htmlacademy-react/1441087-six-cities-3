@@ -1,17 +1,18 @@
+import { memo } from 'react';
 import { OfferPreview, OfferPreviews } from '../../types/offer-types';
 import { OfferPreviewListType } from './offer-preview-list-type';
 import { getOfferPreviewListClasses } from './offer-preview-list-utils';
 import { updateFavoriteOfferType } from '../../hooks/use-update-favorite-offer';
 import OfferCardMedium from '../../components/offer-card-medium';
 
-type OfferPreviewListProps = {
+type OfferPreviewListComponentProps = {
   listType: OfferPreviewListType;
   offerPreviews: OfferPreviews;
   onOfferCardHover?: (hoveredOffer: OfferPreview | null) => void;
   onFavoriteClick: updateFavoriteOfferType;
 };
 
-function OfferPreviewList(props: OfferPreviewListProps): JSX.Element {
+function OfferPreviewListComponent(props: OfferPreviewListComponentProps): JSX.Element {
   const { listType, offerPreviews, onOfferCardHover, onFavoriteClick } = props;
   const additionalClasses = getOfferPreviewListClasses(listType);
 
@@ -29,5 +30,7 @@ function OfferPreviewList(props: OfferPreviewListProps): JSX.Element {
     </div>
   );
 }
+
+const OfferPreviewList = memo(OfferPreviewListComponent);
 
 export default OfferPreviewList;

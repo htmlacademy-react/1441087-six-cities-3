@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { OfferPreview } from '../../types/offer-types';
 import { AppRoute } from '../../const/app-const';
@@ -8,14 +9,14 @@ import { getOfferCardMediumClasses } from './offer-card-medium-utils';
 import { updateFavoriteOfferType } from '../../hooks/use-update-favorite-offer';
 import FavoriteButton from '../favorite-button';
 
-type OfferCardMediumProps = {
+type OfferCardMediumComponentProps = {
   cardType: OfferPreviewListType;
   offerPreview: OfferPreview;
   onHover?: (hoveredOffer: OfferPreview | null) => void;
   onFavoriteClick: updateFavoriteOfferType;
 };
 
-function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
+function OfferCardMediumComponent(props: OfferCardMediumComponentProps): JSX.Element {
   const {
     id,
     title,
@@ -93,5 +94,7 @@ function OfferCardMedium(props: OfferCardMediumProps): JSX.Element {
     </article>
   );
 }
+
+const OfferCardMedium = memo(OfferCardMediumComponent);
 
 export default OfferCardMedium;

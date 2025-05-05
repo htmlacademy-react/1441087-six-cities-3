@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { CITIES } from '../../const/app-const';
 import NavigationItem from './navigation-item';
 
-function Navigation(): JSX.Element {
+function NavigationComponent(): JSX.Element {
   return (
     <>
       <h1 className="visually-hidden">Cities</h1>
@@ -20,5 +21,7 @@ function Navigation(): JSX.Element {
     </>
   );
 }
+
+const Navigation = memo(NavigationComponent);
 
 export default Navigation;
