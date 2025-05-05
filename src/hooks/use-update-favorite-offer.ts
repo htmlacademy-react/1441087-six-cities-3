@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
@@ -33,7 +34,7 @@ const useUpdateFavoriteOffer = () => {
     }
   };
 
-  return updateFavoriteOffer;
+  return useCallback(updateFavoriteOffer, [dispatch, navigate, isLoggedIn]);
 };
 
 export type updateFavoriteOfferType = ReturnType<typeof useUpdateFavoriteOffer>;
