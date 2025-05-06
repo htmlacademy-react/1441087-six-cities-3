@@ -29,6 +29,4 @@ const useUpdateFavoriteOffer = () => {
   return useCallback(updateFavoriteOffer, [dispatch, navigate, isLoggedIn]);
 };
 
-export type updateFavoriteOfferType = ReturnType<typeof useUpdateFavoriteOffer>;
-
 export default useUpdateFavoriteOffer;
