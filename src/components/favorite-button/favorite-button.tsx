@@ -1,6 +1,6 @@
 import useUpdateFavoriteOffer from '../../hooks/use-update-favorite-offer';
-import { FavoriteButtonType } from './favorite-button-type';
 import {
+  FavoriteButtonType,
   getFavoriteButtonClasses,
   getFavoriteButtonSize,
 } from './favorite-button-utils';
