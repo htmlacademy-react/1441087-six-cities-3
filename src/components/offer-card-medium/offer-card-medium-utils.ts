@@ -1,23 +1,16 @@
-import { OfferPreviewListType } from '../offer-preview-list/offer-preview-list-type';
+export type OfferCardType = 'Cities' | 'Near' | 'Favorite';
 
-function getOfferCardMediumClasses(cardType: OfferPreviewListType) {
+export function getOfferCardMediumClasses(cardType: OfferCardType) {
   switch (cardType) {
-    case 'Cities':
-      return {
-        articleClass: 'cities__card place-card',
-        imgWrapperClass: 'cities__image-wrapper place-card__image-wrapper',
-      };
-    case 'NearPlaces':
+    case 'Near':
       return {
         articleClass: 'near-places__card place-card',
         imgWrapperClass: 'near-places__image-wrapper place-card__image-wrapper',
       };
     default:
       return {
-        articleClass: 'place-card',
-        imgWrapperClass: 'place-card__image-wrapper',
+        articleClass: 'cities__card place-card',
+        imgWrapperClass: 'cities__image-wrapper place-card__image-wrapper',
       };
   }
 }
-
-export { getOfferCardMediumClasses };

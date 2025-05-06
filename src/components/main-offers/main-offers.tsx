@@ -30,6 +30,7 @@ function MainOffers(props: MainOffersProps): JSX.Element {
           <Sort />
           <OfferPreviewList
             listType={'Cities'}
+            cardType={'Cities'}
             offerPreviews={offerPreviews}
             onOfferCardHover={setHoveredOffer}
           />

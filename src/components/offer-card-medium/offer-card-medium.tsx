@@ -4,12 +4,11 @@ import { OfferPreview } from '../../types/offer-types';
 import { AppRoute } from '../../const/app-const';
 import { getCapitalizedString } from '../../utils/common-utils';
 import { getRatingWidth } from '../../utils/offer-utils';
-import { OfferPreviewListType } from '../offer-preview-list/offer-preview-list-type';
-import { getOfferCardMediumClasses } from './offer-card-medium-utils';
+import { getOfferCardMediumClasses, OfferCardType } from './offer-card-medium-utils';
 import FavoriteButton from '../favorite-button';
 
 type OfferCardMediumComponentProps = {
-  cardType: OfferPreviewListType;
+  cardType: OfferCardType;
   offerPreview: OfferPreview;
   onHover?: (hoveredOffer: OfferPreview | null) => void;
 };

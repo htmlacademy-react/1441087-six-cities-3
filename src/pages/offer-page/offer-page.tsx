@@ -135,7 +135,8 @@ function OfferPage(): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <OfferPreviewList
-              listType={'NearPlaces'}
+              listType={'Near'}
+              cardType={'Near'}
               offerPreviews={nearOfferPreviews}
             />
           </section>
