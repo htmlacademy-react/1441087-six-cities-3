@@ -1,8 +1,8 @@
-import { memo, useMemo } from 'react';
+import { useMemo } from 'react';
 import { CITIES } from '../../const/app-const';
 import NavigationItem from './navigation-item';
 
-function NavigationComponent(): JSX.Element {
+function Navigation(): JSX.Element {
   const cities = useMemo(() => Object.values(CITIES), []);
 
   return (
@@ -23,7 +23,5 @@ function NavigationComponent(): JSX.Element {
     </>
   );
 }
-
-const Navigation = memo(NavigationComponent);
 
 export default Navigation;

@@ -1,5 +1,4 @@
-import { memo } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import { isEscapeKey } from '../../utils/common-utils';
 import { SortOptionLabel } from './const';
 import { offersSelectors } from '../../store/slices/offers-slice/offers-slice';
@@ -16,7 +15,7 @@ function SortComponent(): JSX.Element {
   };
 
   useEffect(() => {
-    const onEscKeydown = (evt: KeyboardEvent) => {
+    const handleEscKeydown = (evt: KeyboardEvent) => {
       if (isEscapeKey(evt)) {
         evt.preventDefault();
         setIsOpen(false);
@@ -33,12 +32,12 @@ function SortComponent(): JSX.Element {
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', onEscKeydown);
+      document.addEventListener('keydown', handleEscKeydown);
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('keydown', onEscKeydown);
+      document.removeEventListener('keydown', handleEscKeydown);
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen, setIsOpen]);

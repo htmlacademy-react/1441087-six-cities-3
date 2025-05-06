@@ -1,4 +1,3 @@
-import { memo, useCallback } from 'react';
 import { City } from '../../types/app-types';
 import { offersActions, offersSelectors } from '../../store/slices/offers-slice/offers-slice';
 import useAppDispatch from '../../hooks/use-app-dispatch';
@@ -8,20 +7,16 @@ type NavigationItemProps = {
   itemCity: City;
 };
 
-function NavigationItemComponent(props: NavigationItemProps): JSX.Element {
+function NavigationItem(props: NavigationItemProps): JSX.Element {
   const { itemCity } = props;
   const currentCity = useAppSelector(offersSelectors.selectCity);
   const activeClass =
     itemCity.name === currentCity.name ? ' tabs__item--active' : '';
   const dispatch = useAppDispatch();
 
-  // const handleItemClick = () => {
-  //   dispatch(offersActions.setCity(itemCity));
-  // };
-
-  const handleItemClick = useCallback(() => {
+  const handleItemClick = () => {
     dispatch(offersActions.setCity(itemCity));
-  }, [dispatch, itemCity]);
+  };
 
   return (
     <li className="locations__item">
@@ -34,7 +29,5 @@ function NavigationItemComponent(props: NavigationItemProps): JSX.Element {
     </li>
   );
 }
-
-const NavigationItem = memo(NavigationItemComponent);
 
 export default NavigationItem;
