@@ -1,6 +1,8 @@
+import { CityName } from '../../types/app-types';
 import { OfferPreviews } from '../../types/offer-types';
-import { getCitiesWithFavorites, getCityOffers } from '../../utils/city-utils';
 import FavoriteListItem from './favorite-list-item';
+
+type OffersByCity = Record<CityName, OfferPreviews>;
 
 type FavoriteListProps = {
   offerPreviews: OfferPreviews;
@@ -8,21 +10,22 @@ type FavoriteListProps = {
 
 function FavoriteList(props: FavoriteListProps): JSX.Element {
   const { offerPreviews } = props;
-  const citiesWithFavorites = getCitiesWithFavorites(offerPreviews);
+  const offersByCity: OffersByCity = Object.groupBy(
+    offerPreviews,
+    (offerPreview) => offerPreview.city.name
+  ) as OffersByCity;
 
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
       <ul className="favorites__list">
-        {citiesWithFavorites
-          ? citiesWithFavorites.map((city) => (
-            <FavoriteListItem
-              key={city.name}
-              cityName={city.name}
-              offerPreviews={getCityOffers(city, offerPreviews)}
-            />
-          ))
-          : null}
+        {Object.entries(offersByCity).map(([cityName, offers]) => (
+          <FavoriteListItem
+            key={cityName}
+            cityName={cityName}
+            offerPreviews={offers}
+          />
+        ))}
       </ul>
     </section>
   );
