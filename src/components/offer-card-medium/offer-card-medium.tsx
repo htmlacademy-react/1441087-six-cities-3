@@ -6,14 +6,12 @@ import { getCapitalizedString } from '../../utils/common-utils';
 import { getRatingWidth } from '../../utils/offer-utils';
 import { OfferPreviewListType } from '../offer-preview-list/offer-preview-list-type';
 import { getOfferCardMediumClasses } from './offer-card-medium-utils';
-import { updateFavoriteOfferType } from '../../hooks/use-update-favorite-offer';
 import FavoriteButton from '../favorite-button';
 
 type OfferCardMediumComponentProps = {
   cardType: OfferPreviewListType;
   offerPreview: OfferPreview;
   onHover?: (hoveredOffer: OfferPreview | null) => void;
-  onFavoriteClick: updateFavoriteOfferType;
 };
 
 function OfferCardMediumComponent(props: OfferCardMediumComponentProps): JSX.Element {
@@ -29,7 +27,6 @@ function OfferCardMediumComponent(props: OfferCardMediumComponentProps): JSX.Ele
   } = props.offerPreview;
   const cardType = props.cardType;
   const onHover = props.onHover;
-  const onFavoriteClick = props.onFavoriteClick;
 
   const offerLink = AppRoute.Offer.replace(':offerId', id);
   const additionalClasses = getOfferCardMediumClasses(cardType);
@@ -40,10 +37,6 @@ function OfferCardMediumComponent(props: OfferCardMediumComponentProps): JSX.Ele
 
   const handleMouseLeave = () => {
     onHover?.(null);
-  };
-
-  const handleFavoriteClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
-    onFavoriteClick(evt, id, isFavorite);
   };
 
   return (
@@ -76,8 +69,8 @@ function OfferCardMediumComponent(props: OfferCardMediumComponentProps): JSX.Ele
           </div>
           <FavoriteButton
             buttonType='PlaceCard'
+            offerId={id}
             isFavorite={isFavorite}
-            onClick={handleFavoriteClick}
           />
         </div>
         <div className="place-card__rating rating">
