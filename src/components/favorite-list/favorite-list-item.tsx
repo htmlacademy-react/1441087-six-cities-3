@@ -3,7 +3,7 @@ import { AppRoute, CITIES } from '../../const/app-const';
 import { offersActions } from '../../store/slices/offers-slice/offers-slice';
 import { OfferPreviews } from '../../types/offer-types';
 import useAppDispatch from '../../hooks/use-app-dispatch';
-import OfferCardSmall from '../offer-card-small';
+import OfferCard from '../offer-card';
 
 type FavoriteListItemProps = {
   cityName: string;
@@ -33,7 +33,11 @@ function FavoriteListItem(props: FavoriteListItemProps): JSX.Element {
       </div>
       <div className="favorites__places">
         {offerPreviews.map((offerPreview) => (
-          <OfferCardSmall key={offerPreview.id} offerPreview={offerPreview} />
+          <OfferCard
+            key={offerPreview.id}
+            cardType={'Favorite'}
+            offerPreview={offerPreview}
+          />
         ))}
       </div>
     </li>

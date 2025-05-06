@@ -1,8 +1,11 @@
 import { memo } from 'react';
 import { OfferPreview, OfferPreviews } from '../../types/offer-types';
-import { getOfferPreviewListClasses, OfferPreviewListType } from './offer-preview-list-utils';
-import { OfferCardType } from '../offer-card-medium/offer-card-medium-utils';
-import OfferCardMedium from '../../components/offer-card-medium';
+import {
+  getOfferPreviewListClasses,
+  OfferPreviewListType,
+} from './offer-preview-list-utils';
+import { OfferCardType } from '../offer-card/offer-card-utils';
+import OfferCard from '../offer-card';
 
 type OfferPreviewListComponentProps = {
   listType: OfferPreviewListType;
@@ -11,14 +14,16 @@ type OfferPreviewListComponentProps = {
   onOfferCardHover?: (hoveredOffer: OfferPreview | null) => void;
 };
 
-function OfferPreviewListComponent(props: OfferPreviewListComponentProps): JSX.Element {
+function OfferPreviewListComponent(
+  props: OfferPreviewListComponentProps
+): JSX.Element {
   const { listType, cardType, offerPreviews, onOfferCardHover } = props;
   const additionalClasses = getOfferPreviewListClasses(listType);
 
   return (
     <div className={additionalClasses.divClass}>
       {offerPreviews.map((offerPreview) => (
-        <OfferCardMedium
+        <OfferCard
           key={offerPreview.id}
           cardType={cardType}
           offerPreview={offerPreview}

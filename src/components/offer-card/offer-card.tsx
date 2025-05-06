@@ -4,16 +4,20 @@ import { OfferPreview } from '../../types/offer-types';
 import { AppRoute } from '../../const/app-const';
 import { getCapitalizedString } from '../../utils/common-utils';
 import { getRatingWidth } from '../../utils/offer-utils';
-import { getOfferCardMediumClasses, OfferCardType } from './offer-card-medium-utils';
+import {
+  getCardImageSize,
+  getOfferCardClasses,
+  OfferCardType,
+} from './offer-card-utils';
 import FavoriteButton from '../favorite-button';
 
-type OfferCardMediumComponentProps = {
+type OfferCardComponentProps = {
   cardType: OfferCardType;
   offerPreview: OfferPreview;
   onHover?: (hoveredOffer: OfferPreview | null) => void;
 };
 
-function OfferCardMediumComponent(props: OfferCardMediumComponentProps): JSX.Element {
+function OfferCardComponent(props: OfferCardComponentProps): JSX.Element {
   const {
     id,
     title,
@@ -28,7 +32,8 @@ function OfferCardMediumComponent(props: OfferCardMediumComponentProps): JSX.Ele
   const onHover = props.onHover;
 
   const offerLink = AppRoute.Offer.replace(':offerId', id);
-  const additionalClasses = getOfferCardMediumClasses(cardType);
+  const classes = getOfferCardClasses(cardType);
+  const imageSize = getCardImageSize(cardType);
 
   const handleMouseEnter = () => {
     onHover?.(props.offerPreview);
@@ -40,7 +45,7 @@ function OfferCardMediumComponent(props: OfferCardMediumComponentProps): JSX.Ele
 
   return (
     <article
-      className={additionalClasses.articleClass}
+      className={classes.articleClass}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -49,25 +54,25 @@ function OfferCardMediumComponent(props: OfferCardMediumComponentProps): JSX.Ele
           <span>Premium</span>
         </div>
       )}
-      <div className={additionalClasses.imgWrapperClass}>
+      <div className={classes.imgWrapperClass}>
         <Link to={offerLink}>
           <img
             className="place-card__image"
             src={previewImage}
-            width="260"
-            height="200"
+            width={imageSize.width}
+            height={imageSize.height}
             alt={title}
           />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={classes.divInfoClass}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <FavoriteButton
-            buttonType='PlaceCard'
+            buttonType="PlaceCard"
             offerId={id}
             isFavorite={isFavorite}
           />
@@ -87,6 +92,6 @@ function OfferCardMediumComponent(props: OfferCardMediumComponentProps): JSX.Ele
   );
 }
 
-const OfferCardMedium = memo(OfferCardMediumComponent);
+const OfferCard = memo(OfferCardComponent);
 
-export default OfferCardMedium;
+export default OfferCard;
