@@ -1,15 +1,13 @@
-import { updateFavoriteOfferType } from '../../hooks/use-update-favorite-offer';
 import { OfferPreviews } from '../../types/offer-types';
 import { getCitiesWithFavorites, getCityOffers } from '../../utils/city-utils';
 import FavoriteListItem from './favorite-list-item';
 
 type FavoriteListProps = {
   offerPreviews: OfferPreviews;
-  onFavoriteClick: updateFavoriteOfferType;
 };
 
 function FavoriteList(props: FavoriteListProps): JSX.Element {
-  const { offerPreviews, onFavoriteClick } = props;
+  const { offerPreviews } = props;
   const citiesWithFavorites = getCitiesWithFavorites(offerPreviews);
 
   return (
@@ -22,7 +20,6 @@ function FavoriteList(props: FavoriteListProps): JSX.Element {
               key={city.name}
               cityName={city.name}
               offerPreviews={getCityOffers(city, offerPreviews)}
-              onFavoriteClick={onFavoriteClick}
             />
           ))
           : null}

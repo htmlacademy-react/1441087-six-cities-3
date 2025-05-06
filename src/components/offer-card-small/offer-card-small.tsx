@@ -3,12 +3,10 @@ import { OfferPreview } from '../../types/offer-types';
 import { AppRoute } from '../../const/app-const';
 import { getCapitalizedString } from '../../utils/common-utils';
 import { getRatingWidth } from '../../utils/offer-utils';
-import { updateFavoriteOfferType } from '../../hooks/use-update-favorite-offer';
 import FavoriteButton from '../favorite-button';
 
 type OfferCardProps = {
   offerPreview: OfferPreview;
-  onFavoriteClick: updateFavoriteOfferType;
 };
 
 function OfferCardSmall(props: OfferCardProps): JSX.Element {
@@ -22,12 +20,7 @@ function OfferCardSmall(props: OfferCardProps): JSX.Element {
     previewImage,
     rating,
   } = props.offerPreview;
-  const onFavoriteClick = props.onFavoriteClick;
   const offerLink = AppRoute.Offer.replace(':offerId', id);
-
-  const handleFavoriteClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
-    onFavoriteClick(evt, id, isFavorite);
-  };
 
   return (
     <article className="favorites__card place-card">
@@ -55,8 +48,8 @@ function OfferCardSmall(props: OfferCardProps): JSX.Element {
           </div>
           <FavoriteButton
             buttonType='PlaceCard'
+            offerId={id}
             isFavorite={isFavorite}
-            onClick={handleFavoriteClick}
           />
         </div>
         <div className="place-card__rating rating">
