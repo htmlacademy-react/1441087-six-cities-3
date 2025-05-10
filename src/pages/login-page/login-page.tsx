@@ -1,14 +1,20 @@
 import { FormEvent, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { userActions } from '../../store/slices/user-slice/user-slice';
+import { offersActions } from '../../store/slices/offers-slice/offers-slice';
+import { AppRoute, CITIES } from '../../const/app-const';
+import { getRandomElement } from '../../utils/common-utils';
+import { City } from '../../types/app-types';
 import Header from '../../components/header';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 
 function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const randomCity = getRandomElement<City>(Object.values(CITIES));
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -23,12 +29,18 @@ function LoginPage(): JSX.Element {
     }
   };
 
+  const handleCityClick = (evt: React.MouseEvent<HTMLAnchorElement>) => {
+    evt.preventDefault();
+    dispatch(offersActions.setCity(randomCity));
+    navigate(AppRoute.Root);
+  };
+
   return (
     <div className="page page--gray page--login">
       <Helmet>
         <title>6 Cities. Login</title>
       </Helmet>
-      <Header showUser={false}/>
+      <Header showUser={false} />
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -67,6 +79,13 @@ function LoginPage(): JSX.Element {
                 Sign in
               </button>
             </form>
+          </section>
+          <section className="locations locations--login locations--current">
+            <div className="locations__item">
+              <a className="locations__item-link" onClick={handleCityClick}>
+                <span>{randomCity?.name}</span>
+              </a>
+            </div>
           </section>
         </div>
       </main>

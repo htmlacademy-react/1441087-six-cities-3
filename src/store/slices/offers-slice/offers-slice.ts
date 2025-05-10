@@ -70,8 +70,9 @@ const offersSlice = createSlice({
         if (action.payload.isFavorite) {
           state.favoriteOfferPreviews.push(action.payload);
         } else {
-          state.favoriteOfferPreviews = state.favoriteOfferPreviews
-            .filter((offerPreview) => offerPreview.id !== action.payload.id);
+          state.favoriteOfferPreviews = state.favoriteOfferPreviews.filter(
+            (offerPreview) => offerPreview.id !== action.payload.id
+          );
         }
         getOfferPreviewById(state.offerPreviews, action.payload.id).isFavorite =
           action.payload.isFavorite;

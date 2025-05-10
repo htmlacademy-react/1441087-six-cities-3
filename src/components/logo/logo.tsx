@@ -12,10 +12,7 @@ function Logo(props: LogoProps): JSX.Element {
   const imageSize = getLogoImageSize(logoType);
 
   return (
-    <Link
-      className={classes.linkClass}
-      to={AppRoute.Root}
-    >
+    <Link className={classes.linkClass} to={AppRoute.Root}>
       <img
         className={classes.imgClass}
         src="img/logo.svg"

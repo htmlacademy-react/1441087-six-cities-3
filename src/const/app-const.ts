@@ -1,4 +1,4 @@
-import { City } from '../types/app-types';
+import { City, CityName } from '../types/app-types';
 
 export const AppRoute = {
   Root: '/',
@@ -19,7 +19,7 @@ export const DateFormat = {
   Review: 'MMMM YYYY',
 } as const;
 
-export const CITIES: Record<string, City> = {
+export const CITIES: Record<CityName, City> = {
   Paris: {
     name: 'Paris',
     location: {
