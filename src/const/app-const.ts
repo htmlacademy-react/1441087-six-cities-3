@@ -1,5 +1,7 @@
 import { City, CityName } from '../types/app-types';
 
+export const MIN_PASSWORD_LENGTH = 2;
+
 export const AppRoute = {
   Root: '/',
   Login: '/login',

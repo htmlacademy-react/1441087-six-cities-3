@@ -4,7 +4,11 @@ import { AuthorizationStatus, RequestStatus } from '../../../const/api-const';
 import { NameSpace } from '../../../const/store-const';
 import { dropToken, saveToken } from '../../../services/token';
 import { checkAuth, login, logout } from './async-actions';
-import { selectCurrentUser, selectIsUserLoggedIn } from './selectors';
+import {
+  selectCurrentUser,
+  selectIsUserLoggedIn,
+  selectAuthRequestStatus,
+} from './selectors';
 
 const initialState: UserSlice = {
   authStatus: AuthorizationStatus.Unknown,
@@ -51,4 +55,8 @@ export const userReducer = userSlice.reducer;
 
 export const userActions = { checkAuth, login, logout };
 
-export const userSelectors = { selectIsUserLoggedIn, selectCurrentUser };
+export const userSelectors = {
+  selectIsUserLoggedIn,
+  selectCurrentUser,
+  selectAuthRequestStatus,
+};
