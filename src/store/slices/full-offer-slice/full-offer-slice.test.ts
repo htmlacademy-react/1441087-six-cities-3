@@ -21,16 +21,7 @@ describe('Full Offer Slice', () => {
       reviewsStatus: RequestStatus.Idle,
       postReviewStatus: RequestStatus.Idle,
     };
-    const expectedState = initialState;
-
-    const result = fullOfferReducer(expectedState, emptyAction);
-
-    expect(result).toEqual(expectedState);
-  });
-
-  it('should return initial state with undefined state and empty action', () => {
-    const emptyAction = { type: '' };
-    const initialState = {
+    const expectedState = {
       offerFull: null,
       offerFullStatus: RequestStatus.Idle,
       nearOfferPreviews: [],
@@ -39,7 +30,23 @@ describe('Full Offer Slice', () => {
       reviewsStatus: RequestStatus.Idle,
       postReviewStatus: RequestStatus.Idle,
     };
-    const expectedState = initialState;
+
+    const result = fullOfferReducer(initialState, emptyAction);
+
+    expect(result).toEqual(expectedState);
+  });
+
+  it('should return initial state with undefined state and empty action', () => {
+    const emptyAction = { type: '' };
+    const expectedState = {
+      offerFull: null,
+      offerFullStatus: RequestStatus.Idle,
+      nearOfferPreviews: [],
+      nearOfferPreviewsStatus: RequestStatus.Idle,
+      reviews: [],
+      reviewsStatus: RequestStatus.Idle,
+      postReviewStatus: RequestStatus.Idle,
+    };
 
     const result = fullOfferReducer(undefined, emptyAction);
 

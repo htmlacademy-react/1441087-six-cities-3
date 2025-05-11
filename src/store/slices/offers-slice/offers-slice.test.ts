@@ -15,16 +15,7 @@ describe('Offers Slice', () => {
       favoriteOfferPreviews: [],
       favoriteOfferPreviewsStatus: RequestStatus.Idle,
     };
-    const expectedState = initialState;
-
-    const result = offersReducer(expectedState, emptyAction);
-
-    expect(result).toEqual(expectedState);
-  });
-
-  it('should return initial state with undefined state and empty action', () => {
-    const emptyAction = { type: '' };
-    const initialState = {
+    const expectedState = {
       city: CITIES.Paris,
       sortOption: SortOption[0],
       offerPreviews: [],
@@ -32,7 +23,22 @@ describe('Offers Slice', () => {
       favoriteOfferPreviews: [],
       favoriteOfferPreviewsStatus: RequestStatus.Idle,
     };
-    const expectedState = initialState;
+
+    const result = offersReducer(initialState, emptyAction);
+
+    expect(result).toEqual(expectedState);
+  });
+
+  it('should return initial state with undefined state and empty action', () => {
+    const emptyAction = { type: '' };
+    const expectedState = {
+      city: CITIES.Paris,
+      sortOption: SortOption[0],
+      offerPreviews: [],
+      offerPreviewsStatus: RequestStatus.Idle,
+      favoriteOfferPreviews: [],
+      favoriteOfferPreviewsStatus: RequestStatus.Idle,
+    };
 
     const result = offersReducer(undefined, emptyAction);
 

@@ -11,9 +11,9 @@ import {
 } from './selectors';
 
 const initialState: UserSlice = {
+  currentUser: null,
   authStatus: AuthorizationStatus.Unknown,
   authRequestStatus: RequestStatus.Idle,
-  currentUser: null,
 };
 
 const userSlice = createSlice({
@@ -40,6 +40,7 @@ const userSlice = createSlice({
         state.authRequestStatus = RequestStatus.Success;
       })
       .addCase(login.rejected, (state) => {
+        state.currentUser = null;
         state.authStatus = AuthorizationStatus.NoAuth;
         state.authRequestStatus = RequestStatus.Failed;
       })
