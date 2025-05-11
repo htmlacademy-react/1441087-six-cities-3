@@ -1,3 +1,4 @@
+import { Action } from '@reduxjs/toolkit';
 import { OfferFull, OfferPreview, OfferPreviews } from '../types/offer-types';
 import { Reviews } from '../types/review-types';
 import { CurrentUser } from '../types/user-types';
@@ -164,3 +165,5 @@ export const getMockCurrentUser = (): CurrentUser => ({
   avatarUrl: 'https://16.design.htmlacademy.pro/static/avatar/4.jpg',
   isPro: false,
 });
+
+export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
