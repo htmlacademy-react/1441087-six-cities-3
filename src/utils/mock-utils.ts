@@ -1,4 +1,4 @@
-import { OfferFull, OfferPreviews } from '../types/offer-types';
+import { OfferFull, OfferPreview, OfferPreviews } from '../types/offer-types';
 import { Reviews } from '../types/review-types';
 
 export const getMockOfferPreviews = (): OfferPreviews => [
@@ -103,6 +103,30 @@ export const getMockOfferFull = (): OfferFull => ({
   rating: 3.4,
   bedrooms: 1,
   maxAdults: 2,
+});
+
+export const getMockOfferFullPreview = (): OfferPreview => ({
+  id: '89b6ae84-2724-4369-ab85-6877dbdd2795',
+  title: 'Perfectly located Castro',
+  type: 'room',
+  price: 299,
+  previewImage: 'https://16.design.htmlacademy.pro/static/hotel/5.jpg',
+  city: {
+    name: 'Paris',
+    location: {
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13,
+    },
+  },
+  location: {
+    latitude: 48.868610000000004,
+    longitude: 2.342499,
+    zoom: 16,
+  },
+  isPremium: true,
+  isFavorite: false,
+  rating: 3.4,
 });
 
 export const getMockReviews = (): Reviews => [

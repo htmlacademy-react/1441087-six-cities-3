@@ -2,24 +2,25 @@ import { RequestStatus } from '../../../const/api-const';
 import { NewReview, Review } from '../../../types/review-types';
 import {
   getMockOfferFull,
+  getMockOfferFullPreview,
   getMockOfferPreviews,
   getMockReviews,
 } from '../../../utils/mock-utils';
+import { offersActions } from '../offers-slice/offers-slice';
 import { fullOfferActions, fullOfferReducer } from './full-offer-slice';
 
 describe('Full Offer Slice', () => {
-  const initialState = {
-    offerFull: null,
-    offerFullStatus: RequestStatus.Idle,
-    nearOfferPreviews: [],
-    nearOfferPreviewsStatus: RequestStatus.Idle,
-    reviews: [],
-    reviewsStatus: RequestStatus.Idle,
-    postReviewStatus: RequestStatus.Idle,
-  };
-
   it('should return initial state with empty action', () => {
     const emptyAction = { type: '' };
+    const initialState = {
+      offerFull: null,
+      offerFullStatus: RequestStatus.Idle,
+      nearOfferPreviews: [],
+      nearOfferPreviewsStatus: RequestStatus.Idle,
+      reviews: [],
+      reviewsStatus: RequestStatus.Idle,
+      postReviewStatus: RequestStatus.Idle,
+    };
     const expectedState = initialState;
 
     const result = fullOfferReducer(expectedState, emptyAction);
@@ -29,6 +30,15 @@ describe('Full Offer Slice', () => {
 
   it('should return initial state with undefined state and empty action', () => {
     const emptyAction = { type: '' };
+    const initialState = {
+      offerFull: null,
+      offerFullStatus: RequestStatus.Idle,
+      nearOfferPreviews: [],
+      nearOfferPreviewsStatus: RequestStatus.Idle,
+      reviews: [],
+      reviewsStatus: RequestStatus.Idle,
+      postReviewStatus: RequestStatus.Idle,
+    };
     const expectedState = initialState;
 
     const result = fullOfferReducer(undefined, emptyAction);
@@ -287,6 +297,152 @@ describe('Full Offer Slice', () => {
       const result = fullOfferReducer(
         undefined,
         fullOfferActions.postReview.rejected
+      );
+
+      expect(result).toEqual(expectedState);
+    });
+  });
+
+  describe('Update Favorite Offer', () => {
+    it('should update offer preview in nearOfferPreviews with "updateFavoriteOffer.fulfilled" and status = 1', () => {
+      const mockOfferPreview = getMockOfferPreviews()[0];
+      const initialMockOfferPreview = { ...mockOfferPreview, isFavorite: false };
+      const updatedMockOfferPreview = { ...mockOfferPreview, isFavorite: true };
+      const initialState = {
+        offerFull: null,
+        offerFullStatus: RequestStatus.Idle,
+        nearOfferPreviews: [initialMockOfferPreview],
+        nearOfferPreviewsStatus: RequestStatus.Idle,
+        reviews: [],
+        reviewsStatus: RequestStatus.Idle,
+        postReviewStatus: RequestStatus.Idle,
+      };
+      const expectedState = {
+        offerFull: null,
+        offerFullStatus: RequestStatus.Idle,
+        nearOfferPreviews: [updatedMockOfferPreview],
+        nearOfferPreviewsStatus: RequestStatus.Idle,
+        reviews: [],
+        reviewsStatus: RequestStatus.Idle,
+        postReviewStatus: RequestStatus.Idle,
+      };
+
+      const result = fullOfferReducer(
+        initialState,
+        offersActions.updateFavoriteOffer.fulfilled(updatedMockOfferPreview, '', {
+          offerId: updatedMockOfferPreview.id,
+          status: 1,
+        })
+      );
+
+      expect(result).toEqual(expectedState);
+    });
+
+    it('should update offer preview in nearOfferPreviews with "updateFavoriteOffer.fulfilled" and status = 0', () => {
+      const mockOfferPreview = getMockOfferPreviews()[0];
+      const initialMockOfferPreview = { ...mockOfferPreview, isFavorite: true };
+      const updatedMockOfferPreview = { ...mockOfferPreview, isFavorite: false };
+      const initialState = {
+        offerFull: null,
+        offerFullStatus: RequestStatus.Idle,
+        nearOfferPreviews: [initialMockOfferPreview],
+        nearOfferPreviewsStatus: RequestStatus.Idle,
+        reviews: [],
+        reviewsStatus: RequestStatus.Idle,
+        postReviewStatus: RequestStatus.Idle,
+      };
+      const expectedState = {
+        offerFull: null,
+        offerFullStatus: RequestStatus.Idle,
+        nearOfferPreviews: [updatedMockOfferPreview],
+        nearOfferPreviewsStatus: RequestStatus.Idle,
+        reviews: [],
+        reviewsStatus: RequestStatus.Idle,
+        postReviewStatus: RequestStatus.Idle,
+      };
+
+      const result = fullOfferReducer(
+        initialState,
+        offersActions.updateFavoriteOffer.fulfilled(updatedMockOfferPreview, '', {
+          offerId: updatedMockOfferPreview.id,
+          status: 0,
+        })
+      );
+
+      expect(result).toEqual(expectedState);
+    });
+
+    it('should update current full offer with "updateFavoriteOffer.fulfilled" and status = 1 if updated offer is current full offer', () => {
+      const mockOfferFull = getMockOfferFull();
+      const initialMockOfferFull = { ...mockOfferFull, isFavorite: false };
+      const updatedMockOfferFull = { ...mockOfferFull, isFavorite: true };
+
+      const mockOfferFullPreview = getMockOfferFullPreview();
+      const updatedMockOfferFullPreview = { ...mockOfferFullPreview, isFavorite: true };
+
+      const initialState = {
+        offerFull: initialMockOfferFull,
+        offerFullStatus: RequestStatus.Idle,
+        nearOfferPreviews: [],
+        nearOfferPreviewsStatus: RequestStatus.Idle,
+        reviews: [],
+        reviewsStatus: RequestStatus.Idle,
+        postReviewStatus: RequestStatus.Idle,
+      };
+      const expectedState = {
+        offerFull: updatedMockOfferFull,
+        offerFullStatus: RequestStatus.Idle,
+        nearOfferPreviews: [],
+        nearOfferPreviewsStatus: RequestStatus.Idle,
+        reviews: [],
+        reviewsStatus: RequestStatus.Idle,
+        postReviewStatus: RequestStatus.Idle,
+      };
+
+      const result = fullOfferReducer(
+        initialState,
+        offersActions.updateFavoriteOffer.fulfilled(updatedMockOfferFullPreview, '', {
+          offerId: updatedMockOfferFullPreview.id,
+          status: 1,
+        })
+      );
+
+      expect(result).toEqual(expectedState);
+    });
+
+    it('should update current full offer with "updateFavoriteOffer.fulfilled" and status = 0 if updated offer is current full offer', () => {
+      const mockOfferFull = getMockOfferFull();
+      const initialMockOfferFull = { ...mockOfferFull, isFavorite: true };
+      const updatedMockOfferFull = { ...mockOfferFull, isFavorite: false };
+
+      const mockOfferFullPreview = getMockOfferFullPreview();
+      const updatedMockOfferFullPreview = { ...mockOfferFullPreview, isFavorite: false };
+
+      const initialState = {
+        offerFull: initialMockOfferFull,
+        offerFullStatus: RequestStatus.Idle,
+        nearOfferPreviews: [],
+        nearOfferPreviewsStatus: RequestStatus.Idle,
+        reviews: [],
+        reviewsStatus: RequestStatus.Idle,
+        postReviewStatus: RequestStatus.Idle,
+      };
+      const expectedState = {
+        offerFull: updatedMockOfferFull,
+        offerFullStatus: RequestStatus.Idle,
+        nearOfferPreviews: [],
+        nearOfferPreviewsStatus: RequestStatus.Idle,
+        reviews: [],
+        reviewsStatus: RequestStatus.Idle,
+        postReviewStatus: RequestStatus.Idle,
+      };
+
+      const result = fullOfferReducer(
+        initialState,
+        offersActions.updateFavoriteOffer.fulfilled(updatedMockOfferFullPreview, '', {
+          offerId: updatedMockOfferFullPreview.id,
+          status: 0,
+        })
       );
 
       expect(result).toEqual(expectedState);
