@@ -2,6 +2,10 @@ import { Action } from '@reduxjs/toolkit';
 import { OfferFull, OfferPreview, OfferPreviews } from '../types/offer-types';
 import { Reviews } from '../types/review-types';
 import { CurrentUser } from '../types/user-types';
+import { State } from '../types/store-types';
+import { AuthorizationStatus, RequestStatus } from '../const/api-const';
+import { CITIES } from '../const/app-const';
+import { SortOption } from '../components/sort/const';
 
 export const getMockOfferPreviews = (): OfferPreviews => [
   {
@@ -213,3 +217,29 @@ export const getMockCurrentUser = (): CurrentUser => ({
 });
 
 export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
+
+export const getMockAppStore = (initialState?: Partial<State>): State => ({
+  FullOffer: {
+    offerFull: null,
+    offerFullStatus: RequestStatus.Idle,
+    nearOfferPreviews: [],
+    nearOfferPreviewsStatus: RequestStatus.Idle,
+    reviews: [],
+    reviewsStatus: RequestStatus.Idle,
+    postReviewStatus: RequestStatus.Idle,
+  },
+  Offers: {
+    city: CITIES.Paris,
+    sortOption: SortOption[0],
+    offerPreviews: [],
+    offerPreviewsStatus: RequestStatus.Idle,
+    favoriteOfferPreviews: [],
+    favoriteOfferPreviewsStatus: RequestStatus.Idle,
+  },
+  User: {
+    currentUser: null,
+    authStatus: AuthorizationStatus.Unknown,
+    authRequestStatus: RequestStatus.Idle,
+  },
+  ...initialState ?? {},
+});
