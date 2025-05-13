@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { withProviders } from '../../utils/mock-components';
-import Footer from './footer';
+import FavoriteEmpty from './favorite-empty';
 
-describe('Component: Footer', () => {
+describe('Component: FavoriteEmpty', () => {
   it('should render correctly', () => {
-    const expectedTestId = 'footer-testid';
-    const withProvidersComponent = withProviders(<Footer />);
+    const expectedTestId = 'favorite-empty-testid';
+    const withProvidersComponent = withProviders(<FavoriteEmpty />);
 
     render(withProvidersComponent);
 

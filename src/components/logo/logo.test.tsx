@@ -5,9 +5,9 @@ import Logo from './logo';
 describe('Component: Logo', () => {
   it('should render correctly', () => {
     const expectedAltText = '6 cities logo';
-    const preparedComponent = withProviders(<Logo logoType='Header'/>);
+    const withProvidersComponent = withProviders(<Logo logoType='Header'/>);
 
-    render(preparedComponent);
+    render(withProvidersComponent);
 
     expect(screen.getByAltText(expectedAltText)).toBeInTheDocument();
   });
