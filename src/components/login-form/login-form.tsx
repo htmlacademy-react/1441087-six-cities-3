@@ -69,6 +69,7 @@ function LoginForm(): JSX.Element {
           type="email"
           name="email"
           placeholder="Email"
+          data-testid="email-input-testid"
           required
           onChange={handleAuthDataChange}
           disabled={disabledInputs}
@@ -81,6 +82,7 @@ function LoginForm(): JSX.Element {
           type="password"
           name="password"
           placeholder="Password"
+          data-testid="password-input-testid"
           required
           minLength={MIN_PASSWORD_LENGTH}
           onChange={handleAuthDataChange}
