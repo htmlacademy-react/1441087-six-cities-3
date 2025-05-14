@@ -4,7 +4,7 @@ import FavoriteEmpty from './favorite-empty';
 
 describe('Component: FavoriteEmpty', () => {
   it('should render correctly', () => {
-    const expectedTestId = 'favorite-empty-testid';
+    const expectedTestId = 'favorite-empty-test-id';
     const withProvidersComponent = withProviders(<FavoriteEmpty />);
 
     render(withProvidersComponent);

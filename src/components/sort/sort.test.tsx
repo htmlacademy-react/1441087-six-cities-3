@@ -5,7 +5,7 @@ import { SortOption } from './const';
 import Sort from './sort';
 
 describe('Component: Sort', () => {
-  const currentSortOptionTestId = 'current-sort-option-testid';
+  const currentSortOptionTestId = 'current-sort-option-test-id';
   const sortFormTestId = 'sort-form-test-id';
 
   it('should render correctly with initial state', () => {

@@ -3,7 +3,7 @@ import Logo from '../logo';
 
 function FooterComponent(): JSX.Element {
   return (
-    <footer className="footer container" data-testid="footer-testid">
+    <footer className="footer container" data-testid="footer-test-id">
       <Logo logoType='Footer' />
     </footer>
   );

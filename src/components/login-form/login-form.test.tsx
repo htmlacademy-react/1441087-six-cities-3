@@ -7,8 +7,8 @@ import { UserSlice } from '../../types/store-types';
 import LoginForm from './login-form';
 
 describe('Component: LoginForm', () => {
-  const emailTestId = 'email-input-testid';
-  const passwordTestId = 'password-input-testid';
+  const emailTestId = 'email-input-test-id';
+  const passwordTestId = 'password-input-test-id';
 
   it('should render correctly with initial state', () => {
     const mockAppStore = getMockAppStore();

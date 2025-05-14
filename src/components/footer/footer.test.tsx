@@ -4,7 +4,7 @@ import Footer from './footer';
 
 describe('Component: Footer', () => {
   it('should render correctly', () => {
-    const expectedTestId = 'footer-testid';
+    const expectedTestId = 'footer-test-id';
     const withProvidersComponent = withProviders(<Footer />);
 
     render(withProvidersComponent);
