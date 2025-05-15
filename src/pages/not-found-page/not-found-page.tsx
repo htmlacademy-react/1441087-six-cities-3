@@ -5,7 +5,7 @@ import Header from '../../components/header';
 
 function NotFoundPage(): JSX.Element {
   return (
-    <div className="page page--gray page--login">
+    <div className="page page--gray page--login" data-testid="not-found-page-test-id">
       <Helmet>
         <title>6 Cities. Not Found</title>
       </Helmet>

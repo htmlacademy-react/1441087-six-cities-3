@@ -11,7 +11,7 @@ import {
 } from './offer-card-utils';
 import FavoriteButton from '../favorite-button';
 
-type OfferCardComponentProps = {
+export type OfferCardComponentProps = {
   cardType: OfferCardType;
   offerPreview: OfferPreview;
   onHover?: (hoveredOffer: OfferPreview | null) => void;

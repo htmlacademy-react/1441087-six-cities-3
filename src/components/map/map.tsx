@@ -7,7 +7,7 @@ import useMap from '../../hooks/use-map';
 import leaflet, { LayerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-type MapProps = {
+export type MapProps = {
   pageType: Page;
   city: City;
   offerPreviews: OfferPreviews;

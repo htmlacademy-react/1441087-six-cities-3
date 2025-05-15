@@ -64,7 +64,12 @@ function ReviewForm(props: ReviewFormProps): JSX.Element {
   };
 
   return (
-    <form className="reviews__form form" action="" onSubmit={handleSubmit}>
+    <form
+      className="reviews__form form"
+      data-testid="review-form-test-id"
+      action=""
+      onSubmit={handleSubmit}
+    >
       <label className="reviews__label form__label" htmlFor="comment">
         Your review
       </label>

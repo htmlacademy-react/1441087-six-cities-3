@@ -1,15 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { getMockAppStore, getMockOfferPreviews } from '../../utils/mock-utils';
 import { withProviders, withStore } from '../../utils/mock-components';
-import { OfferCardType } from './offer-card-utils';
-import { OfferPreview } from '../../types/offer-types';
-import OfferCard from './offer-card';
-
-type propsType = {
-  cardType: OfferCardType;
-  offerPreview: OfferPreview;
-  onHover: (hoveredOffer: OfferPreview | null) => void;
-};
+import OfferCard, { OfferCardComponentProps } from './offer-card';
 
 describe('Component: OfferCard', () => {
   const mockOfferPreview = getMockOfferPreviews()[0];
@@ -17,7 +9,7 @@ describe('Component: OfferCard', () => {
   const mockOnHover = vi.fn();
 
   it('should render correctly with all props', () => {
-    const props: propsType = {
+    const props: OfferCardComponentProps = {
       cardType: 'Cities',
       offerPreview: mockOfferPreview,
       onHover: mockOnHover
@@ -35,7 +27,7 @@ describe('Component: OfferCard', () => {
 
   it('should show premium mark when isPremium is true', () => {
     const premiumOffer = { ...mockOfferPreview, isPremium: true };
-    const props: propsType = {
+    const props: OfferCardComponentProps = {
       cardType: 'Cities',
       offerPreview: premiumOffer,
       onHover: mockOnHover
@@ -51,7 +43,7 @@ describe('Component: OfferCard', () => {
 
   it('should not show premium mark when isPremium is false', () => {
     const nonPremiumOffer = { ...mockOfferPreview, isPremium: false };
-    const props: propsType = {
+    const props: OfferCardComponentProps = {
       cardType: 'Cities',
       offerPreview: nonPremiumOffer,
       onHover: mockOnHover
@@ -66,7 +58,7 @@ describe('Component: OfferCard', () => {
   });
 
   it('should call onHover with offer on mouse enter', () => {
-    const props: propsType = {
+    const props: OfferCardComponentProps = {
       cardType: 'Cities',
       offerPreview: mockOfferPreview,
       onHover: mockOnHover
@@ -82,7 +74,7 @@ describe('Component: OfferCard', () => {
   });
 
   it('should call onHover with null on mouse leave', () => {
-    const props: propsType = {
+    const props: OfferCardComponentProps = {
       cardType: 'Cities',
       offerPreview: mockOfferPreview,
       onHover: mockOnHover

@@ -70,7 +70,7 @@ function OfferPage(): JSX.Element {
   } = offerFull;
 
   return (
-    <div className="page">
+    <div className="page" data-testid="offer-page-test-id">
       <Helmet>
         <title>6 Cities. Offer</title>
       </Helmet>
