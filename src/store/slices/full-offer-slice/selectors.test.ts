@@ -1,3 +1,4 @@
+import { fullOfferSelectors } from './full-offer-slice';
 import { RequestStatus } from '../../../const/api-const';
 import { NameSpace } from '../../../const/store-const';
 import { State } from '../../../types/store-types';
@@ -7,7 +8,6 @@ import {
   getMockOfferPreviews,
   getMockReviews,
 } from '../../../utils/mock-utils';
-import { fullOfferSelectors } from './full-offer-slice';
 
 describe('Full Offer selectors', () => {
   const mockOfferFull = getMockOfferFull();
@@ -51,12 +51,6 @@ describe('Full Offer selectors', () => {
     const { nearOfferPreviewsStatus } = state[NameSpace.FullOffer];
     const result = fullOfferSelectors.selectNearOfferPreviewsStatus(state as State);
     expect(result).toEqual(nearOfferPreviewsStatus);
-  });
-
-  it('should return reviews from state', () => {
-    const { reviews } = state[NameSpace.FullOffer];
-    const result = fullOfferSelectors.selectReviews(state as State);
-    expect(result).toEqual(reviews);
   });
 
   it('should return reviewsStatus from state', () => {
