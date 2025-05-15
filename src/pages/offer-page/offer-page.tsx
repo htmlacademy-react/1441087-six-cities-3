@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { MAX_NEAR_OFFERS_COUNT } from '../../const/offer-const';
-import { getRatingWidth } from '../../utils/offer-utils';
+import { getRatingStyles } from '../../utils/offer-utils';
 import {
   fullOfferActions,
   fullOfferSelectors,
@@ -68,6 +68,8 @@ function OfferPage(): JSX.Element {
     title,
     type,
   } = offerFull;
+  const ratingStyles = getRatingStyles(rating);
+
 
   return (
     <div className="page" data-testid="offer-page-test-id">
@@ -95,7 +97,7 @@ function OfferPage(): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: getRatingWidth(rating) }} />
+                  <span style={ratingStyles} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">
