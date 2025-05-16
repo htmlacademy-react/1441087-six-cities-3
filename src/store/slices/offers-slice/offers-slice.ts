@@ -25,10 +25,8 @@ import {
 const initialState: OffersSlice = {
   city: CITIES.Paris,
   sortOption: SortOption[0],
-
   offerPreviews: [],
   offerPreviewsStatus: RequestStatus.Idle,
-
   favoriteOfferPreviews: [],
   favoriteOfferPreviewsStatus: RequestStatus.Idle,
 };
