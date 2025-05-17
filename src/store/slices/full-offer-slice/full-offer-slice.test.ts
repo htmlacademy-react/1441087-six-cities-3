@@ -150,7 +150,6 @@ describe('Full Offer Slice', () => {
         fullOfferActions.getNearOfferPreviews.fulfilled(
           mockOfferPreviews,
           '',
-          '',
           ''
         )
       );
@@ -212,7 +211,7 @@ describe('Full Offer Slice', () => {
 
       const result = fullOfferReducer(
         undefined,
-        fullOfferActions.getReviews.fulfilled(mockReviews, '', '', '')
+        fullOfferActions.getReviews.fulfilled(mockReviews, '', '')
       );
 
       expect(result).toEqual(expectedState);
@@ -282,8 +281,7 @@ describe('Full Offer Slice', () => {
           {
             offerId: 'q1w2e3',
             review: mockNewReview,
-          },
-          ''
+          }
         )
       );
 

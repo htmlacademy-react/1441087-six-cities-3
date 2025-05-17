@@ -115,8 +115,7 @@ describe('Offers Slice', () => {
         offersActions.getOffersPreviews.fulfilled(
           mockOfferPreviews,
           '',
-          undefined,
-          ''
+          undefined
         )
       );
 
@@ -177,8 +176,7 @@ describe('Offers Slice', () => {
         offersActions.getFavoriteOffers.fulfilled(
           mockOfferPreviews,
           '',
-          undefined,
-          ''
+          undefined
         )
       );
 
