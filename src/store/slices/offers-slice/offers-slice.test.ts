@@ -14,6 +14,7 @@ describe('Offers Slice', () => {
       offerPreviewsStatus: RequestStatus.Idle,
       favoriteOfferPreviews: [],
       favoriteOfferPreviewsStatus: RequestStatus.Idle,
+      updateFavoriteStatus: RequestStatus.Idle,
     };
     const expectedState = {
       city: CITIES.Paris,
@@ -22,6 +23,7 @@ describe('Offers Slice', () => {
       offerPreviewsStatus: RequestStatus.Idle,
       favoriteOfferPreviews: [],
       favoriteOfferPreviewsStatus: RequestStatus.Idle,
+      updateFavoriteStatus: RequestStatus.Idle,
     };
 
     const result = offersReducer(initialState, emptyAction);
@@ -38,6 +40,7 @@ describe('Offers Slice', () => {
       offerPreviewsStatus: RequestStatus.Idle,
       favoriteOfferPreviews: [],
       favoriteOfferPreviewsStatus: RequestStatus.Idle,
+      updateFavoriteStatus: RequestStatus.Idle,
     };
 
     const result = offersReducer(undefined, emptyAction);
@@ -54,6 +57,7 @@ describe('Offers Slice', () => {
       offerPreviewsStatus: RequestStatus.Idle,
       favoriteOfferPreviews: [],
       favoriteOfferPreviewsStatus: RequestStatus.Idle,
+      updateFavoriteStatus: RequestStatus.Idle,
     };
 
     const result = offersReducer(undefined, offersActions.setCity(newCity));
@@ -70,6 +74,7 @@ describe('Offers Slice', () => {
       offerPreviewsStatus: RequestStatus.Idle,
       favoriteOfferPreviews: [],
       favoriteOfferPreviewsStatus: RequestStatus.Idle,
+      updateFavoriteStatus: RequestStatus.Idle,
     };
 
     const result = offersReducer(
@@ -89,6 +94,7 @@ describe('Offers Slice', () => {
         offerPreviewsStatus: RequestStatus.Loading,
         favoriteOfferPreviews: [],
         favoriteOfferPreviewsStatus: RequestStatus.Idle,
+        updateFavoriteStatus: RequestStatus.Idle,
       };
 
       const result = offersReducer(
@@ -108,6 +114,7 @@ describe('Offers Slice', () => {
         offerPreviewsStatus: RequestStatus.Success,
         favoriteOfferPreviews: [],
         favoriteOfferPreviewsStatus: RequestStatus.Idle,
+        updateFavoriteStatus: RequestStatus.Idle,
       };
 
       const result = offersReducer(
@@ -130,6 +137,7 @@ describe('Offers Slice', () => {
         offerPreviewsStatus: RequestStatus.Failed,
         favoriteOfferPreviews: [],
         favoriteOfferPreviewsStatus: RequestStatus.Idle,
+        updateFavoriteStatus: RequestStatus.Idle,
       };
 
       const result = offersReducer(
@@ -150,6 +158,7 @@ describe('Offers Slice', () => {
         offerPreviewsStatus: RequestStatus.Idle,
         favoriteOfferPreviews: [],
         favoriteOfferPreviewsStatus: RequestStatus.Loading,
+        updateFavoriteStatus: RequestStatus.Idle,
       };
 
       const result = offersReducer(
@@ -169,6 +178,7 @@ describe('Offers Slice', () => {
         offerPreviewsStatus: RequestStatus.Idle,
         favoriteOfferPreviews: mockOfferPreviews,
         favoriteOfferPreviewsStatus: RequestStatus.Success,
+        updateFavoriteStatus: RequestStatus.Idle,
       };
 
       const result = offersReducer(
@@ -191,6 +201,7 @@ describe('Offers Slice', () => {
         offerPreviewsStatus: RequestStatus.Idle,
         favoriteOfferPreviews: [],
         favoriteOfferPreviewsStatus: RequestStatus.Failed,
+        updateFavoriteStatus: RequestStatus.Idle,
       };
 
       const result = offersReducer(
@@ -214,6 +225,7 @@ describe('Offers Slice', () => {
         offerPreviewsStatus: RequestStatus.Idle,
         favoriteOfferPreviews: [],
         favoriteOfferPreviewsStatus: RequestStatus.Idle,
+        updateFavoriteStatus: RequestStatus.Idle,
       };
       const expectedState = {
         city: CITIES.Paris,
@@ -222,6 +234,7 @@ describe('Offers Slice', () => {
         offerPreviewsStatus: RequestStatus.Idle,
         favoriteOfferPreviews: [updatedMockOfferPreview],
         favoriteOfferPreviewsStatus: RequestStatus.Idle,
+        updateFavoriteStatus: RequestStatus.Success,
       };
 
       const result = offersReducer(
@@ -246,6 +259,7 @@ describe('Offers Slice', () => {
         offerPreviewsStatus: RequestStatus.Idle,
         favoriteOfferPreviews: [initialMockOfferPreview],
         favoriteOfferPreviewsStatus: RequestStatus.Idle,
+        updateFavoriteStatus: RequestStatus.Idle,
       };
       const expectedState = {
         city: CITIES.Paris,
@@ -254,6 +268,7 @@ describe('Offers Slice', () => {
         offerPreviewsStatus: RequestStatus.Idle,
         favoriteOfferPreviews: [],
         favoriteOfferPreviewsStatus: RequestStatus.Idle,
+        updateFavoriteStatus: RequestStatus.Success,
       };
 
       const result = offersReducer(

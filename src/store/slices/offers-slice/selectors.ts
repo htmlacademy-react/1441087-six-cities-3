@@ -3,6 +3,7 @@ import { NameSpace } from '../../../const/store-const';
 import { State } from '../../../types/store-types';
 import { sortOfferPreviews } from '../../../components/sort/utils';
 import { getCityOffers } from '../../../utils/city-utils';
+import { RequestStatus } from '../../../const/api-const';
 
 const selectSelf = (state: State) => state[NameSpace.Offers];
 
@@ -43,3 +44,8 @@ export const selectMainOffers = createSelector(selectSelf, (state) => {
 
   return offerPreviews;
 });
+
+export const selectIsUpdateFavoriteLoading = createSelector(
+  selectSelf,
+  (state) => state.updateFavoriteStatus === RequestStatus.Loading
+);
