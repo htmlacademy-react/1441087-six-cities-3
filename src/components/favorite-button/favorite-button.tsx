@@ -1,6 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { AxiosError } from 'axios';
-import { toast } from 'react-toastify';
 import { offersActions } from '../../store/slices/offers-slice/offers-slice';
 import { userSelectors } from '../../store/slices/user-slice/user-slice';
 import { AppRoute } from '../../const/app-const';
@@ -35,11 +33,7 @@ function FavoriteButton(props: FavoriteButtonProps): JSX.Element {
       dispatch(offersActions.updateFavoriteOffer({
         offerId,
         status: Number(!isFavorite)
-      }))
-        .unwrap()
-        .catch((error: AxiosError) => {
-          toast.warn(error.message);
-        });
+      }));
     }
   };
 

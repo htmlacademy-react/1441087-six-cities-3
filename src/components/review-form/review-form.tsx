@@ -1,6 +1,4 @@
 import { FormEvent, useState } from 'react';
-import { AxiosError } from 'axios';
-import { toast } from 'react-toastify';
 import { ReviewChangeHandler } from '../../types/review-types';
 import { MAN_REVIEW_LENGTH, MIN_REVIEW_LENGTH } from '../../const/review-const';
 import { RequestStatus } from '../../const/api-const';
@@ -57,9 +55,6 @@ function ReviewForm(props: ReviewFormProps): JSX.Element {
           comment: '',
           rating: 0,
         });
-      })
-      .catch((error: AxiosError) => {
-        toast.warn(error.message);
       });
   };
 

@@ -1,6 +1,4 @@
 import { FormEvent, ReactEventHandler, useRef, useState } from 'react';
-import { AxiosError } from 'axios';
-import { toast } from 'react-toastify';
 import { MIN_PASSWORD_LENGTH } from '../../const/app-const';
 import { userActions, userSelectors } from '../../store/slices/user-slice/user-slice';
 import { RequestStatus } from '../../const/api-const';
@@ -49,9 +47,6 @@ function LoginForm(): JSX.Element {
             email: '',
             password: '',
           });
-        })
-        .catch((error: AxiosError) => {
-          toast.warn(error.message);
         });
     }
   };
