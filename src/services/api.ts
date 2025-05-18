@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { StatusCodes } from 'http-status-codes';
 import { getToken } from './token';
 
-const BASE_URL = 'https://16.design.htmlacademy.pro/six-cities';
+const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
 const REQUEST_TIMEOUT = 5000;
 
 type DetailMessageType = {
@@ -23,7 +23,7 @@ function shouldDisplayError(response: AxiosResponse) {
 
 function createAPI(): AxiosInstance {
   const api = axios.create({
-    baseURL: BASE_URL,
+    baseURL: BASE_API_URL,
     timeout: REQUEST_TIMEOUT,
   });
 
