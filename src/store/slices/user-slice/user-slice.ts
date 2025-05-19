@@ -57,7 +57,7 @@ export const userReducer = userSlice.reducer;
 export const userActions = { checkAuth, login, logout };
 
 export const userSelectors = {
+  selectAuthRequestStatus,
   selectIsUserLoggedIn,
   selectCurrentUser,
-  selectAuthRequestStatus,
 };

@@ -91,9 +91,9 @@ export const offersReducer = offersSlice.reducer;
 
 export const offersActions = {
   ...offersSlice.actions,
+  updateFavoriteOffer,
   getOffersPreviews,
   getFavoriteOffers,
-  updateFavoriteOffer,
 };
 export const offersSelectors = {
   selectFavoriteOfferPreviewsStatus,

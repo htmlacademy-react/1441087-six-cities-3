@@ -101,21 +101,21 @@ const fullOfferSlice = createSlice({
 export const fullOfferReducer = fullOfferSlice.reducer;
 
 export const fullOfferActions = {
-  getOfferFull,
   getNearOfferPreviews,
+  getOfferFull,
   getReviews,
   postReview,
 };
 
 export const fullOfferSelectors = {
-  selectOfferFull,
-  selectOfferFullStatus,
-  selectNearOfferPreviews,
   selectNearOfferPreviewsStatus,
-  selectReviews,
-  selectReviewsStatus,
+  selectCurrentOfferPreview,
+  selectNearOfferPreviews,
   selectPostReviewStatus,
+  selectOfferFullStatus,
+  selectReviewsStatus,
+  selectOfferFull,
   selectIsLoading,
   selectIsFailed,
-  selectCurrentOfferPreview,
+  selectReviews,
 };
