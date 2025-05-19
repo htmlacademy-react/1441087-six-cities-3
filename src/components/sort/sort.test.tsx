@@ -63,7 +63,7 @@ describe('Component: Sort', () => {
     fireEvent.click(sortForm);
     expect(screen.getByRole('list')).toHaveClass('places__options--opened');
 
-    fireEvent.mouseDown(document.body);
+    fireEvent.click(document.body);
     expect(screen.queryByRole('list')).not.toHaveClass('places__options--opened');
   });
 });

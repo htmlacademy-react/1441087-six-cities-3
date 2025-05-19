@@ -1,19 +1,17 @@
-import { SortOption } from '../../../components/sort/const';
-import { RequestStatus } from '../../../const/api-const';
-import { CITIES } from '../../../const/app-const';
-import { NameSpace } from '../../../const/store-const';
-import { State } from '../../../types/store-types';
-import {
-  getMockOfferPreviews,
-} from '../../../utils/mock-utils';
+import { getMockOfferPreviews } from '../../../utils/mock-utils';
 import { offersSelectors } from './offers-slice';
+import { RequestStatus } from '../../../const/api-const';
+import { SortOption } from '../../../components/sort/const';
+import { NameSpace } from '../../../const/store-const';
+import { Cities } from '../../../const/app-const';
+import { State } from '../../../types/store-types';
 
 describe('Offers selectors', () => {
   const mockOfferPreviews = getMockOfferPreviews();
   const mockNearOfferPreviews = getMockOfferPreviews();
   const state = {
     [NameSpace.Offers]: {
-      city: CITIES.Paris,
+      city: Cities.Paris,
       sortOption: SortOption[0],
       offerPreviews: mockOfferPreviews,
       offerPreviewsStatus: RequestStatus.Idle,

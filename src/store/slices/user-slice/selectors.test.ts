@@ -1,10 +1,8 @@
 import { AuthorizationStatus, RequestStatus } from '../../../const/api-const';
+import { getMockCurrentUser } from '../../../utils/mock-utils';
+import { userSelectors } from './user-slice';
 import { NameSpace } from '../../../const/store-const';
 import { State } from '../../../types/store-types';
-import {
-  getMockCurrentUser,
-} from '../../../utils/mock-utils';
-import { userSelectors } from './user-slice';
 
 describe('User selectors', () => {
   const mockCurrentUser = getMockCurrentUser();

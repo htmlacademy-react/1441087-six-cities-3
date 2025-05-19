@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { UserSlice } from '../../../types/store-types';
 import { AuthorizationStatus, RequestStatus } from '../../../const/api-const';
-import { NameSpace } from '../../../const/store-const';
-import { dropToken, saveToken } from '../../../services/token';
 import { checkAuth, login, logout } from './async-actions';
+import { dropToken, saveToken } from '../../../services/token';
+import { NameSpace } from '../../../const/store-const';
 import {
   selectCurrentUser,
   selectIsUserLoggedIn,
@@ -57,7 +57,7 @@ export const userReducer = userSlice.reducer;
 export const userActions = { checkAuth, login, logout };
 
 export const userSelectors = {
+  selectAuthRequestStatus,
   selectIsUserLoggedIn,
   selectCurrentUser,
-  selectAuthRequestStatus,
 };
