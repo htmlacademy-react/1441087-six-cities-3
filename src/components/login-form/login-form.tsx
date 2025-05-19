@@ -13,10 +13,11 @@ function LoginForm(): JSX.Element {
   const authRequestStatus = useAppSelector(
     userSelectors.selectAuthRequestStatus
   );
-  const [authData, setAuthData] = useState({
+  const initialAuthData = {
     email: '',
     password: '',
-  });
+  };
+  const [authData, setAuthData] = useState(initialAuthData);
 
   const disabledInputs = authRequestStatus === RequestStatus.Loading;
 
@@ -43,10 +44,7 @@ function LoginForm(): JSX.Element {
         .unwrap()
         .then(() => {
           form.reset();
-          setAuthData({
-            email: '',
-            password: '',
-          });
+          setAuthData(initialAuthData);
         });
     }
   };
