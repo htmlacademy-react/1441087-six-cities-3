@@ -19,7 +19,7 @@ type FavoriteButtonProps = {
 function FavoriteButton(props: FavoriteButtonProps): JSX.Element {
   const { buttonType, offerId, isFavorite } = props;
   const isLoggedIn = useAppSelector(userSelectors.selectIsUserLoggedIn);
-  const disabled = useAppSelector(offersSelectors.selectIsUpdateFavoriteLoading);
+  const isDisabled = useAppSelector(offersSelectors.selectIsUpdateFavoriteLoading);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const classes = getFavoriteButtonClasses(buttonType);
@@ -43,7 +43,7 @@ function FavoriteButton(props: FavoriteButtonProps): JSX.Element {
       className={`${classes.buttonClass} ${activeClass}`}
       type="button"
       onClick={handleFavoriteClick}
-      disabled={disabled}
+      disabled={isDisabled}
     >
       <svg
         className={classes.svgClass}

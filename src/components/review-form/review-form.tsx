@@ -27,9 +27,9 @@ function ReviewForm(props: ReviewFormProps): JSX.Element {
   };
   const [review, setReview] = useState(initialReview);
 
-  const disabledInputs = postReviewStatus === RequestStatus.Loading;
+  const isInputsDisabled = postReviewStatus === RequestStatus.Loading;
 
-  const disabledForm =
+  const isFormDisabled =
     !review.rating ||
     review.comment.length < MIN_REVIEW_LENGTH ||
     review.comment.length > MAN_REVIEW_LENGTH ||
@@ -45,7 +45,7 @@ function ReviewForm(props: ReviewFormProps): JSX.Element {
     setReview({ ...review, [name]: Number(value) });
   };
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     const form = evt.currentTarget;
     evt.preventDefault();
     dispatch(fullOfferActions.postReview({ offerId, review }))
@@ -61,7 +61,7 @@ function ReviewForm(props: ReviewFormProps): JSX.Element {
       className="reviews__form form"
       data-testid="review-form-test-id"
       action=""
-      onSubmit={handleSubmit}
+      onSubmit={handleFormSubmit}
     >
       <label className="reviews__label form__label" htmlFor="comment">
         Your review
@@ -72,7 +72,7 @@ function ReviewForm(props: ReviewFormProps): JSX.Element {
             key={value}
             value={value}
             title={title}
-            disabled={disabledInputs}
+            disabled={isInputsDisabled}
             onChange={handleRatingChange}
           />
         ))}
@@ -83,7 +83,7 @@ function ReviewForm(props: ReviewFormProps): JSX.Element {
         name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
         defaultValue={review.comment}
-        disabled={disabledInputs}
+        disabled={isInputsDisabled}
         onChange={handleCommentChange}
       />
       <div className="reviews__button-wrapper">
@@ -97,7 +97,7 @@ function ReviewForm(props: ReviewFormProps): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={disabledForm}
+          disabled={isFormDisabled}
         >
           Submit
         </button>
