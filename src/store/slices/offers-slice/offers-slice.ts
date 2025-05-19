@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getOfferPreviewById } from '../../../utils/offer-utils';
-import { SortOptionType } from '../../../components/sort/types';
+import { SortOptionType } from '../../../components/sort/sort-types';
 import { RequestStatus } from '../../../const/api-const';
 import { OffersSlice } from '../../../types/store-types';
-import { SortOption } from '../../../components/sort/const';
+import { SortOption } from '../../../components/sort/sort-const';
 import { NameSpace } from '../../../const/store-const';
 import { Cities } from '../../../const/app-const';
 import { City } from '../../../types/app-types';

@@ -1,8 +1,8 @@
-import { SortOptionLabel } from './const';
-import { SortOptionType } from './types';
+import { SortOptionLabel } from './sort-const';
+import { SortOptionType } from './sort-types';
 import {
   offersSelectors,
-  offersActions
+  offersActions,
 } from '../../store/slices/offers-slice/offers-slice';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';

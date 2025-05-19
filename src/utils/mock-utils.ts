@@ -1,7 +1,7 @@
 import { Action } from '@reduxjs/toolkit';
 import { OfferFull, OfferPreview, OfferPreviews } from '../types/offer-types';
 import { AuthorizationStatus, RequestStatus } from '../const/api-const';
-import { SortOption } from '../components/sort/const';
+import { SortOption } from '../components/sort/sort-const';
 import { CurrentUser } from '../types/user-types';
 import { Reviews } from '../types/review-types';
 import { Cities } from '../const/app-const';
