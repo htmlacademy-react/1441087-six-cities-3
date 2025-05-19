@@ -3,9 +3,9 @@ import { RequestStatus } from '../../../const/api-const';
 import { NameSpace } from '../../../const/store-const';
 import { State } from '../../../types/store-types';
 import {
-  getMockOfferFull,
   getMockOfferFullPreview,
   getMockOfferPreviews,
+  getMockOfferFull,
   getMockReviews,
 } from '../../../utils/mock-utils';
 

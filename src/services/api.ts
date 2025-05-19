@@ -1,6 +1,11 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { toast } from 'react-toastify';
 import { StatusCodes } from 'http-status-codes';
+import { toast } from 'react-toastify';
+import axios, {
+  InternalAxiosRequestConfig,
+  AxiosInstance,
+  AxiosResponse,
+  AxiosError
+} from 'axios';
 import { getToken } from './token';
 
 const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;

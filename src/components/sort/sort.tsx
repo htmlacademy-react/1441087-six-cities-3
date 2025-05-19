@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, memo } from 'react';
-import { isEscapeKey } from '../../utils/common-utils';
-import { SortOptionLabel } from './const';
 import { offersSelectors } from '../../store/slices/offers-slice/offers-slice';
-import SortList from './sort-list';
+import { SortOptionLabel } from './const';
+import { isEscapeKey } from '../../utils/common-utils';
 import useAppSelector from '../../hooks/use-app-selector';
+import SortList from './sort-list';
 
 function SortComponent(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);

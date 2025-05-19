@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { offersActions } from '../../store/slices/offers-slice/offers-slice';
-import { AppRoute, CITIES } from '../../const/app-const';
 import { getRandomElement } from '../../utils/common-utils';
-import Header from '../../components/header';
+import { AppRoute, CITIES } from '../../const/app-const';
+import { offersActions } from '../../store/slices/offers-slice/offers-slice';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import LoginForm from '../../components/login-form';
+import Header from '../../components/header';
 
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();

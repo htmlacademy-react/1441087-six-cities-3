@@ -1,8 +1,8 @@
-import { SortOption } from '../../../components/sort/const';
-import { RequestStatus } from '../../../const/api-const';
-import { CITIES } from '../../../const/app-const';
-import { getMockOfferPreviews } from '../../../utils/mock-utils';
 import { offersActions, offersReducer } from './offers-slice';
+import { getMockOfferPreviews } from '../../../utils/mock-utils';
+import { RequestStatus } from '../../../const/api-const';
+import { SortOption } from '../../../components/sort/const';
+import { CITIES } from '../../../const/app-const';
 
 describe('Offers Slice', () => {
   it('should return initial state with empty action', () => {

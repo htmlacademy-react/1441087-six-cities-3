@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { withProviders, withStore } from '../../utils/mock-components';
 import { getMockAppStore, getMockOfferPreviews } from '../../utils/mock-utils';
-import { CITIES } from '../../const/app-const';
+import { withProviders, withStore } from '../../utils/mock-components';
 import Map, { MapProps } from './map';
+import { CITIES } from '../../const/app-const';
 
 describe('Component: Map', () => {
   const mockOffers = getMockOfferPreviews();

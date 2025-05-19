@@ -8,11 +8,6 @@ import { NameSpace } from '../../../const/store-const';
 import { CITIES } from '../../../const/app-const';
 import { City } from '../../../types/app-types';
 import {
-  updateFavoriteOffer,
-  getFavoriteOffers,
-  getOffersPreviews,
-} from './async-actions';
-import {
   selectFavoriteOfferPreviewsStatus,
   selectIsUpdateFavoriteLoading,
   selectFavoriteOfferPreviews,
@@ -22,6 +17,11 @@ import {
   selectSortOption,
   selectCity,
 } from './selectors';
+import {
+  updateFavoriteOffer,
+  getFavoriteOffers,
+  getOffersPreviews,
+} from './async-actions';
 
 const initialState: OffersSlice = {
   city: CITIES.Paris,

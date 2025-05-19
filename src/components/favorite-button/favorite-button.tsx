@@ -3,9 +3,9 @@ import { offersActions, offersSelectors } from '../../store/slices/offers-slice/
 import { userSelectors } from '../../store/slices/user-slice/user-slice';
 import { AppRoute } from '../../const/app-const';
 import {
-  FavoriteButtonType,
   getFavoriteButtonClasses,
   getFavoriteButtonSize,
+  FavoriteButtonType,
 } from './favorite-button-utils';
 import useAppSelector from '../../hooks/use-app-selector';
 import useAppDispatch from '../../hooks/use-app-dispatch';

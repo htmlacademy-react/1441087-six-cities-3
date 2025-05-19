@@ -1,27 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { updateFavoriteOffer } from '../offers-slice/async-actions';
 import { FullOfferSlice } from '../../../types/store-types';
 import { RequestStatus } from '../../../const/api-const';
 import { NameSpace } from '../../../const/store-const';
-import { updateFavoriteOffer } from '../offers-slice/async-actions';
+import { logout } from '../user-slice/async-actions';
+import {
+  selectNearOfferPreviewsStatus,
+  selectCurrentOfferPreview,
+  selectNearOfferPreviews,
+  selectPostReviewStatus,
+  selectOfferFullStatus,
+  selectReviewsStatus,
+  selectIsLoading,
+  selectOfferFull,
+  selectIsFailed,
+  selectReviews,
+} from './selectors';
 import {
   getNearOfferPreviews,
   getOfferFull,
   getReviews,
   postReview,
 } from './async-actions';
-import {
-  selectCurrentOfferPreview,
-  selectIsFailed,
-  selectIsLoading,
-  selectNearOfferPreviews,
-  selectNearOfferPreviewsStatus,
-  selectOfferFull,
-  selectOfferFullStatus,
-  selectPostReviewStatus,
-  selectReviews,
-  selectReviewsStatus,
-} from './selectors';
-import { logout } from '../user-slice/async-actions';
 
 const initialState: FullOfferSlice = {
   offerFull: null,

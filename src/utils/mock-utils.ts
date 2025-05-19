@@ -1,11 +1,11 @@
 import { Action } from '@reduxjs/toolkit';
 import { OfferFull, OfferPreview, OfferPreviews } from '../types/offer-types';
-import { Reviews } from '../types/review-types';
-import { CurrentUser } from '../types/user-types';
-import { State } from '../types/store-types';
 import { AuthorizationStatus, RequestStatus } from '../const/api-const';
-import { CITIES } from '../const/app-const';
 import { SortOption } from '../components/sort/const';
+import { CurrentUser } from '../types/user-types';
+import { Reviews } from '../types/review-types';
+import { CITIES } from '../const/app-const';
+import { State } from '../types/store-types';
 
 export const getMockOfferPreviews = (): OfferPreviews => [
   {

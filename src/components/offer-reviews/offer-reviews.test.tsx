@@ -1,8 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import { withProviders, withStore } from '../../utils/mock-components';
-import { getMockAppStore, getMockCurrentUser, getMockOfferFull, getMockReviews } from '../../utils/mock-utils';
 import { AuthorizationStatus, RequestStatus } from '../../const/api-const';
+import { withProviders, withStore } from '../../utils/mock-components';
 import { UserSlice } from '../../types/store-types';
+import {
+  getMockCurrentUser,
+  getMockOfferFull,
+  getMockAppStore,
+  getMockReviews
+} from '../../utils/mock-utils';
 import OfferReviews from './offer-reviews';
 import ReviewForm from '../review-form';
 

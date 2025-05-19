@@ -1,15 +1,15 @@
 import { FormEvent, useState } from 'react';
-import { ReviewChangeHandler } from '../../types/review-types';
 import { MAN_REVIEW_LENGTH, MIN_REVIEW_LENGTH } from '../../const/review-const';
+import { ReviewChangeHandler } from '../../types/review-types';
 import { RequestStatus } from '../../const/api-const';
 import { RatingOption } from '../../const/app-const';
 import {
-  fullOfferActions,
   fullOfferSelectors,
+  fullOfferActions,
 } from '../../store/slices/full-offer-slice/full-offer-slice';
+import ReviewRatingStar from './review-rating-star';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
-import ReviewRatingStar from './review-rating-star';
 
 type ReviewFormProps = {
   offerId: string;

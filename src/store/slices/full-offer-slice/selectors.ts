@@ -1,10 +1,10 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RequestStatus } from '../../../const/api-const';
-import { NameSpace } from '../../../const/store-const';
-import { State } from '../../../types/store-types';
 import { getOfferPreviewById } from '../../../utils/offer-utils';
 import { MAX_REVIEWS_COUNT } from '../../../const/review-const';
 import { sortReviewsDate } from '../../../utils/reviews-utils';
+import { RequestStatus } from '../../../const/api-const';
+import { NameSpace } from '../../../const/store-const';
+import { State } from '../../../types/store-types';
 
 const selectSelf = (state: State) => state[NameSpace.FullOffer];
 const selectOffers = (state: State) => state[NameSpace.Offers];

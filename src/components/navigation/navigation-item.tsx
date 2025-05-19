@@ -1,5 +1,5 @@
-import { City } from '../../types/app-types';
 import { offersActions, offersSelectors } from '../../store/slices/offers-slice/offers-slice';
+import { City } from '../../types/app-types';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';
 

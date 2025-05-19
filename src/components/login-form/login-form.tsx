@@ -1,6 +1,6 @@
 import { FormEvent, ReactEventHandler, useRef, useState } from 'react';
-import { MIN_PASSWORD_LENGTH } from '../../const/app-const';
 import { userActions, userSelectors } from '../../store/slices/user-slice/user-slice';
+import { MIN_PASSWORD_LENGTH } from '../../const/app-const';
 import { RequestStatus } from '../../const/api-const';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import useAppSelector from '../../hooks/use-app-selector';

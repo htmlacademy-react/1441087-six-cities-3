@@ -1,13 +1,13 @@
-import { RequestStatus } from '../../../const/api-const';
+import { fullOfferActions, fullOfferReducer } from './full-offer-slice';
 import { NewReview, Review } from '../../../types/review-types';
+import { RequestStatus } from '../../../const/api-const';
+import { offersActions } from '../offers-slice/offers-slice';
 import {
-  getMockOfferFull,
   getMockOfferFullPreview,
   getMockOfferPreviews,
+  getMockOfferFull,
   getMockReviews,
 } from '../../../utils/mock-utils';
-import { offersActions } from '../offers-slice/offers-slice';
-import { fullOfferActions, fullOfferReducer } from './full-offer-slice';
 
 describe('Full Offer Slice', () => {
   it('should return initial state with empty action', () => {
