@@ -2,13 +2,13 @@ import { offersActions, offersReducer } from './offers-slice';
 import { getMockOfferPreviews } from '../../../utils/mock-utils';
 import { RequestStatus } from '../../../const/api-const';
 import { SortOption } from '../../../components/sort/const';
-import { CITIES } from '../../../const/app-const';
+import { Cities } from '../../../const/app-const';
 
 describe('Offers Slice', () => {
   it('should return initial state with empty action', () => {
     const emptyAction = { type: '' };
     const initialState = {
-      city: CITIES.Paris,
+      city: Cities.Paris,
       sortOption: SortOption[0],
       offerPreviews: [],
       offerPreviewsStatus: RequestStatus.Idle,
@@ -17,7 +17,7 @@ describe('Offers Slice', () => {
       updateFavoriteStatus: RequestStatus.Idle,
     };
     const expectedState = {
-      city: CITIES.Paris,
+      city: Cities.Paris,
       sortOption: SortOption[0],
       offerPreviews: [],
       offerPreviewsStatus: RequestStatus.Idle,
@@ -34,7 +34,7 @@ describe('Offers Slice', () => {
   it('should return initial state with undefined state and empty action', () => {
     const emptyAction = { type: '' };
     const expectedState = {
-      city: CITIES.Paris,
+      city: Cities.Paris,
       sortOption: SortOption[0],
       offerPreviews: [],
       offerPreviewsStatus: RequestStatus.Idle,
@@ -49,7 +49,7 @@ describe('Offers Slice', () => {
   });
 
   it('should set given City', () => {
-    const newCity = CITIES.Amsterdam;
+    const newCity = Cities.Amsterdam;
     const expectedState = {
       city: newCity,
       sortOption: SortOption[0],
@@ -68,7 +68,7 @@ describe('Offers Slice', () => {
   it('should set given Sort Option', () => {
     const newSortOption = SortOption[1];
     const expectedState = {
-      city: CITIES.Paris,
+      city: Cities.Paris,
       sortOption: newSortOption,
       offerPreviews: [],
       offerPreviewsStatus: RequestStatus.Idle,
@@ -88,7 +88,7 @@ describe('Offers Slice', () => {
   describe('Get Offer Previews', () => {
     it('should set "offerPreviewsStatus" to "Loading" with "getOffersPreviews.pending"', () => {
       const expectedState = {
-        city: CITIES.Paris,
+        city: Cities.Paris,
         sortOption: SortOption[0],
         offerPreviews: [],
         offerPreviewsStatus: RequestStatus.Loading,
@@ -108,7 +108,7 @@ describe('Offers Slice', () => {
     it('should set "offerPreviewsStatus" to "Success" and fill in offerPreviews with "getOffersPreviews.fulfilled"', () => {
       const mockOfferPreviews = getMockOfferPreviews();
       const expectedState = {
-        city: CITIES.Paris,
+        city: Cities.Paris,
         sortOption: SortOption[0],
         offerPreviews: mockOfferPreviews,
         offerPreviewsStatus: RequestStatus.Success,
@@ -131,7 +131,7 @@ describe('Offers Slice', () => {
 
     it('should set "offerPreviewsStatus" to "Failed" with "getOffersPreviews.rejected"', () => {
       const expectedState = {
-        city: CITIES.Paris,
+        city: Cities.Paris,
         sortOption: SortOption[0],
         offerPreviews: [],
         offerPreviewsStatus: RequestStatus.Failed,
@@ -152,7 +152,7 @@ describe('Offers Slice', () => {
   describe('Get Favorite Offer Previews', () => {
     it('should set "favoriteOfferPreviewsStatus" to "Loading" with "getFavoriteOffers.pending"', () => {
       const expectedState = {
-        city: CITIES.Paris,
+        city: Cities.Paris,
         sortOption: SortOption[0],
         offerPreviews: [],
         offerPreviewsStatus: RequestStatus.Idle,
@@ -172,7 +172,7 @@ describe('Offers Slice', () => {
     it('should set "favoriteOfferPreviewsStatus" to "Success" and fill in favoriteOfferPreviews with "getFavoriteOffers.fulfilled"', () => {
       const mockOfferPreviews = getMockOfferPreviews();
       const expectedState = {
-        city: CITIES.Paris,
+        city: Cities.Paris,
         sortOption: SortOption[0],
         offerPreviews: [],
         offerPreviewsStatus: RequestStatus.Idle,
@@ -195,7 +195,7 @@ describe('Offers Slice', () => {
 
     it('should set "favoriteOfferPreviewsStatus" to "Failed" with "getFavoriteOffers.rejected"', () => {
       const expectedState = {
-        city: CITIES.Paris,
+        city: Cities.Paris,
         sortOption: SortOption[0],
         offerPreviews: [],
         offerPreviewsStatus: RequestStatus.Idle,
@@ -219,7 +219,7 @@ describe('Offers Slice', () => {
       const initialMockOfferPreview = { ...mockOfferPreview, isFavorite: false };
       const updatedMockOfferPreview = { ...mockOfferPreview, isFavorite: true };
       const initialState = {
-        city: CITIES.Paris,
+        city: Cities.Paris,
         sortOption: SortOption[0],
         offerPreviews: [initialMockOfferPreview],
         offerPreviewsStatus: RequestStatus.Idle,
@@ -228,7 +228,7 @@ describe('Offers Slice', () => {
         updateFavoriteStatus: RequestStatus.Idle,
       };
       const expectedState = {
-        city: CITIES.Paris,
+        city: Cities.Paris,
         sortOption: SortOption[0],
         offerPreviews: [updatedMockOfferPreview],
         offerPreviewsStatus: RequestStatus.Idle,
@@ -253,7 +253,7 @@ describe('Offers Slice', () => {
       const initialMockOfferPreview = { ...mockOfferPreview, isFavorite: true };
       const updatedMockOfferPreview = { ...mockOfferPreview, isFavorite: false };
       const initialState = {
-        city: CITIES.Paris,
+        city: Cities.Paris,
         sortOption: SortOption[0],
         offerPreviews: [initialMockOfferPreview],
         offerPreviewsStatus: RequestStatus.Idle,
@@ -262,7 +262,7 @@ describe('Offers Slice', () => {
         updateFavoriteStatus: RequestStatus.Idle,
       };
       const expectedState = {
-        city: CITIES.Paris,
+        city: Cities.Paris,
         sortOption: SortOption[0],
         offerPreviews: [updatedMockOfferPreview],
         offerPreviewsStatus: RequestStatus.Idle,

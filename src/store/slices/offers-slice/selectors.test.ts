@@ -3,7 +3,7 @@ import { offersSelectors } from './offers-slice';
 import { RequestStatus } from '../../../const/api-const';
 import { SortOption } from '../../../components/sort/const';
 import { NameSpace } from '../../../const/store-const';
-import { CITIES } from '../../../const/app-const';
+import { Cities } from '../../../const/app-const';
 import { State } from '../../../types/store-types';
 
 describe('Offers selectors', () => {
@@ -11,7 +11,7 @@ describe('Offers selectors', () => {
   const mockNearOfferPreviews = getMockOfferPreviews();
   const state = {
     [NameSpace.Offers]: {
-      city: CITIES.Paris,
+      city: Cities.Paris,
       sortOption: SortOption[0],
       offerPreviews: mockOfferPreviews,
       offerPreviewsStatus: RequestStatus.Idle,

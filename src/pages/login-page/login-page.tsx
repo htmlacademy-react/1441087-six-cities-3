@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { getRandomElement } from '../../utils/common-utils';
-import { AppRoute, CITIES } from '../../const/app-const';
+import { AppRoute, Cities } from '../../const/app-const';
 import { offersActions } from '../../store/slices/offers-slice/offers-slice';
 import useAppDispatch from '../../hooks/use-app-dispatch';
 import LoginForm from '../../components/login-form';
@@ -10,10 +10,10 @@ import Header from '../../components/header';
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const randomCity = getRandomElement(Object.values(CITIES));
+  const randomCity = getRandomElement(Object.values(Cities));
 
   const handleCityClick = (evt: React.MouseEvent<HTMLAnchorElement>) => {
-    evt.preventDefault();k
+    evt.preventDefault();
     dispatch(offersActions.setCity(randomCity));
     navigate(AppRoute.Root);
   };

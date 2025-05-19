@@ -8,7 +8,7 @@ import { APIRoute, RequestStatus } from '../../../const/api-const';
 import { offersActions } from './offers-slice';
 import { SortOption } from '../../../components/sort/const';
 import { createAPI } from '../../../services/api';
-import { CITIES } from '../../../const/app-const';
+import { Cities } from '../../../const/app-const';
 
 describe('Offers slice async actions', () => {
   const axios = createAPI();
@@ -21,7 +21,7 @@ describe('Offers slice async actions', () => {
   >(middleware);
   let store: ReturnType<typeof mockStoreCreator>;
   const initialState = {
-    city: CITIES.Paris,
+    city: Cities.Paris,
     sortOption: SortOption[0],
     offerPreviews: [],
     offerPreviewsStatus: RequestStatus.Idle,

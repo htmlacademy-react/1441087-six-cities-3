@@ -5,7 +5,7 @@ import { RequestStatus } from '../../../const/api-const';
 import { OffersSlice } from '../../../types/store-types';
 import { SortOption } from '../../../components/sort/const';
 import { NameSpace } from '../../../const/store-const';
-import { CITIES } from '../../../const/app-const';
+import { Cities } from '../../../const/app-const';
 import { City } from '../../../types/app-types';
 import {
   selectFavoriteOfferPreviewsStatus,
@@ -24,7 +24,7 @@ import {
 } from './async-actions';
 
 const initialState: OffersSlice = {
-  city: CITIES.Paris,
+  city: Cities.Paris,
   sortOption: SortOption[0],
   offerPreviews: [],
   offerPreviewsStatus: RequestStatus.Idle,

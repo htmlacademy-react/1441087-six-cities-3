@@ -33,12 +33,12 @@ function SortComponent(): JSX.Element {
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscKeydown);
-      document.addEventListener('mousedown', handleDocumentClick);
+      document.addEventListener('click', handleDocumentClick);
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscKeydown);
-      document.removeEventListener('mousedown', handleDocumentClick);
+      document.removeEventListener('click', handleDocumentClick);
     };
   }, [isOpen, setIsOpen]);
 

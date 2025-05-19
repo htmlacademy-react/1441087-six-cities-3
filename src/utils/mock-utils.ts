@@ -4,7 +4,7 @@ import { AuthorizationStatus, RequestStatus } from '../const/api-const';
 import { SortOption } from '../components/sort/const';
 import { CurrentUser } from '../types/user-types';
 import { Reviews } from '../types/review-types';
-import { CITIES } from '../const/app-const';
+import { Cities } from '../const/app-const';
 import { State } from '../types/store-types';
 
 export const getMockOfferPreviews = (): OfferPreviews => [
@@ -229,7 +229,7 @@ export const getMockAppStore = (initialState?: Partial<State>): State => ({
     postReviewStatus: RequestStatus.Idle,
   },
   Offers: {
-    city: CITIES.Paris,
+    city: Cities.Paris,
     sortOption: SortOption[0],
     offerPreviews: [],
     offerPreviewsStatus: RequestStatus.Idle,
