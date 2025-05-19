@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../const/app-const';
-import { getToken } from '../../services/token';
+import { dropToken, getToken } from '../../services/token';
 import { offersActions } from '../../store/slices/offers-slice/offers-slice';
 import {
   userActions,
@@ -29,7 +29,9 @@ function App(): JSX.Element {
         .then(() => {
           dispatch(offersActions.getFavoriteOffers());
         })
-        .catch(() => {});
+        .catch(() => {
+          dropToken();
+        });
     }
   }, [dispatch, token, isLoggedIn]);
 
