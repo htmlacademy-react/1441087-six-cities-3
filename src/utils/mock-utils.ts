@@ -235,6 +235,7 @@ export const getMockAppStore = (initialState?: Partial<State>): State => ({
     offerPreviewsStatus: RequestStatus.Idle,
     favoriteOfferPreviews: [],
     favoriteOfferPreviewsStatus: RequestStatus.Idle,
+    updateFavoriteStatus: RequestStatus.Idle,
   },
   User: {
     currentUser: null,
