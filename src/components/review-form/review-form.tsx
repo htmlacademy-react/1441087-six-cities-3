@@ -21,10 +21,11 @@ function ReviewForm(props: ReviewFormProps): JSX.Element {
   const postReviewStatus = useAppSelector(
     fullOfferSelectors.selectPostReviewStatus
   );
-  const [review, setReview] = useState({
+  const initialReview = {
     comment: '',
     rating: 0,
-  });
+  };
+  const [review, setReview] = useState(initialReview);
 
   const disabledInputs = postReviewStatus === RequestStatus.Loading;
 
@@ -51,10 +52,7 @@ function ReviewForm(props: ReviewFormProps): JSX.Element {
       .unwrap()
       .then(() => {
         form.reset();
-        setReview({
-          comment: '',
-          rating: 0,
-        });
+        setReview(initialReview);
       });
   };
 
