@@ -13,7 +13,7 @@ function LoginPage(): JSX.Element {
   const randomCity = getRandomElement(Object.values(CITIES));
 
   const handleCityClick = (evt: React.MouseEvent<HTMLAnchorElement>) => {
-    evt.preventDefault();
+    evt.preventDefault();k
     dispatch(offersActions.setCity(randomCity));
     navigate(AppRoute.Root);
   };

@@ -6,7 +6,7 @@ import useAppDispatch from '../../hooks/use-app-dispatch';
 function HeaderSignOut(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const handleLogout = (evt: React.MouseEvent<HTMLAnchorElement>): void => {
+  const handleLogoutClick = (evt: React.MouseEvent<HTMLAnchorElement>): void => {
     evt.preventDefault();
     dispatch(userActions.logout());
   };
@@ -15,7 +15,7 @@ function HeaderSignOut(): JSX.Element {
     <li className="header__nav-item">
       <Link
         className="header__nav-link"
-        onClick={handleLogout}
+        onClick={handleLogoutClick}
         to={AppRoute.Root}
       >
         <span className="header__signout">Sign out</span>

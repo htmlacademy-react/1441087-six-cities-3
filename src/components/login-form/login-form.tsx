@@ -31,7 +31,7 @@ function LoginForm(): JSX.Element {
     setAuthData({ ...authData, [name]: value });
   };
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const form = evt.currentTarget;
 
@@ -52,7 +52,7 @@ function LoginForm(): JSX.Element {
   return (
     <form
       className="login__form form"
-      onSubmit={handleSubmit}
+      onSubmit={handleFormSubmit}
     >
       <div className="login__input-wrapper form__input-wrapper">
         <label className="visually-hidden">E-mail</label>

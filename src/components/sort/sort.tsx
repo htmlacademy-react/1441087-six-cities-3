@@ -10,7 +10,7 @@ function SortComponent(): JSX.Element {
   const currentSortOption = useAppSelector(offersSelectors.selectSortOption);
   const dropdownRef = useRef<HTMLFormElement>(null);
 
-  const handleFormToggle = (): void => {
+  const handleFormClick = (): void => {
     setIsOpen(!isOpen);
   };
 
@@ -22,7 +22,7 @@ function SortComponent(): JSX.Element {
       }
     };
 
-    const handleClickOutside = (evt: MouseEvent) => {
+    const handleDocumentClick = (evt: MouseEvent) => {
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(evt.target as Node)
@@ -33,12 +33,12 @@ function SortComponent(): JSX.Element {
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscKeydown);
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mousedown', handleDocumentClick);
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscKeydown);
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleDocumentClick);
     };
   }, [isOpen, setIsOpen]);
 
@@ -47,7 +47,7 @@ function SortComponent(): JSX.Element {
       className="places__sorting"
       action="#"
       method="get"
-      onClick={handleFormToggle}
+      onClick={handleFormClick}
       ref={dropdownRef}
       data-testid="sort-form-test-id"
     >
