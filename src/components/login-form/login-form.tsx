@@ -19,9 +19,9 @@ function LoginForm(): JSX.Element {
   };
   const [authData, setAuthData] = useState(initialAuthData);
 
-  const disabledInputs = authRequestStatus === RequestStatus.Loading;
+  const isInputsDisabled = authRequestStatus === RequestStatus.Loading;
 
-  const disabledForm =
+  const isFormDisabled =
     !emailRef.current?.validity.valid ||
     authData.password.length < MIN_PASSWORD_LENGTH ||
     authRequestStatus === RequestStatus.Loading;
@@ -65,7 +65,7 @@ function LoginForm(): JSX.Element {
           data-testid="email-input-test-id"
           required
           onChange={handleAuthDataChange}
-          disabled={disabledInputs}
+          disabled={isInputsDisabled}
         />
       </div>
       <div className="login__input-wrapper form__input-wrapper">
@@ -79,13 +79,13 @@ function LoginForm(): JSX.Element {
           required
           minLength={MIN_PASSWORD_LENGTH}
           onChange={handleAuthDataChange}
-          disabled={disabledInputs}
+          disabled={isInputsDisabled}
         />
       </div>
       <button
         className="login__submit form__submit button"
         type="submit"
-        disabled={disabledForm}
+        disabled={isFormDisabled}
       >
         Sign in
       </button>
