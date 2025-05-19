@@ -26,7 +26,7 @@ function shouldDisplayError(response: AxiosResponse) {
   return !!StatusCodeMapping[response.status];
 }
 
-function createAPI(): AxiosInstance {
+export function createAPI(): AxiosInstance {
   const api = axios.create({
     baseURL: BASE_API_URL,
     timeout: REQUEST_TIMEOUT,
@@ -55,5 +55,3 @@ function createAPI(): AxiosInstance {
 
   return api;
 }
-
-export { createAPI };
