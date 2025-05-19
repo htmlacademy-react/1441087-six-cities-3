@@ -3,7 +3,7 @@ import { UserSlice } from '../../../types/store-types';
 import { AuthorizationStatus, RequestStatus } from '../../../const/api-const';
 import { checkAuth, login, logout } from './async-actions';
 import { dropToken, saveToken } from '../../../services/token';
-import { NameSpace } from '../../../const/store-const';
+import { Namespace } from '../../../const/store-const';
 import {
   selectCurrentUser,
   selectIsUserLoggedIn,
@@ -17,7 +17,7 @@ const initialState: UserSlice = {
 };
 
 const userSlice = createSlice({
-  name: NameSpace.User,
+  name: Namespace.User,
   initialState,
   reducers: {},
   extraReducers(builder) {

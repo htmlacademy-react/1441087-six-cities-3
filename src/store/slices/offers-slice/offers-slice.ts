@@ -4,7 +4,7 @@ import { SortOptionType } from '../../../components/sort/sort-types';
 import { RequestStatus } from '../../../const/api-const';
 import { OffersSlice } from '../../../types/store-types';
 import { SortOption } from '../../../components/sort/sort-const';
-import { NameSpace } from '../../../const/store-const';
+import { Namespace } from '../../../const/store-const';
 import { Cities } from '../../../const/app-const';
 import { City } from '../../../types/app-types';
 import {
@@ -34,7 +34,7 @@ const initialState: OffersSlice = {
 };
 
 const offersSlice = createSlice({
-  name: NameSpace.Offers,
+  name: Namespace.Offers,
   initialState,
   reducers: {
     setCity(state, action: PayloadAction<City>) {

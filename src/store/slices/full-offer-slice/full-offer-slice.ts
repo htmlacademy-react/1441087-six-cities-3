@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { updateFavoriteOffer } from '../offers-slice/async-actions';
 import { FullOfferSlice } from '../../../types/store-types';
 import { RequestStatus } from '../../../const/api-const';
-import { NameSpace } from '../../../const/store-const';
+import { Namespace } from '../../../const/store-const';
 import { logout } from '../user-slice/async-actions';
 import {
   selectNearOfferPreviewsStatus,
@@ -34,7 +34,7 @@ const initialState: FullOfferSlice = {
 };
 
 const fullOfferSlice = createSlice({
-  name: NameSpace.FullOffer,
+  name: Namespace.FullOffer,
   initialState,
   reducers: {},
   extraReducers(builder) {
