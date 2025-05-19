@@ -31,7 +31,6 @@ describe('Component: OfferReviews', () => {
 
     render(withStoreComponent);
 
-    // expect(screen.getByText(`Reviews · ${mockReviews.length}`)).toBeInTheDocument();
     expect(screen.getAllByRole('listitem')).toHaveLength(mockReviews.length);
     expect(screen.getByTestId(reviewsFromTestId)).toBeInTheDocument();
   });
@@ -54,7 +53,6 @@ describe('Component: OfferReviews', () => {
 
     render(withStoreComponent);
 
-    // expect(screen.getByText(`Reviews · ${mockReviews.length}`)).toBeInTheDocument();
     expect(screen.getAllByRole('listitem')).toHaveLength(mockReviews.length);
     expect(screen.queryByTestId(reviewsFromTestId)).not.toBeInTheDocument();
   });
@@ -77,7 +75,6 @@ describe('Component: OfferReviews', () => {
 
     render(withStoreComponent);
 
-    // expect(screen.getByText('Reviews · 0')).toBeInTheDocument();
     expect(screen.queryByRole('listitem')).not.toBeInTheDocument();
     expect(screen.queryByTestId(reviewsFromTestId)).not.toBeInTheDocument();
   });
@@ -103,7 +100,6 @@ describe('Component: OfferReviews', () => {
     const reviewItems = screen.getAllByRole('listitem');
     const reviewDates = reviewItems.map((item) => item.querySelector('time')?.getAttribute('datetime'));
 
-    // Check if dates are in descending order
     const isDescending = reviewDates.every((date, index) =>
       index === 0 || new Date(date!) <= new Date(reviewDates[index - 1]!));
 
