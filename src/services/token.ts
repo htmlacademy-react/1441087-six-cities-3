@@ -2,15 +2,15 @@ const AUTH_TOKEN_NAME = 'six-cities-token';
 
 export type Token = string;
 
-export const getToken = (): Token => {
+export function getToken (): Token {
   const token = localStorage.getItem(AUTH_TOKEN_NAME);
   return token ?? '';
-};
+}
 
-export const saveToken = (token: Token): void => {
+export function saveToken (token: Token): void {
   localStorage.setItem(AUTH_TOKEN_NAME, token);
-};
+}
 
-export const dropToken = (): void => {
+export function dropToken (): void {
   localStorage.removeItem(AUTH_TOKEN_NAME);
-};
+}
