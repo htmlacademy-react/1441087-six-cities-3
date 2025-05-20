@@ -102,8 +102,8 @@ describe('Component: OfferReviews', () => {
 
     render(withStoreComponent);
 
-    const reviewItems = screen.getAllByRole('listitem');
-    const reviewDates = reviewItems.map((item) => item.querySelector('time')?.getAttribute('datetime'));
+    const reviewItems = screen.getAllByTestId('review-time-test-id');
+    const reviewDates = reviewItems.map((item) => item.getAttribute('datetime'));
 
     const isDescending = reviewDates.every((date, index) =>
       index === 0 || new Date(date!) <= new Date(reviewDates[index - 1]!));
