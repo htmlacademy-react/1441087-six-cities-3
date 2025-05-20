@@ -1,11 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { sortOfferPreviews } from '../../../components/sort/utils';
+import { sortOfferPreviews } from '../../../components/sort/sort-utils';
 import { getCityOffers } from '../../../utils/city-utils';
 import { RequestStatus } from '../../../const/api-const';
-import { NameSpace } from '../../../const/store-const';
+import { Namespace } from '../../../const/store-const';
 import { State } from '../../../types/store-types';
 
-const selectSelf = (state: State) => state[NameSpace.Offers];
+const selectSelf = (state: State) => state[Namespace.Offers];
 
 export const selectCity = createSelector(selectSelf, (state) => state.city);
 

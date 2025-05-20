@@ -1,7 +1,7 @@
 import { offersActions, offersReducer } from './offers-slice';
 import { getMockOfferPreviews } from '../../../utils/mock-utils';
 import { RequestStatus } from '../../../const/api-const';
-import { SortOption } from '../../../components/sort/const';
+import { SortOption } from '../../../components/sort/sort-const';
 import { Cities } from '../../../const/app-const';
 
 describe('Offers Slice', () => {
@@ -216,7 +216,10 @@ describe('Offers Slice', () => {
   describe('Update Favorite Offer', () => {
     it('should add offer preview in favoriteOfferPreviews with "updateFavoriteOffer.fulfilled" and status = 1', () => {
       const mockOfferPreview = getMockOfferPreviews()[0];
-      const initialMockOfferPreview = { ...mockOfferPreview, isFavorite: false };
+      const initialMockOfferPreview = {
+        ...mockOfferPreview,
+        isFavorite: false,
+      };
       const updatedMockOfferPreview = { ...mockOfferPreview, isFavorite: true };
       const initialState = {
         city: Cities.Paris,
@@ -239,10 +242,14 @@ describe('Offers Slice', () => {
 
       const result = offersReducer(
         initialState,
-        offersActions.updateFavoriteOffer.fulfilled(updatedMockOfferPreview, '', {
-          offerId: mockOfferPreview.id,
-          status: 1,
-        })
+        offersActions.updateFavoriteOffer.fulfilled(
+          updatedMockOfferPreview,
+          '',
+          {
+            offerId: mockOfferPreview.id,
+            status: 1,
+          }
+        )
       );
 
       expect(result).toEqual(expectedState);
@@ -251,7 +258,10 @@ describe('Offers Slice', () => {
     it('should remove offer preview from favoriteOfferPreviews with "updateFavoriteOffer.fulfilled" and status = 0', () => {
       const mockOfferPreview = getMockOfferPreviews()[0];
       const initialMockOfferPreview = { ...mockOfferPreview, isFavorite: true };
-      const updatedMockOfferPreview = { ...mockOfferPreview, isFavorite: false };
+      const updatedMockOfferPreview = {
+        ...mockOfferPreview,
+        isFavorite: false,
+      };
       const initialState = {
         city: Cities.Paris,
         sortOption: SortOption[0],
@@ -273,10 +283,14 @@ describe('Offers Slice', () => {
 
       const result = offersReducer(
         initialState,
-        offersActions.updateFavoriteOffer.fulfilled(updatedMockOfferPreview, '', {
-          offerId: mockOfferPreview.id,
-          status: 0,
-        })
+        offersActions.updateFavoriteOffer.fulfilled(
+          updatedMockOfferPreview,
+          '',
+          {
+            offerId: mockOfferPreview.id,
+            status: 0,
+          }
+        )
       );
 
       expect(result).toEqual(expectedState);

@@ -1,9 +1,9 @@
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { AuthorizationStatusType, RequestStatusType } from './api-types';
 import { OfferFull, OfferPreviews } from './offer-types';
-import { SortOptionType } from '../components/sort/types';
+import { SortOptionType } from '../components/sort/sort-types';
 import { CurrentUser } from './user-types';
-import { NameSpace } from '../const/store-const';
+import { Namespace } from '../const/store-const';
 import { createAPI } from '../services/api';
 import { Reviews } from './review-types';
 import { Values } from './common-types';
@@ -12,11 +12,15 @@ import { City } from './app-types';
 
 export type AppDispatch = typeof store.dispatch;
 
-export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createAPI>, Action>;
+export type AppThunkDispatch = ThunkDispatch<
+  State,
+  ReturnType<typeof createAPI>,
+  Action
+>;
 
 export type State = ReturnType<typeof store.getState>;
 
-export type NameSpaceType = Values<typeof NameSpace>;
+export type NamespaceType = Values<typeof Namespace>;
 
 export type UserSlice = {
   authStatus: AuthorizationStatusType;
@@ -43,4 +47,3 @@ export type FullOfferSlice = {
   reviewsStatus: RequestStatusType;
   postReviewStatus: RequestStatusType;
 };
-

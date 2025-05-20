@@ -1,5 +1,5 @@
 import { OfferPreview, OfferPreviews } from '../../types/offer-types';
-import { SortOptionType } from './types';
+import { SortOptionType } from './sort-types';
 
 function comparePriceUp(
   firstOfferPreview: OfferPreview,
